@@ -23,6 +23,10 @@ import FatLogsList from "./FatLogsList";
 import FatLogModal from "./FatLogModal";
 import About from "./About";
 import "../App.css";
+import { Provider, ReactReduxContext } from "react-redux";
+import { ConnectedRouter } from "connected-react-router";
+import store from "../store";
+import { history } from "../history";
 
 class Components extends Component {
   state = {
@@ -85,51 +89,53 @@ class Components extends Component {
     };
 
     return (
-      <BrowserRouter>
-        <Navbar
-          color="dark"
-          dark
-          expand="sm"
-          className="mb-5 navclss"
-          style={{}}
-        >
-          <Container>
-            <NavbarBrand href="/">Fat Hacker</NavbarBrand>
-            <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className="ml-auto" navbar>
-                {isAuthenticated ? authLinks : guestLinks}
-              </Nav>
-            </Collapse>
+      <Provider store={store} context={ReactReduxContext}>
+        <ConnectedRouter history={history}>
+          <Navbar
+            color="dark"
+            dark
+            expand="sm"
+            className="mb-5 navclss"
+            style={{}}
+          >
+            <Container>
+              <NavbarBrand href="/">Fat Hacker</NavbarBrand>
+              <NavbarToggler onClick={this.toggle} />
+              <Collapse isOpen={this.state.isOpen} navbar>
+                <Nav className="ml-auto" navbar>
+                  {isAuthenticated ? authLinks : guestLinks}
+                </Nav>
+              </Collapse>
+            </Container>
+          </Navbar>
+
+          <Container
+            class="container-fluid"
+            style={{
+              fontColor: "white",
+              marginLeft: "0px",
+              paddingLeft: "0px",
+              marginTop: "-50px"
+            }}
+          >
+            {user ? (
+              <Route exact path="/" render={MyAbout} />
+            ) : (
+              <Route exact path="/" component={About} />
+            )}
+
+            <Route exact path="/logs" component={FatLogModal} />
+            {user ? <Route exact path="/logs" render={MyFatLogsList} /> : null}
           </Container>
-        </Navbar>
-
-        <Container
-          class="container-fluid"
-          style={{
-            fontColor: "white",
-            marginLeft: "0px",
-            paddingLeft: "0px",
-            marginTop: "-50px"
-          }}
-        >
-          {user ? (
-            <Route exact path="/" render={MyAbout} />
-          ) : (
-            <Route exact path="/" component={About} />
-          )}
-
-          <Route exact path="/logs" component={FatLogModal} />
-          {user ? <Route exact path="/logs" render={MyFatLogsList} /> : null}
-        </Container>
-        <Route exact path="/graphs" render={MyGraphs2} />
-        <Container style={{ height: "4rem" }}></Container>
-        <Route exact path="/graphs" render={MyGraphs3} />
-        <Container style={{ height: "4rem" }}></Container>
-        <div style={{ height: "200px" }}></div>
-        <Route exact path="/graphs" render={MyGraphs4} />
-        <div style={{ height: "300px" }}></div>
-      </BrowserRouter>
+          <Route exact path="/graphs" render={MyGraphs2} />
+          <Container style={{ height: "4rem" }}></Container>
+          <Route exact path="/graphs" render={MyGraphs3} />
+          <Container style={{ height: "4rem" }}></Container>
+          <div style={{ height: "200px" }}></div>
+          <Route exact path="/graphs" render={MyGraphs4} />
+          <div style={{ height: "300px" }}></div>
+        </ConnectedRouter>
+      </Provider>
     );
   }
 }

@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import Components from "./components/Components";
 import { Provider } from "react-redux";
-import store from "./store";
+
 import { loadUser } from "./actions/authActions";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootswatch/dist/cyborg/bootstrap.css";
 import "./App.css";
+import store from "./store";
 
 class App extends Component {
   componentDidMount() {

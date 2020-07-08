@@ -11,6 +11,8 @@
     "canvasjs": "^1.8.3",
     "chart.js": "^2.9.3",
     "chartjs-top-round-bar": "^1.0.1",
+    "connected-react-router": "^6.8.0",
+    "history": "^4.10.1",
     "mdbreact": "^4.27.0",
     "moment": "^2.26.0",
     "moment-timezone": "^0.5.31",
@@ -24,11 +26,14 @@
     "react-dom": "^16.13.1",
     "react-moment": "^0.9.7",
     "react-parallax": "^3.0.3",
+    "react-redux": "^7.0.3",
     "react-rellax": "^1.0.3",
     "react-rellax-wrapper": "^1.0.3",
+    "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0",
     "uuid4": "^1.1.4"
   },
   "scripts": {

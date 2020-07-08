@@ -2,12 +2,20 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import App from "./App";
+import { Provider, ReactReduxContext } from "react-redux";
+import { ConnectedRouter } from "connected-react-router";
 import * as serviceWorker from "./serviceWorker";
+import store from "./store";
+import { history } from "./history";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store} context={ReactReduxContext}>
+    <ConnectedRouter history={history}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </ConnectedRouter>
+  </Provider>,
   document.getElementById("root")
 );
 

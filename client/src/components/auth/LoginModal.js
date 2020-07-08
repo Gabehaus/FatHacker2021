@@ -16,6 +16,8 @@ import PropTypes from "prop-types";
 import { login } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
 import { getFatLogs } from "../../actions/fatLogActions";
+import { push } from "connected-react-router";
+import store from "../../store";
 
 class LoginModal extends Component {
   state = {
@@ -63,7 +65,7 @@ class LoginModal extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onSubmit = e => {
+  onSubmit = (e, props) => {
     e.preventDefault();
 
     const { email, password } = this.state;
@@ -74,7 +76,9 @@ class LoginModal extends Component {
     };
     // attempt to login
     this.props.login(user);
-    //.then(this.props.getFatLogs(this.props.auth.user.name));
+    if (user) {
+      store.dispatch(push("/logs"));
+    }
   };
 
   render() {
