@@ -11,6 +11,7 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL
 } from "./types";
+import { push } from "connected-react-router";
 
 // Check token & load user
 export const loadUser = () => (dispatch, getState) => {
@@ -34,7 +35,12 @@ export const loadUser = () => (dispatch, getState) => {
 };
 
 // Register User
-export const register = ({ name, email, password }) => dispatch => {
+export const register = ({
+  name,
+  email,
+  password,
+  confirm_password
+}) => dispatch => {
   //Headers
   const config = {
     headers: {
@@ -43,7 +49,7 @@ export const register = ({ name, email, password }) => dispatch => {
   };
 
   //Request body
-  const body = JSON.stringify({ name, email, password });
+  const body = JSON.stringify({ name, email, password, confirm_password });
 
   axios
     .post("/api/users", body, config)
@@ -53,6 +59,7 @@ export const register = ({ name, email, password }) => dispatch => {
         payload: res.data
       })
     )
+
     .catch(err => {
       dispatch(
         returnErrors(err.response.data, err.response.status, "REGISTER_FAIL")
@@ -60,6 +67,7 @@ export const register = ({ name, email, password }) => dispatch => {
       dispatch({
         type: REGISTER_FAIL
       });
+      store.dispatch(push("/"));
     });
 };
 
@@ -83,6 +91,7 @@ export const login = ({ email, password }) => dispatch => {
         payload: res.data
       })
     )
+
     .catch(err => {
       dispatch(
         returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
@@ -90,6 +99,7 @@ export const login = ({ email, password }) => dispatch => {
       dispatch({
         type: LOGIN_FAIL
       });
+      store.dispatch(push("/"));
     });
 };
 

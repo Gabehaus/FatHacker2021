@@ -49,6 +49,7 @@ class LoginModal extends Component {
     if (this.state.modal) {
       if (isAuthenticated) {
         this.toggle();
+        store.dispatch(push("/logs"));
       }
     }
   }
@@ -76,9 +77,10 @@ class LoginModal extends Component {
     };
     // attempt to login
     this.props.login(user);
-    if (user) {
+    /* console.log(`user status ${this.props.auth.user}`);
+    if (this.props.auth.user) {
       store.dispatch(push("/logs"));
-    }
+    } */
   };
 
   render() {

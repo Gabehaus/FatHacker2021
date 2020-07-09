@@ -1,21 +1,21 @@
-import { OPEN_REGISTER } from "../actions/types";
-import { CLOSE_REGISTER } from "../actions/types";
+import { LOADING_START } from "../actions/types";
+import { LOADING_FINISH } from "../actions/types";
 
 const initialState = {
-  isOpenReg: false
+  isLoading: false
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case OPEN_REGISTER:
+    case LOADING_START:
       return {
         ...state,
-        isOpenReg: !state.isOpenReg
+        isLoading: true
       };
-    case CLOSE_REGISTER:
+    case LOADING_FINISH:
       return {
         ...state,
-        isOpenReg: false
+        isLoading: false
       };
 
     default:

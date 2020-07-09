@@ -5,6 +5,8 @@ import { Container, Row, Col, Input, Button, Alert } from "reactstrap";
 import { connect } from "react-redux";
 import { transferCalculatorResults } from "../../actions/fatLogActions";
 import Image from "react-bootstrap/Image";
+import { startLoading, finishLoading } from "../../actions/loadingActions";
+import { closeNestedModal } from "../../actions/fatLogActions";
 
 class fatSearch extends Component {
   constructor(props) {
@@ -125,10 +127,13 @@ class fatSearch extends Component {
 
     let url = `https://api.edamam.com/api/food-database/nutrients?app_id=ee083348&app_key=727e64dad5d62dbe33303ed86695050d`;
 
+    this.props.startLoading();
+
     axios
       .post(url, newFatQuery)
       .then(response => {
         console.log(response);
+        this.props.finishLoading();
         this.setState({
           gramsFat: +response.data.totalNutrients.FAT.quantity.toFixed(2)
         });
@@ -242,7 +247,7 @@ class fatSearch extends Component {
                   this.state.numberOfUnits,
                   this.state.gramsFat
                 );
-                this.state.error && this.props.closeModal();
+                this.props.closeNestedModal();
               }}
               size="md"
             >
@@ -261,6 +266,9 @@ const mapStateToProps = state => ({
   user: state.auth.user
 });
 
-export default connect(mapStateToProps, { transferCalculatorResults })(
-  fatSearch
-);
+export default connect(mapStateToProps, {
+  transferCalculatorResults,
+  startLoading,
+  finishLoading,
+  closeNestedModal
+})(fatSearch);

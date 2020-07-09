@@ -8,7 +8,9 @@ import {
   CHANGE_CALCUNIT,
   CHANGE_CALCQUANTITY,
   CHANGE_CALCFAT,
-  RESET_LOGADDED
+  RESET_LOGADDED,
+  NESTEDMODAL_OPEN,
+  NESTEDMODAL_CLOSE
 } from "./types";
 import axios from "axios";
 import { tokenConfig } from "./authActions";
@@ -105,5 +107,17 @@ export const changeCalcFat = fat => {
 export const resetFatLogAdded = () => {
   return {
     type: RESET_LOGADDED
+  };
+};
+
+export const openNestedModal = () => {
+  return {
+    type: NESTEDMODAL_OPEN
+  };
+};
+
+export const closeNestedModal = () => {
+  return {
+    type: NESTEDMODAL_CLOSE
   };
 };

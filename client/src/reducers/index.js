@@ -4,6 +4,7 @@ import errorReducer from "./errorReducer";
 import authReducer from "./authReducer";
 import fatLogReducer from "./fatLogReducer";
 import registerReducer from "./registerReducer";
+import loadingReducer from "./loadingReducer";
 import { connectRouter } from "connected-react-router";
 import { history } from "../history";
 
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   error: errorReducer,
   auth: authReducer,
   fatLog: fatLogReducer,
-  register: registerReducer
+  register: registerReducer,
+  loading: loadingReducer
 });
 export default rootReducer;

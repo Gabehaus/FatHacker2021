@@ -16,6 +16,8 @@ import PropTypes from "prop-types";
 import { register } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
 import { openModal } from "../../actions/regActions";
+import { push } from "connected-react-router";
+import store from "../../store";
 
 class RegisterModal extends Component {
   state = {
@@ -23,6 +25,7 @@ class RegisterModal extends Component {
     name: "",
     email: "",
     password: "",
+    confirm_password: "",
     msg: null
   };
 
@@ -31,7 +34,7 @@ class RegisterModal extends Component {
     error: PropTypes.object.isRequired,
     register: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired,
-    open: PropTypes.bool
+    open: PropTypes.object
   };
 
   componentDidUpdate(prevProps) {
@@ -45,9 +48,10 @@ class RegisterModal extends Component {
       }
     }
     // If authenticated, close modal
-    if (this.state.modal) {
+    if (this.props.open.isOpenReg) {
       if (isAuthenticated) {
         this.toggle();
+        store.dispatch(push("/logs"));
       }
     }
   }
@@ -65,13 +69,14 @@ class RegisterModal extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    const { name, email, password } = this.state;
+    const { name, email, password, confirm_password } = this.state;
 
     //Create user object
     const newUser = {
       name,
       email,
-      password
+      password,
+      confirm_password
     };
 
     this.props.register(newUser);
@@ -116,6 +121,15 @@ class RegisterModal extends Component {
                   name="password"
                   id="password"
                   placeholder="Password"
+                  className="mb-3"
+                  onChange={this.onChange}
+                />
+                <Label for="confirm_password">Confirm password</Label>
+                <Input
+                  type="confirm_password"
+                  name="confirm_password"
+                  id="confirm_password"
+                  placeholder="Confirm password"
                   className="mb-3"
                   onChange={this.onChange}
                 />

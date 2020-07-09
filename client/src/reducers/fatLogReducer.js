@@ -8,7 +8,9 @@ import {
   CHANGE_CALCUNIT,
   CHANGE_CALCQUANTITY,
   CHANGE_CALCFAT,
-  RESET_LOGADDED
+  RESET_LOGADDED,
+  NESTEDMODAL_OPEN,
+  NESTEDMODAL_CLOSE
 } from "../actions/types";
 
 const initialState = {
@@ -20,7 +22,8 @@ const initialState = {
   calcUnit: "whole",
   calcQuantity: "1",
   calcFat: "0",
-  newLogAdded: false
+  newLogAdded: false,
+  nestedModalOpen: false
 };
 
 export default function(state = initialState, action) {
@@ -82,6 +85,17 @@ export default function(state = initialState, action) {
         ...state,
         newLogAdded: false
       };
+    case NESTEDMODAL_OPEN:
+      return {
+        ...state,
+        nestedModalOpen: true
+      };
+    case NESTEDMODAL_CLOSE:
+      return {
+        ...state,
+        nestedModalOpen: false
+      };
+
     default:
       return state;
   }

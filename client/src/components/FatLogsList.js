@@ -62,12 +62,10 @@ class FatLogsList extends Component {
                         &times;
                       </Button>
                     ) : null}
+
                     <Form>
                       <FormGroup>
-                        <Label
-                          for="fatLog"
-                          style={{ color: "rgba(153, 102, 255)" }}
-                        >
+                        <Label for="fatLog" style={{ color: "#E5FFCC" }}>
                           Username
                         </Label>
                         <Input
@@ -78,10 +76,7 @@ class FatLogsList extends Component {
                         />
                       </FormGroup>
                       <FormGroup>
-                        <Label
-                          for="fatLog"
-                          style={{ color: "rgba(54, 162, 235)" }}
-                        >
+                        <Label for="fatLog" style={{ color: "#CCFFCC" }}>
                           Food
                         </Label>
                         <Input
@@ -92,10 +87,7 @@ class FatLogsList extends Component {
                         />
                       </FormGroup>
                       <FormGroup>
-                        <Label
-                          for="fatLog"
-                          style={{ color: "rgba(75, 192, 192)" }}
-                        >
+                        <Label for="fatLog" style={{ color: "#CCFFE5" }}>
                           Unit
                         </Label>
                         <Input
@@ -106,10 +98,7 @@ class FatLogsList extends Component {
                         />
                       </FormGroup>
                       <FormGroup>
-                        <Label
-                          for="fatLog"
-                          style={{ color: "rgba(255, 205, 86)" }}
-                        >
+                        <Label for="fatLog" style={{ color: "#99FFCC" }}>
                           Quantity
                         </Label>
                         <Input
@@ -120,10 +109,7 @@ class FatLogsList extends Component {
                         />
                       </FormGroup>
                       <FormGroup>
-                        <Label
-                          for="fatLog"
-                          style={{ color: "rgba(255, 159, 64)" }}
-                        >
+                        <Label for="fatLog" style={{ color: "#66FFB2" }}>
                           Fat Content In Grams
                         </Label>
                         <Input
@@ -134,10 +120,7 @@ class FatLogsList extends Component {
                         />
                       </FormGroup>
                       <FormGroup>
-                        <Label
-                          for="fatLog"
-                          style={{ color: "rgba(255, 99, 132)" }}
-                        >
+                        <Label for="fatLog" style={{ color: "#33FF99" }}>
                           Date
                         </Label>
                         <Input
@@ -147,10 +130,7 @@ class FatLogsList extends Component {
                         ></Input>
                       </FormGroup>
                       <FormGroup>
-                        <Label
-                          for="fatLog"
-                          style={{ color: "rgba(201, 203, 207)" }}
-                        >
+                        <Label for="fatLog" style={{ color: "#00FF80" }}>
                           Meal
                         </Label>
                         <Input
@@ -178,6 +158,8 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { getFatLogs, deleteFatLog, loadUser })(
-  FatLogsList
-);
+export default connect(mapStateToProps, {
+  getFatLogs,
+  deleteFatLog,
+  loadUser
+})(FatLogsList);

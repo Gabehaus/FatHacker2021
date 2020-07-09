@@ -9,6 +9,7 @@ import {
   NavLink,
   Container
 } from "reactstrap";
+import Spinner from "react-bootstrap/Spinner";
 import { NavLink as RRNavLink } from "react-router-dom";
 import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
@@ -27,6 +28,7 @@ import { Provider, ReactReduxContext } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
 import store from "../store";
 import { history } from "../history";
+import { startLoading, finishLoading } from "../actions/loadingActions";
 
 class Components extends Component {
   state = {
@@ -42,6 +44,7 @@ class Components extends Component {
   };
   render() {
     const { isAuthenticated, user } = this.props.auth;
+    const { isLoading } = this.props.loading;
 
     const authLinks = (
       <Fragment>
@@ -110,12 +113,12 @@ class Components extends Component {
           </Navbar>
 
           <Container
-            class="container-fluid"
+            className="container-fluid"
             style={{
               fontColor: "white",
               marginLeft: "0px",
               paddingLeft: "0px",
-              marginTop: "-50px"
+              marginTop: "-30px"
             }}
           >
             {user ? (
@@ -134,6 +137,15 @@ class Components extends Component {
           <div style={{ height: "200px" }}></div>
           <Route exact path="/graphs" render={MyGraphs4} />
           <div style={{ height: "300px" }}></div>
+          {isLoading ? (
+            <div className="spinnerBox">
+              <Spinner
+                className="spinner1"
+                animation="border"
+                role="status"
+              ></Spinner>
+            </div>
+          ) : null}
         </ConnectedRouter>
       </Provider>
     );
@@ -141,7 +153,10 @@ class Components extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  loading: state.loading
 });
 
-export default connect(mapStateToProps, null)(Components);
+export default connect(mapStateToProps, { startLoading, finishLoading })(
+  Components
+);

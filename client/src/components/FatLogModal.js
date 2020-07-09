@@ -23,8 +23,8 @@ import {
 } from "../actions/fatLogActions";
 import PropTypes from "prop-types";
 import DatePicker from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
+import { openNestedModal, closeNestedModal } from "../actions/fatLogActions";
 
 class FatLogModal extends Component {
   state = {
@@ -75,18 +75,12 @@ class FatLogModal extends Component {
     });
   };
 
-  toggleNested = () => {
-    this.setState({
-      nestedModal: !this.state.nestedModal,
-      closeAll: false
-    });
-  };
-
   toggleAll = () => {
     this.setState({
       nestedModal: !this.state.nestedModal,
       closeAll: true
     });
+    this.props.closeNestedModal();
   };
 
   onChange = e => {
@@ -155,7 +149,7 @@ class FatLogModal extends Component {
   }
 
   render() {
-    //const { newLogAdded } = this.props.fatLog;
+    const { nestedModalOpen } = this.props.fatLog;
 
     return (
       <div>
@@ -262,14 +256,14 @@ class FatLogModal extends Component {
               </FormGroup>
               <Button
                 color="success"
-                onClick={this.toggleNested}
+                onClick={this.props.openNestedModal}
                 style={{ backgroundColor: "#00eb98" }}
               >
                 Use Fat Calculator
               </Button>
               <Modal
-                isOpen={this.state.nestedModal}
-                toggle={this.toggleNested}
+                isOpen={nestedModalOpen}
+                toggle={this.props.openNestedModal}
                 onClosed={this.state.closeAll ? this.toggle : undefined}
               >
                 <ModalHeader>Fat Content Calculator</ModalHeader>
@@ -277,7 +271,7 @@ class FatLogModal extends Component {
                   <CalculatorModal closeModal={this.toggleNested} />
                 </ModalBody>
                 <ModalFooter>
-                  <Button color="primary" onClick={this.toggleNested}>
+                  <Button color="primary" onClick={this.props.closeNestedModal}>
                     Back
                   </Button>{" "}
                   <Button color="secondary" onClick={this.toggleAll}>
@@ -318,5 +312,7 @@ export default connect(mapStateToProps, {
   changeCalcQuantity,
   changeCalcUnit,
   changeCalcFat,
-  resetFatLogAdded
+  resetFatLogAdded,
+  closeNestedModal,
+  openNestedModal
 })(FatLogModal);

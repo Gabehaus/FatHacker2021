@@ -8,8 +8,6 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL
 } from "../actions/types";
-import { push } from "connected-react-router";
-import store from "../store";
 
 const initialState = {
   token: localStorage.getItem("token"),
@@ -36,7 +34,7 @@ export default function(state = initialState, action) {
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
       localStorage.setItem("token", action.payload.token);
-      //store.dispatch(push("/logs"));
+
       return {
         ...state,
         ...action.payload,

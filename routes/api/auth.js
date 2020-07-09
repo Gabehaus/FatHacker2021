@@ -47,11 +47,11 @@ router.post("/", (req, res) => {
 });
 
 // @route GET api/auth/user
-//@desc Get user data
+//@desc Get user data using token
 // @access Private
 router.get("/user", auth, (req, res) => {
-  User.findById(req.user.id)
-    .select("-password")
+  User.findById(req.user.id) //req.user is the token... the id property was attached to the token above
+    .select("-password") //says to not include the password when returning user data
     .then(user => res.json(user));
 });
 
