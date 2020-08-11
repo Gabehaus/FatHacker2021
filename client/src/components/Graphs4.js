@@ -188,29 +188,30 @@ class ChartsPage3 extends React.Component {
     const totSnacks = this.totalMealFat("Snack");
     const totRandom = this.totalMealFat("Random Meal");
 
-    console.log(totBreakfast);
-    console.log(totSnacks);
-
     this.setState({
+      totalAllMeals:
+        totBreakfast + totLunch + totDinner + totSnacks + totRandom,
       dataPie: {
         labels: ["Breakfast", "Lunch", "Dinner", "Snack", "Random Meal"],
         datasets: [
           {
             data: [totBreakfast, totLunch, totDinner, totSnacks, totRandom],
             backgroundColor: [
-              "#1c9967",
-              "#176647",
-              "#00eb98",
-              "#b5ffbf",
-              "CCFFE5",
+              "#29976F",
+              "#0AC279",
+
+              "#0FFA8C",
+              "#73FAB5",
+              "#AFFAD3",
               "#606060"
             ],
             hoverBackgroundColor: [
-              "#CCFFCC",
-              "#CCFFE5",
-              "#99FFCC",
-              "#66FFB2",
-              "#33FF99",
+              "#50977D",
+              "#34C28A",
+
+              "#44FAA5",
+              "#B2FAD5",
+              "#D7FAE8",
               "#00FF80"
             ]
           }
@@ -221,19 +222,34 @@ class ChartsPage3 extends React.Component {
 
   render() {
     let options = {
+      elements: {
+        arc: {
+          borderWidth: 0
+        }
+      },
       legend: {
         fontColor: "white",
 
-        labels: { fontColor: "white" }
+        labels: {
+          fontColor: "white"
+        }
       }
     };
     return (
-      <MDBContainer>
-        <h3 className="mt-5" style={{ color: "white", fontFamily: "Lato" }}>
+      <MDBContainer className="MDB">
+        <h3
+          className="graphTitle"
+          style={{ color: "white", fontFamily: "Lato" }}
+        >
           Fat Per Meal
           <span style={{ fontSize: "1rem" }}>(7-day Avg)</span>
         </h3>
-        <Pie data={this.state.dataPie} options={options} />
+        {this.state.totalAllMeals ? (
+          <Pie data={this.state.dataPie} options={options} />
+        ) : (
+          "No data entered"
+        )}
+        <div className="spacer"></div>
       </MDBContainer>
     );
   }

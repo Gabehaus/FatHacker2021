@@ -10,14 +10,19 @@ import { history } from "../history";
 import { getHealthData } from "../actions/healthDataActions";
 import moment from "moment";
 import Graphs1Data from "./Graphs1Data";
+import Graphs2 from "./Graphs2";
+import Graphs3 from "./Graphs3";
+import Graphs4 from "./Graphs4";
+import HealthDataModal from "./HealthDataModal";
 
-class DailyCalorieCalc extends Component {
+class GraphsTwo extends Component {
   constructor(props) {
     super(props);
     this.state = {
       weight: "",
       height: "",
-      activityLevel: ""
+      activityLevel: "",
+      graphToShow: "Today"
     };
   }
 
@@ -129,16 +134,19 @@ class DailyCalorieCalc extends Component {
     }
   }
 
-  calculateCalories = () => {};
+  onChange = e => {
+    this.setState({ graphToShow: e.target.value });
+  };
 
   render() {
     const { healthData } = this.props;
 
     return (
       <div>
-        <div>Welcome {this.props.user.name}</div>
+        <div className="statsTitle">Fat Consumption</div>
 
         <div className="tableBox">
+          {/*
           <div className="hlthDataCol">
             <div className="label">Sex</div>
             <div className="data">{this.state.sex}</div>
@@ -179,18 +187,73 @@ class DailyCalorieCalc extends Component {
           <div className="hlthDataCol">
             <div className="label">Activity Factor</div>
             <div className="data">{this.state.activityFactor}</div>
-          </div>
+          </div>  */}
 
-          <Graphs1Data
-            username={this.props.user.name}
-            kgs={this.state.kgs}
-            age={this.state.age}
-            activityFactor={this.state.activityFactor}
-            goal={this.state.goal}
-            sex={this.state.sex}
-            heightCM={this.state.heightCM}
-          />
+          <div className="radioLabelsBox">
+            <div className="labelInput" style={{ display: "inline-block" }}>
+              <div className="radioLabel">Today</div>
+              <input
+                type="radio"
+                value="Today"
+                onChange={this.onChange}
+                checked={this.state.graphToShow == "Today"}
+                className="radioInput"
+              />
+            </div>
+            <div className="labelInput" style={{ display: "inline-block" }}>
+              <div className="radioLabel">7 day</div>
+              <input
+                type="radio"
+                value="7 Day"
+                onChange={this.onChange}
+                checked={this.state.graphToShow == "7 Day"}
+                className="radioInput"
+              />
+            </div>
+            <div className="labelInput" style={{ display: "inline-block" }}>
+              <div className="radioLabel">7 week</div>
+              <input
+                type="radio"
+                value="7 Week"
+                onChange={this.onChange}
+                checked={this.state.graphToShow == "7 Week"}
+                className="radioInput"
+              />
+            </div>
+            <div className="labelInput" style={{ display: "inline-block" }}>
+              <div className="radioLabel">Meals</div>
+              <input
+                type="radio"
+                value="Meals"
+                onChange={this.onChange}
+                checked={this.state.graphToShow == "Meals"}
+                className="radioInput"
+              />
+            </div>
+          </div>
+          {this.state.graphToShow == "Today" ? (
+            <Graphs1Data
+              username={this.props.user.name}
+              kgs={this.state.kgs}
+              age={this.state.age}
+              activityFactor={this.state.activityFactor}
+              goal={this.state.goal}
+              sex={this.state.sex}
+              heightCM={this.state.heightCM}
+            />
+          ) : null}
+          {this.state.graphToShow == "7 Day" ? (
+            <Graphs2 username={this.props.user.name} />
+          ) : null}
+          {this.state.graphToShow == "7 Week" ? (
+            <Graphs3 username={this.props.user.name} />
+          ) : null}
+          {this.state.graphToShow == "Meals" ? (
+            <Graphs4 username={this.props.user.name} />
+          ) : null}
         </div>
+
+        <HealthDataModal />
       </div>
     );
   }
@@ -204,4 +267,4 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
   getHealthData
-})(DailyCalorieCalc);
+})(GraphsTwo);

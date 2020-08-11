@@ -133,6 +133,7 @@ class RegisterModal extends Component {
                   className="mb-3"
                   onChange={this.onChange}
                 />
+
                 <Button color="dark" style={{ marginTop: "2rem" }} block>
                   Register
                 </Button>

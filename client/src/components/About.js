@@ -9,7 +9,8 @@ import phoneCalc1 from "../images/phoneCalc1.png";
 import mcdougallCircle1 from "../images/mcdougallCircle1.png";
 import OrnishCircle1 from "../images/OrnishCircle1.png";
 import esselstynCircle1 from "../images/esselstynCircle1.png";
-
+import Card1 from "./Card1";
+import Footer from "./Footer";
 import {
   Jumbotron,
   Button,
@@ -24,11 +25,14 @@ import {
   CardSubtitle
 } from "reactstrap";
 import Image from "react-bootstrap/Image";
-import RellaxWrapper from "react-rellax-wrapper";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 class About extends Component {
   componentDidMount() {
     this.props.getFatLogs(this.props.username);
+
+    Aos.init({ duration: 2000, disable: "mobile" });
   }
 
   render() {
@@ -40,31 +44,35 @@ class About extends Component {
               <Row style={{ width: "40vw", margin: "auto" }}>
                 <Col className="titleColumn">
                   {" "}
-                  <h1 className="display-2  title">Fat Hacker</h1>
-                  <div className="text-center titleh3">Reprogram Your Diet</div>
-                  <Button
+                  <h1 className="display-2  title" data-aos="zoom-in">
+                    Fat Hacker
+                  </h1>
+                  <div className="text-center titleh3" data-aos="zoom-in">
+                    Reprogram Your Diet
+                  </div>
+                  <button
                     type="button"
-                    className="btn  btn-primary btn-lg titlebtns mt-3 "
-                    size="sm"
+                    className="titlebtns"
+                    data-aos="zoom-in"
                   >
                     VIEW DEMO
-                  </Button>
-                  <Button
+                  </button>
+                  <button
+                    data-aos="zoom-in"
                     type="button"
-                    className="btn btn-primary btn-lg titlebtns mt-3"
-                    size="sm"
+                    className="titlebtns"
                     onClick={() => {
                       this.props.openModal();
                     }}
                   >
                     GET STARTED
-                  </Button>
+                  </button>
                 </Col>
               </Row>
 
               <Container bg-primary>
                 <Row>
-                  <Col className="lettuceColumn">
+                  <Col className="lettuceColumn" data-aos="zoom-in">
                     {" "}
                     <Image src={lettuceFeather4} className="lettuce" />
                   </Col>
@@ -72,7 +80,7 @@ class About extends Component {
               </Container>
               <Container bg-primary>
                 <Row>
-                  <Col className="phoneColumn">
+                  <Col className="phoneColumn" data-aos="zoom-in">
                     {" "}
                     <Image src={phone1} className="phone" />
                   </Col>
@@ -90,26 +98,18 @@ class About extends Component {
             className="col-sm-12 noMargin no padding jmbo"
             style={{ width: "100vw", marginBottom: "0" }}
           >
-            <Row style={{ width: "100%" }} className="noMargin">
+            <Row style={{ width: "100vw" }} className="noMargin">
               <Col xs={12} sm={12} md={9} lg={9} xl={9}>
-                <p className="p1">
+                <p
+                  className="p1"
+                  data-aos="fade-right"
+                  data-aos-anchor-placement=".title"
+                >
                   A fat consumption tracking app with advanced data analysis and
                   access to a food and grocery database with over 750,000 basic
                   foods .{" "}
                 </p>
               </Col>
-
-              <Button
-                size="sm"
-                className="ml-3 btnJumbo"
-                xs={3}
-                sm={3}
-                md={3}
-                lg={3}
-                xl={3}
-              >
-                Learn More
-              </Button>
             </Row>
           </Jumbotron>
         </Container>
@@ -129,14 +129,21 @@ class About extends Component {
                     left: "0"
                   }}
                 >
-                  <Col className="intuitiveColumn"> Intuitive.</Col>
+                  <Col className="intuitiveColumn" data-aos="fade-up">
+                    {" "}
+                    Intuitive.
+                  </Col>
                 </Row>
               </Container>
               <Container>
                 <Row className="intuitiveSubsRow">
                   <Col className="intuitiveSubTitles">
-                    <div className="titleh3">National Food Database</div>
-                    <div className="titleh3">Visual Data Analysis</div>
+                    <div className="titleh3b" data-aos="fade-up">
+                      National Food Database
+                    </div>
+                    <div className="titleh3b" data-aos="fade-up">
+                      Visual Data Analysis
+                    </div>
                   </Col>
                 </Row>
               </Container>
@@ -144,7 +151,11 @@ class About extends Component {
                 <Row>
                   <Col className="phoneCalcColumn">
                     {" "}
-                    <Image src={phoneCalc1} className="phoneCalc" />
+                    <Image
+                      src={phoneCalc1}
+                      className="phoneCalc"
+                      data-aos="fade-right"
+                    />
                   </Col>
                 </Row>
               </Container>
@@ -152,224 +163,137 @@ class About extends Component {
                 <Row>
                   <Col className="pastaColumn">
                     {" "}
-                    <Image src={pasta1} className="pasta" />
+                    <Image
+                      src={pasta1}
+                      className="pasta"
+                      data-aos="fade-left"
+                    />
                   </Col>
                 </Row>
               </Container>
             </Col>
           </Row>
         </Container>
-        <Container
-          style={{
-            width: "100vw",
-            padding: "0"
-          }}
-          fluid={true}
-        >
-          <Jumbotron
-            className="col-sm-12 noMargin no padding jmbo2"
-            style={{ width: "100vw" }}
-          >
-            <Row
-              style={{ width: "100%", marginTop: "-3vh" }}
-              className="noMargin"
-            >
-              <Col xs={12} sm={12} md={9} lg={9} xl={10}>
-                <div className="optionTitle option">
-                  An option for everyone...
-                </div>
-                <p className="p2" style={{ fontSize: "1.8vh" }}>
-                  Although we would like to encourage you to fully eliminate
-                  animal products from your diet, your number one health goal
-                  should simply be to reduce fat consumption. For those
-                  interested in making a drastic lifestyle change with the goal
-                  of cutting out animal products altogether, we recommend you
-                  follow John A. McDougall’s “Starch Solution”.{" "}
-                </p>
-              </Col>
 
-              <Button
-                target="_blank"
-                href="https://www.drmcdougall.com/health/education/videos/free-electures/the-starch-solution/"
-                size="sm"
-                className="ml-3 btnJumbo2"
-                xs={3}
-                sm={3}
-                md={3}
-                lg={3}
-                xl={2}
-              >
-                Learn More
-              </Button>
-            </Row>
-          </Jumbotron>
-        </Container>
-        <Container fluid={true} style={{}} className="bg3 ">
+        <div className="jmbo2" style={{ width: "100vw" }}>
+          <div className="jmboTextBox">
+            <div
+              className="optionTitle option"
+              data-aos="fade-right"
+              data-aos-anchor-placement=".titleh3"
+            >
+              An option for everyone...
+            </div>
+            <p
+              className="p2"
+              style={{ fontSize: "1.8vh" }}
+              data-aos="fade-right"
+              data-aos-anchor-placement=".titleh3"
+            >
+              Although we would like to encourage you to fully eliminate animal
+              products from your diet, your number one health goal should simply
+              be to reduce fat consumption. For those interested in making a
+              drastic lifestyle change with the goal of cutting out animal
+              products altogether, we recommend you follow John A. McDougall’s
+              “Starch Solution”.{" "}
+            </p>
+          </div>
+          <div className="btnJumboBox2">
+            <button
+              href="https://www.drmcdougall.com/health/education/videos/free-electures/the-starch-solution/"
+              className="ml-3 btnJumbo2"
+              data-aos="fade-left"
+              data-aos-anchor-placement=".titleh3"
+            >
+              LEARN MORE
+            </button>
+          </div>
+        </div>
+
+        <Container fluid={true} style={{ padding: "0" }} className="bg3 ">
           <Row className="expertsTitleRow">
             <Col className="expertsTitleColumn">
-              <div className="titleFont"> Meet</div>
+              <div className="titleFont" data-aos="fade-right">
+                {" "}
+                Meet
+              </div>
 
-              <div className="titleFont">The</div>
-              <div className="titleFont">Experts</div>
+              <div className="titleFont" data-aos="fade-right">
+                The
+              </div>
+              <div className="titleFont b" data-aos="fade-right">
+                Experts
+              </div>
             </Col>
           </Row>
 
-          <Row className="cardsRow">
+          <Row className="cardsRow" data-aos="fade-up">
             <Col className="cardColumn">
-              <div className="fullCardBox1">
-                <div className="cardTitleBox">
-                  <div className="profileImageBox">
-                    {" "}
-                    <Image src={mcdougallCircle1} style={{ width: "100%" }} />
-                  </div>
-                  <span
-                    style={{ position: "absolute", top: "12vh", left: "1vw" }}
-                  >
-                    Dr.{" "}
-                  </span>
-                  <span
-                    style={{
-                      position: "absolute",
-                      top: "18vh",
-                      left: "1vw"
-                    }}
-                  >
-                    McDougall
-                  </span>
-                </div>
-
-                <div className="jobBox1">American Physician</div>
-                <div className="textBox1">
-                  "A physician and nutrition expert who teaches better health
+              <Card1
+                image={mcdougallCircle1}
+                name="Dr. McDougall"
+                summary="A physician and nutrition expert who teaches better health
                   through vegetarian cuisine, John A. McDougall, MD has been
                   studying, writing, and speaking out about the effects of
                   nutrition on disease for over 50 years."
-                  <Button
-                    target="_blank"
-                    href="https://www.drmcdougall.com/health/education/mailings/featured-articles/articles/fat-or-carbs-which-is-worse/"
-                    size="sm"
-                    className="ml-3 cardButton"
-                  >
-                    {" "}
-                    Learn More
-                  </Button>
-                </div>
-              </div>
-              <div className="fullCardBox1">
-                {" "}
-                <div className="cardTitleBox">
-                  <div className="profileImageBox">
-                    {" "}
-                    <Image src={OrnishCircle1} style={{ width: "100%" }} />
-                  </div>
-                  <span
-                    style={{ position: "absolute", top: "12vh", left: ".7vw" }}
-                  >
-                    Dr.{" "}
-                  </span>
-                  <span
-                    style={{
-                      position: "absolute",
-                      top: "18vh",
-                      left: ".7vw"
-                    }}
-                  >
-                    Ornish
-                  </span>
-                </div>
-                <div className="jobBox1">Physician / Researcher</div>
-                <div className="textBox1">
-                  "Ornish's low–fat, high–carbohydrate diet has been proven to
-                  unstick some of the plaque build–up in arteries that causes a
-                  heart attack. Several major health insurers cover the cost of
-                  enrollment in his programs."
-                  <Button
-                    target="_blank"
-                    href="https://www.ornish.com/undo-it/"
-                    size="sm"
-                    className="ml-3 cardButton"
-                  >
-                    {" "}
-                    Learn More
-                  </Button>
-                </div>
-              </div>
-              <div
-                className="fullCardBox1"
-                style={{
-                  minHeight: "57vh",
-                  minWidth: "20vw"
-                }}
-              >
-                {" "}
-                <div className="cardTitleBox">
-                  <div className="profileImageBox">
-                    {" "}
-                    <Image src={esselstynCircle1} style={{ width: "100%" }} />
-                  </div>
-                  <span
-                    style={{ position: "absolute", top: "12vh", left: "1vw" }}
-                  >
-                    Dr.{" "}
-                  </span>
-                  <span
-                    style={{
-                      position: "absolute",
-                      top: "18vh",
-                      left: "1vw"
-                    }}
-                  >
-                    Esselstyn
-                  </span>
-                </div>
-                <div className="jobBox1">Physician / Researcher</div>
-                <div className="textBox1">
-                  "In a 4-year study of 198 participants seriously ill with
-                  cardiovascular disease, of the 89% adherent to his low-fat /
-                  high-carb program, 99.4% avoided further major cardiac
-                  events."
-                  <Button
-                    target="_blank"
-                    href="http://www.dresselstyn.com/site/"
-                    size="sm"
-                    className="ml-3 cardButton"
-                  >
-                    {" "}
-                    Learn More
-                  </Button>
-                </div>
-              </div>
+                buttonSource="https://www.drmcdougall.com/health/education/mailings/featured-articles/articles/fat-or-carbs-which-is-worse/"
+              ></Card1>
+              <Card1
+                image={OrnishCircle1}
+                name="Dr. Ornish"
+                summary="Ornish's low–fat, high–carbohydrate diet has been proven to
+                unstick some of the plaque build–up in arteries that causes a
+                heart attack. Several major health insurers cover the cost of
+                enrollment in his programs."
+                buttonSource="https://www.ornish.com/undo-it/"
+              ></Card1>
+              <Card1
+                image={esselstynCircle1}
+                name="Dr. Esselstyn"
+                summary="In a 4-year study of 198 participants seriously ill with
+                cardiovascular disease, of the 89% adherent to his low-fat /
+                high-carb program, 99.4% avoided further major cardiac
+                events."
+                buttonSource="http://www.dresselstyn.com/site/"
+              ></Card1>
             </Col>
           </Row>
         </Container>
-        <Jumbotron className="jmbo3" style={{ width: "100vw" }}>
-          <Row
-            style={{ width: "100vw", marginTop: "-3vh" }}
-            className="noMargin"
-          >
-            <Col xs={12} sm={12} md={9} lg={9} xl={10}>
-              <div className="optionTitle option">Still not convinced?</div>
-              <p className="p2" style={{ fontSize: "1.8vh" }}>
-                Check out our list of common criticisms of low-fat, high-carb
-                diets; and our fact-based rebuttals complete with sources.{" "}
-              </p>
-            </Col>
 
-            <Button
+        <div className="jmbo3" style={{ width: "100vw" }}>
+          <div className="jmboTextBox">
+            <div
+              className="optionTitle option"
+              data-aos="fade-right"
+              data-aos-anchor-placement=".titleFont"
+            >
+              Still not convinced?
+            </div>
+            <p
+              className="p2"
+              style={{ fontSize: "1.8vh" }}
+              data-aos="fade-right"
+              data-aos-anchor-placement=".titleFont"
+            >
+              Check out our list of common criticisms of low-fat high-carb
+              diets, and our fact-based rebuttals complete with sources.{" "}
+            </p>
+          </div>
+          <div className="btnJumboBox2">
+            <button
               target="_blank"
               href="https://www.drmcdougall.com/health/education/videos/free-electures/the-starch-solution/"
               size="sm"
-              className="ml-3 btnJumbo2"
-              xs={3}
-              sm={3}
-              md={3}
-              lg={3}
-              xl={2}
+              className="btnJumbo3"
+              data-aos="fade-left"
+              data-aos-anchor-placement=".titleFont"
             >
-              Learn More
-            </Button>
-          </Row>
-        </Jumbotron>
+              LEARN MORE
+            </button>
+          </div>
+        </div>
+
+        <Footer />
       </div>
     );
   }

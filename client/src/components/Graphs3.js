@@ -184,9 +184,9 @@ class ChartsPage2 extends React.Component {
     //getting the fat consumption logs for each week and then adding up the weekly totals
 
     const minOneWeeks = this.totalFatWeeksAgo(1);
-    console.log(`minOneWeeks=${minOneWeeks}`);
+
     const minTwoWeeks = this.totalFatWeeksAgo(2);
-    console.log(`minTwoWeeks=${minTwoWeeks}`);
+
     const minThreeWeeks = this.totalFatWeeksAgo(3);
     const minFourWeeks = this.totalFatWeeksAgo(4);
     const minFiveWeeks = this.totalFatWeeksAgo(5);
@@ -208,8 +208,6 @@ class ChartsPage2 extends React.Component {
       7
     );
 
-    console.log(`divisorW=${divs}`);
-
     const avgWeek =
       (minOneWeeks +
         minTwoWeeks +
@@ -220,20 +218,9 @@ class ChartsPage2 extends React.Component {
         minSevenWeeks) /
       divs;
 
-    console.log(
-      `sum${minOneWeeks +
-        minTwoWeeks +
-        minThreeWeeks +
-        minFourWeeks +
-        minFiveWeeks +
-        minSixWeeks +
-        minSevenWeeks}`
-    );
-
-    console.log(`avgWeek=${avgWeek}`);
-
     // inserting data into the bar chart
     this.setState({
+      avgWeek: avgWeek,
       dataHorizontal: {
         labels: [
           "Last Week",
@@ -289,6 +276,7 @@ class ChartsPage2 extends React.Component {
 
   render() {
     let options = {
+      cornerRadius: 20,
       legend: {
         fontColor: "white",
 
@@ -315,11 +303,19 @@ class ChartsPage2 extends React.Component {
     };
     return (
       <div className="app">
-        <MDBContainer>
-          <h3 className="mt-5" style={{ color: "white", fontFamily: "Lato" }}>
+        <MDBContainer className="MDB">
+          <h3
+            className="graphTitle"
+            style={{ color: "white", fontFamily: "Lato" }}
+          >
             Last Seven Weeks
           </h3>
-          <HorizontalBar data={this.state.dataHorizontal} options={options} />
+          {this.state.avgWeek ? (
+            <HorizontalBar data={this.state.dataHorizontal} options={options} />
+          ) : (
+            "No data entered"
+          )}
+          <div className="spacer"></div>
         </MDBContainer>
       </div>
     );

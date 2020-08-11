@@ -19,7 +19,7 @@ class ChartsPage2 extends React.Component {
     this.props.getFatLogs(this.props.username);
     //formatted dates and days of the week for last 7 days
 
-    const yesterday = moment() // utc
+    const yesterday = moment()
       .subtract(1, "days")
       .startOf("day")
       .toString();
@@ -148,9 +148,6 @@ class ChartsPage2 extends React.Component {
       return sum + Number(fat);
     }, 0);
 
-    console.log(`minTwoTot=${minTwoTot}`);
-    console.log(`Logs=${JSON.stringify(this.props.fatLog.fatLogs)}`);
-
     const minOneLogs = this.props.fatLog.fatLogs.filter(({ date }) => {
       const adjst = moment(date)
         .format("YYYY-MM-DD")
@@ -193,6 +190,7 @@ class ChartsPage2 extends React.Component {
 
     // inserting data into the bar chart
     this.setState({
+      weekAvg: weekAvg,
       dataHorizontal: {
         labels: [
           yesterdayDay.slice(0, 3),
@@ -277,11 +275,19 @@ class ChartsPage2 extends React.Component {
     };
     return (
       <div className="app">
-        <MDBContainer style={{ background: "rgb(0, 0, 0" }}>
-          <h3 className="mt-5" style={{ color: "white", fontFamily: "Lato" }}>
+        <MDBContainer style={{ background: "#050505" }} className="MDB">
+          <h3
+            className="graphTitle"
+            style={{ color: "white", fontFamily: "Lato" }}
+          >
             Last Seven Days
           </h3>
-          <HorizontalBar data={this.state.dataHorizontal} options={options} />
+          {this.state.weekAvg ? (
+            <HorizontalBar data={this.state.dataHorizontal} options={options} />
+          ) : (
+            "No data entered"
+          )}
+          <div className="spacer"></div>
         </MDBContainer>
       </div>
     );

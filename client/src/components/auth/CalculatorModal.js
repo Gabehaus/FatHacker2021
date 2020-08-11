@@ -56,11 +56,6 @@ class fatSearch extends Component {
         .foodId,
       imageAddress: this.state.apiResponse.hints[indexOfSelectedVar].food.image
     });
-
-    console.log(e.target.value);
-    console.log(this.state.indexOfSelected);
-    console.log(Array.isArray(this.state.selectedObjectMeasures));
-    console.log(this.state.imageAddress);
   };
 
   onChangeMeasures = e => {
@@ -132,7 +127,6 @@ class fatSearch extends Component {
     axios
       .post(url, newFatQuery)
       .then(response => {
-        console.log(response);
         this.props.finishLoading();
         this.setState({
           gramsFat: +response.data.totalNutrients.FAT.quantity.toFixed(2)

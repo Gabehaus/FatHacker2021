@@ -26,7 +26,6 @@ class FatLogsList extends Component {
   };*/
 
   onDeleteClick = (id, user) => {
-    console.log(id);
     this.props.deleteFatLog(id, user);
   };
 
