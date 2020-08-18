@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import CalculatorModal from "./auth/CalculatorModal";
+
 import {
   Button,
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter,
   Form,
   FormGroup,
   Label,
@@ -21,10 +20,8 @@ import {
 } from "../actions/healthDataActions";
 import { loadUser } from "../actions/authActions";
 import PropTypes from "prop-types";
-import DatePicker from "react-datepicker";
+
 import "react-datepicker/dist/react-datepicker.css";
-import { push } from "connected-react-router";
-import store from "../store";
 
 class HealthDataModal extends Component {
   constructor(props) {
@@ -49,31 +46,28 @@ class HealthDataModal extends Component {
   };
 
   componentDidMount() {
-    const { healthData } = this.props;
     this.props.getHealthData(this.props.user.name);
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     const { error, healthData } = this.props;
 
-    {
-      if (healthData.healthData.age != prevProps.healthData.healthData.age) {
-        this.props.getHealthData(this.props.user.name);
-      }
+    if (healthData.healthData.age !== prevProps.healthData.healthData.age) {
+      this.props.getHealthData(this.props.user.name);
+    }
 
-      if (
-        healthData.loading != prevProps.healthData.loading &&
-        healthData.healthData.age
-      ) {
-        this.setState({
-          weight: healthData.healthData.weight,
-          height: healthData.healthData.height,
-          age: healthData.healthData.age,
-          sex: healthData.healthData.sex,
-          goal: healthData.healthData.goal,
-          activityLevel: healthData.healthData.activityLevel
-        });
-      }
+    if (
+      healthData.loading !== prevProps.healthData.loading &&
+      healthData.healthData.age
+    ) {
+      this.setState({
+        weight: healthData.healthData.weight,
+        height: healthData.healthData.height,
+        age: healthData.healthData.age,
+        sex: healthData.healthData.sex,
+        goal: healthData.healthData.goal,
+        activityLevel: healthData.healthData.activityLevel
+      });
     }
 
     if (error !== prevProps.error) {
@@ -196,6 +190,7 @@ class HealthDataModal extends Component {
                 <Input
                   type="date"
                   name="age"
+                  autocomplete="off"
                   defaultValue={healthData.healthData.age}
                   id="age"
                   placeholder="date placeholder"
@@ -208,6 +203,7 @@ class HealthDataModal extends Component {
                 <Input
                   type="select"
                   name="sex"
+                  autocomplete="off"
                   defaultValue={healthData.healthData.sex}
                   id="sex"
                   onChange={this.onChange}
@@ -221,6 +217,7 @@ class HealthDataModal extends Component {
                 <Input
                   type="select"
                   name="height"
+                  autocomplete="off"
                   defaultValue={healthData.healthData.height}
                   id="height"
                   onChange={this.onChange}
@@ -252,16 +249,14 @@ class HealthDataModal extends Component {
 
                 <Input
                   placeholder="Weight"
-                  min={80}
-                  max={300}
                   type="number"
                   step="1"
                   min={70}
                   max={300}
-                  type="number"
                   name="weight"
                   defaultValue={healthData.healthData.weight}
                   id="weight"
+                  autocomplete="off"
                   onChange={this.onChange}
                 />
               </FormGroup>

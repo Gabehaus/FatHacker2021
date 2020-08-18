@@ -20,6 +20,7 @@ import Graphs2 from "./Graphs2";
 import Graphs3 from "./Graphs3";
 import Graphs4 from "./Graphs4";
 import GraphsTwo from "./GraphsTwo";
+import Demo from "./Demo.js";
 import LoginModal from "./auth/LoginModal";
 import Logout from "./auth/Logout";
 import FatLogsList from "./FatLogsList";
@@ -54,13 +55,11 @@ class Components extends Component {
     const authLinks = (
       <Fragment>
         <NavLink tag={RRNavLink} exact to="/logs" activeClassName="active">
-          My Logs
+          Logs
         </NavLink>
-        <NavLink tag={RRNavLink} exact to="/graphs" activeClassName="active">
-          My Stats
-        </NavLink>
+
         <NavLink tag={RRNavLink} exact to="/graphs2" activeClassName="active">
-          My Stats 2
+          Stats
         </NavLink>
         <NavItem>
           <Logout />
@@ -97,14 +96,6 @@ class Components extends Component {
 
     const MyAbout = props => {
       return <About username={user.name} />;
-    };
-
-    const MyDailyCalorieCalc = props => {
-      return <DailyCalorieCalc username={user.name} />;
-    };
-
-    const MyHealthDataModal = props => {
-      return <HealthDataModal username={user.name} />;
     };
 
     return (
@@ -147,8 +138,8 @@ class Components extends Component {
             {user ? <Route exact path="/logs" render={MyFatLogsList} /> : null}
           </Container>
           <Route exact path="/graphs2" component={GraphsTwo} />
-          <Route exact path="/graphs" render={MyHealthDataModal} />
-          <Route exact path="/graphs" render={MyDailyCalorieCalc} />
+          <Container style={{ height: "3rem" }}></Container>
+          <Route exact path="/demo" component={Demo} />
           <Container style={{ height: "3rem" }}></Container>
           <Route exact path="/graphs" render={MyGraphs2} />
           <Container style={{ height: "3rem" }}></Container>

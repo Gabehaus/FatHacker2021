@@ -208,7 +208,7 @@ class ChartsPage2 extends React.Component {
       7
     );
 
-    const avgWeek =
+    const avgWeek = (
       (minOneWeeks +
         minTwoWeeks +
         minThreeWeeks +
@@ -216,69 +216,79 @@ class ChartsPage2 extends React.Component {
         minFiveWeeks +
         minSixWeeks +
         minSevenWeeks) /
-      divs;
+      divs
+    ).toFixed(2);
 
     // inserting data into the bar chart
     this.setState({
-      avgWeek: avgWeek,
-      dataHorizontal: {
-        labels: [
-          "Last Week",
-          "-2 Weeks",
-          "-3 Weeks",
-          "-4 Weeks",
-          "-5 Weeks",
-          "-6 Weeks",
-          "-7 Weeks",
-          "Avg"
-        ],
-
-        datasets: [
-          {
-            label: "Average Fat(g) Per Day",
-            data: [
-              this.totalFatWeeksAgo(1),
-              this.totalFatWeeksAgo(2),
-              this.totalFatWeeksAgo(3),
-              this.totalFatWeeksAgo(4),
-              this.totalFatWeeksAgo(5),
-              this.totalFatWeeksAgo(6),
-              this.totalFatWeeksAgo(7),
-              avgWeek
-            ],
-            fill: false,
-            backgroundColor: [
-              "#E5FFCC",
-              "#CCFFCC",
-              "#CCFFE5",
-              "#99FFCC",
-              "#66FFB2",
-              "#33FF99",
-              "#00FF80",
-              "#00CC66"
-            ],
-            borderColor: [
-              "rgba(201, 203, 207)",
-              "rgba(201, 203, 207)",
-              "rgba(201, 203, 207)",
-              "rgba(201, 203, 207)",
-              "rgba(201, 203, 207)",
-              "rgba(201, 203, 207)",
-              "rgb(201, 203, 207)",
-              "rgba(201, 203, 207)"
-            ],
-            borderWidth: 1
-          }
-        ]
-      }
+      avgWeek: avgWeek
     });
   }
 
   render() {
+    const totalFatWeeksAgo1 = this.totalFatWeeksAgo(1).toFixed(2);
+    const totalFatWeeksAgo2 = this.totalFatWeeksAgo(2).toFixed(2);
+    const totalFatWeeksAgo3 = this.totalFatWeeksAgo(3).toFixed(2);
+    const totalFatWeeksAgo4 = this.totalFatWeeksAgo(4).toFixed(2);
+    const totalFatWeeksAgo5 = this.totalFatWeeksAgo(5).toFixed(2);
+    const totalFatWeeksAgo6 = this.totalFatWeeksAgo(6).toFixed(2);
+    const totalFatWeeksAgo7 = this.totalFatWeeksAgo(7).toFixed(2);
+
+    const dataHorizontal = {
+      labels: [
+        "Last Week",
+        "-2 Weeks",
+        "-3 Weeks",
+        "-4 Weeks",
+        "-5 Weeks",
+        "-6 Weeks",
+        "-7 Weeks",
+        "Avg"
+      ],
+
+      datasets: [
+        {
+          label: "Average Fat(g) Per Day",
+          data: [
+            totalFatWeeksAgo1,
+            totalFatWeeksAgo2,
+            totalFatWeeksAgo3,
+            totalFatWeeksAgo4,
+            totalFatWeeksAgo5,
+            totalFatWeeksAgo6,
+            totalFatWeeksAgo7,
+            this.state.avgWeek
+          ],
+          fill: false,
+          backgroundColor: [
+            "#E5FFCC",
+            "#CCFFCC",
+            "#CCFFE5",
+            "#99FFCC",
+            "#66FFB2",
+            "#33FF99",
+            "#00FF80",
+            "#00CC66"
+          ],
+          borderColor: [
+            "rgba(201, 203, 207)",
+            "rgba(201, 203, 207)",
+            "rgba(201, 203, 207)",
+            "rgba(201, 203, 207)",
+            "rgba(201, 203, 207)",
+            "rgba(201, 203, 207)",
+            "rgb(201, 203, 207)",
+            "rgba(201, 203, 207)"
+          ],
+          borderWidth: 1
+        }
+      ]
+    };
+
     let options = {
       cornerRadius: 20,
       legend: {
-        fontColor: "white",
+        fontColor: "grey",
 
         labels: { fontColor: "white" }
       },
@@ -288,6 +298,7 @@ class ChartsPage2 extends React.Component {
           {
             ticks: {
               fontColor: "white",
+              fontFamily: "Arial",
               beginAtZero: true
             },
             gridLines: {}
@@ -295,15 +306,18 @@ class ChartsPage2 extends React.Component {
         ],
         xAxes: [
           {
-            ticks: { fontColor: "white" },
-            gridLines: { color: "grey" }
+            ticks: { fontColor: "white", beginAtZero: true },
+            gridLines: { fontColor: "grey", display: false }
           }
         ]
       }
     };
     return (
       <div className="app">
-        <MDBContainer className="MDB">
+        <MDBContainer
+          className="MDB"
+          style={{ background: "none", color: "grey !important" }}
+        >
           <h3
             className="graphTitle"
             style={{ color: "white", fontFamily: "Lato" }}
@@ -311,9 +325,17 @@ class ChartsPage2 extends React.Component {
             Last Seven Weeks
           </h3>
           {this.state.avgWeek ? (
-            <HorizontalBar data={this.state.dataHorizontal} options={options} />
+            <HorizontalBar data={dataHorizontal} options={options} />
           ) : (
-            "No data entered"
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center"
+              }}
+            >
+              please enter health data
+            </div>
           )}
           <div className="spacer"></div>
         </MDBContainer>

@@ -178,14 +178,16 @@ class ChartsPage2 extends React.Component {
 
     const weekAvg =
       divisor > 0
-        ? (minOneTot +
-            minTwoTot +
-            minThreeTot +
-            minFourTot +
-            minFiveTot +
-            minSixTot +
-            minSevenTot) /
-          divisor
+        ? (
+            (minOneTot +
+              minTwoTot +
+              minThreeTot +
+              minFourTot +
+              minFiveTot +
+              minSixTot +
+              minSevenTot) /
+            divisor
+          ).toFixed(2)
         : 0;
 
     // inserting data into the bar chart
@@ -267,15 +269,18 @@ class ChartsPage2 extends React.Component {
         ],
         xAxes: [
           {
-            ticks: { fontColor: "white" },
-            gridLines: { color: "grey" }
+            ticks: { beginAtZero: true },
+            gridLines: { color: "grey", display: false }
           }
         ]
       }
     };
     return (
       <div className="app">
-        <MDBContainer style={{ background: "#050505" }} className="MDB">
+        <MDBContainer
+          style={{ background: "none", color: "grey" }}
+          className="MDB"
+        >
           <h3
             className="graphTitle"
             style={{ color: "white", fontFamily: "Lato" }}
@@ -285,7 +290,15 @@ class ChartsPage2 extends React.Component {
           {this.state.weekAvg ? (
             <HorizontalBar data={this.state.dataHorizontal} options={options} />
           ) : (
-            "No data entered"
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center"
+              }}
+            >
+              please enter health data
+            </div>
           )}
           <div className="spacer"></div>
         </MDBContainer>

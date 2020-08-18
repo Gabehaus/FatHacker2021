@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getFatLogs, deleteFatLog } from "../actions/fatLogActions";
+import { getFatLogs } from "../actions/fatLogActions";
 import { openModal } from "../actions/regActions";
 import lettuceFeather4 from "../images/lettuceFeather4.png";
 import phone1 from "../images/phone1.png";
@@ -11,22 +11,12 @@ import OrnishCircle1 from "../images/OrnishCircle1.png";
 import esselstynCircle1 from "../images/esselstynCircle1.png";
 import Card1 from "./Card1";
 import Footer from "./Footer";
-import {
-  Jumbotron,
-  Button,
-  Container,
-  Row,
-  Col,
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle
-} from "reactstrap";
+import { Jumbotron, Container, Row, Col } from "reactstrap";
 import Image from "react-bootstrap/Image";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import { push } from "connected-react-router";
+import store from "../store";
 
 class About extends Component {
   componentDidMount() {
@@ -51,13 +41,18 @@ class About extends Component {
                     Reprogram Your Diet
                   </div>
                   <button
+                    id="demo"
                     type="button"
                     className="titlebtns"
                     data-aos="zoom-in"
+                    onClick={() => {
+                      store.dispatch(push("/demo"));
+                    }}
                   >
                     VIEW DEMO
                   </button>
                   <button
+                    id="register"
                     data-aos="zoom-in"
                     type="button"
                     className="titlebtns"
@@ -70,7 +65,7 @@ class About extends Component {
                 </Col>
               </Row>
 
-              <Container bg-primary>
+              <Container>
                 <Row>
                   <Col className="lettuceColumn" data-aos="zoom-in">
                     {" "}
@@ -78,7 +73,7 @@ class About extends Component {
                   </Col>
                 </Row>
               </Container>
-              <Container bg-primary>
+              <Container>
                 <Row>
                   <Col className="phoneColumn" data-aos="zoom-in">
                     {" "}
@@ -115,7 +110,7 @@ class About extends Component {
         </Container>
 
         {/* Artichokes */}
-        <Container fluid={true}>
+        <Container fluid={true} style={{ width: "100vw", background: "black" }}>
           <Row className="artichokes text-center">
             <Col>
               {" "}
@@ -260,7 +255,7 @@ class About extends Component {
           </Row>
         </Container>
 
-        <div className="jmbo3" style={{ width: "100vw" }}>
+        <div className="jmbo3" style={{ width: "100vw" }} id="qNa">
           <div className="jmboTextBox">
             <div
               className="optionTitle option"

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Pie, Doughnut } from "react-chartjs-2";
-import { MDBContainer } from "mdbreact";
+
 import Graphs1 from "./Graphs1";
 
 export default class Graphs1Data extends Component {
@@ -20,8 +19,8 @@ export default class Graphs1Data extends Component {
   }
 
   render() {
-    if (this.props.goal == "Maintain weight") {
-      if (this.props.sex == "Male") {
+    if (this.props.goal === "Maintain weight") {
+      if (this.props.sex === "Male") {
         var BMR = (
           (10 * this.props.kgs +
             6.25 * parseFloat(this.props.heightCM) -
@@ -29,8 +28,8 @@ export default class Graphs1Data extends Component {
             5) *
           this.props.activityFactor
         ).toFixed(2);
-      } else if (this.props.sex == "Female") {
-        var BMR = (
+      } else if (this.props.sex === "Female") {
+        BMR = (
           (10 * this.props.kgs +
             6.25 * parseFloat(this.props.heightCM) -
             5 * this.props.age -
@@ -38,17 +37,17 @@ export default class Graphs1Data extends Component {
           this.props.activityFactor
         ).toFixed(2);
       }
-    } else if (this.props.goal == "Lose 10 lbs") {
-      if (this.props.sex == "Male") {
-        var BMR = (
+    } else if (this.props.goal === "Lose 10 lbs") {
+      if (this.props.sex === "Male") {
+        BMR = (
           (10 * (this.props.kgs - 4.536) +
             6.25 * parseFloat(this.props.heightCM) -
             5 * this.props.age +
             5) *
           this.props.activityFactor
         ).toFixed(2);
-      } else if (this.props.sex == "Female") {
-        var BMR = (
+      } else if (this.props.sex === "Female") {
+        BMR = (
           (10 * (this.props.kgs - 4.536) +
             6.25 * parseFloat(this.props.heightCM) -
             5 * this.props.age -

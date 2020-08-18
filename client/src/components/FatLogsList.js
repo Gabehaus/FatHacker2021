@@ -33,120 +33,142 @@ class FatLogsList extends Component {
     const { fatLogs } = this.props.fatLog;
 
     return (
-      <Container>
-        {/*user ? user.name : null */}
-
-        <ListGroup>
-          <TransitionGroup className="fatLogs-list">
-            {fatLogs.map(
-              ({ _id, username, food, unit, quantity, fat, date, meal }) => (
-                <CSSTransition
-                  key={_id}
-                  timeout={500}
-                  classNames="fade"
-                  style={{
-                    backgroundColor: "rgba(46, 46, 46)",
-                    marginBottom: "10px",
-                    color: "white"
-                  }}
-                >
-                  <ListGroupItem>
-                    {this.props.isAuthenticated ? (
-                      <Button
-                        className="remove-btn"
-                        style={{ backgroundColor: "rgba(255, 99, 132)" }}
-                        size="sm"
-                        onClick={this.onDeleteClick.bind(this, _id, username)}
+      <div>
+        {fatLogs ? (
+          fatLogs.length >= 1 ? (
+            <Container className="logList">
+              <ListGroup>
+                <TransitionGroup className="fatLogs-list">
+                  {fatLogs.map(
+                    ({
+                      _id,
+                      username,
+                      food,
+                      unit,
+                      quantity,
+                      fat,
+                      date,
+                      meal
+                    }) => (
+                      <CSSTransition
+                        key={_id}
+                        timeout={500}
+                        classNames="fade"
+                        style={{
+                          backgroundColor: "rgba(8, 8, 8)",
+                          border: "solid 1px",
+                          borderColor: "#00d486",
+                          marginBottom: "10px",
+                          color: "black"
+                        }}
                       >
-                        &times;
-                      </Button>
-                    ) : null}
+                        <ListGroupItem>
+                          {this.props.isAuthenticated ? (
+                            <Button
+                              className="remove-btn"
+                              size="sm"
+                              onClick={this.onDeleteClick.bind(
+                                this,
+                                _id,
+                                username
+                              )}
+                            >
+                              &times;
+                            </Button>
+                          ) : null}
 
-                    <Form>
-                      <FormGroup>
-                        <Label for="fatLog" style={{ color: "#E5FFCC" }}>
-                          Username
-                        </Label>
-                        <Input
-                          type="text"
-                          value={username}
-                          readOnly
-                          className="input"
-                        />
-                      </FormGroup>
-                      <FormGroup>
-                        <Label for="fatLog" style={{ color: "#CCFFCC" }}>
-                          Food
-                        </Label>
-                        <Input
-                          type="text"
-                          value={food}
-                          readOnly
-                          className="input"
-                        />
-                      </FormGroup>
-                      <FormGroup>
-                        <Label for="fatLog" style={{ color: "#CCFFE5" }}>
-                          Unit
-                        </Label>
-                        <Input
-                          type="text"
-                          value={unit}
-                          readOnly
-                          className="input"
-                        />
-                      </FormGroup>
-                      <FormGroup>
-                        <Label for="fatLog" style={{ color: "#99FFCC" }}>
-                          Quantity
-                        </Label>
-                        <Input
-                          type="text"
-                          value={quantity}
-                          readOnly
-                          className="input"
-                        />
-                      </FormGroup>
-                      <FormGroup>
-                        <Label for="fatLog" style={{ color: "#66FFB2" }}>
-                          Fat Content In Grams
-                        </Label>
-                        <Input
-                          type="number"
-                          value={fat}
-                          readOnly
-                          className="input"
-                        />
-                      </FormGroup>
-                      <FormGroup>
-                        <Label for="fatLog" style={{ color: "#33FF99" }}>
-                          Date
-                        </Label>
-                        <Input
-                          value={moment(date).format("LLLL")}
-                          readOnly
-                          className="input"
-                        ></Input>
-                      </FormGroup>
-                      <FormGroup>
-                        <Label for="fatLog" style={{ color: "#00FF80" }}>
-                          Meal
-                        </Label>
-                        <Input
-                          type="text"
-                          value={meal}
-                          readOnly
-                          className="input"
-                        />
-                      </FormGroup>
-                    </Form>
-                  </ListGroupItem>
-                </CSSTransition>
-              )
-            )}
-          </TransitionGroup>
-        </ListGroup>
-      </Container>
+                          <Form>
+                            <FormGroup>
+                              <Label for="fatLog" style={{ color: "#99FFCC" }}>
+                                Username
+                              </Label>
+                              <Input
+                                type="text"
+                                value={username}
+                                readOnly
+                                className="input"
+                              />
+                            </FormGroup>
+                            <FormGroup>
+                              <Label for="fatLog" style={{ color: "#99FFCC" }}>
+                                Food
+                              </Label>
+                              <Input
+                                type="text"
+                                value={food}
+                                readOnly
+                                className="input"
+                              />
+                            </FormGroup>
+                            <FormGroup>
+                              <Label for="fatLog" style={{ color: "#99FFCC" }}>
+                                Unit
+                              </Label>
+                              <Input
+                                type="text"
+                                value={unit}
+                                readOnly
+                                className="input"
+                              />
+                            </FormGroup>
+                            <FormGroup>
+                              <Label for="fatLog" style={{ color: "#99FFCC" }}>
+                                Quantity
+                              </Label>
+                              <Input
+                                type="text"
+                                value={quantity}
+                                readOnly
+                                className="input"
+                              />
+                            </FormGroup>
+                            <FormGroup>
+                              <Label for="fatLog" style={{ color: "#99FFCC" }}>
+                                Fat Content In Grams
+                              </Label>
+                              <Input
+                                type="number"
+                                value={fat}
+                                readOnly
+                                className="input"
+                              />
+                            </FormGroup>
+                            <FormGroup>
+                              <Label for="fatLog" style={{ color: "#99FFCC" }}>
+                                Date
+                              </Label>
+                              <Input
+                                value={moment(date).format("LLLL")}
+                                readOnly
+                                className="input"
+                              ></Input>
+                            </FormGroup>
+                            <FormGroup>
+                              <Label for="fatLog" style={{ color: "#99FFCC" }}>
+                                Meal
+                              </Label>
+                              <Input
+                                type="text"
+                                value={meal}
+                                readOnly
+                                className="input"
+                              />
+                            </FormGroup>
+                          </Form>
+                        </ListGroupItem>
+                      </CSSTransition>
+                    )
+                  )}
+                </TransitionGroup>
+              </ListGroup>
+            </Container>
+          ) : (
+            <div className="addLogNotice">
+              Add a fat consumption log to get started!
+            </div>
+          )
+        ) : null}
+      </div>
     );
   }
 }

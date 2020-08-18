@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import itemReducer from "./itemReducer";
+
 import errorReducer from "./errorReducer";
 import authReducer from "./authReducer";
 import fatLogReducer from "./fatLogReducer";
@@ -11,7 +11,6 @@ import { history } from "../history";
 
 const rootReducer = combineReducers({
   router: connectRouter(history),
-  item: itemReducer,
   error: errorReducer,
   auth: authReducer,
   fatLog: fatLogReducer,

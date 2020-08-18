@@ -101,6 +101,7 @@ class RegisterModal extends Component {
                 <Input
                   type="text"
                   name="name"
+                  autocomplete="off"
                   id="name"
                   placeholder="Name"
                   className="mb-3"
@@ -110,6 +111,7 @@ class RegisterModal extends Component {
                 <Input
                   type="email"
                   name="email"
+                  autocomplete="off"
                   id="email"
                   placeholder="Email"
                   className="mb-3"
@@ -128,6 +130,7 @@ class RegisterModal extends Component {
                 <Input
                   type="confirm_password"
                   name="confirm_password"
+                  autocomplete="off"
                   id="confirm_password"
                   placeholder="Confirm password"
                   className="mb-3"

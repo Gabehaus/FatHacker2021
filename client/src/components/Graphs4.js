@@ -182,11 +182,11 @@ class ChartsPage3 extends React.Component {
   componentDidMount() {
     this.props.getFatLogs(this.props.username);
 
-    const totBreakfast = this.totalMealFat("Breakfast");
-    const totLunch = this.totalMealFat("Lunch");
-    const totDinner = this.totalMealFat("Dinner");
-    const totSnacks = this.totalMealFat("Snack");
-    const totRandom = this.totalMealFat("Random Meal");
+    const totBreakfast = (this.totalMealFat("Breakfast") / 7).toFixed(2);
+    const totLunch = (this.totalMealFat("Lunch") / 7).toFixed(2);
+    const totDinner = (this.totalMealFat("Dinner") / 7).toFixed(2);
+    const totSnacks = (this.totalMealFat("Snack") / 7).toFixed(2);
+    const totRandom = (this.totalMealFat("Random Meal") / 7).toFixed(2);
 
     this.setState({
       totalAllMeals:
@@ -247,7 +247,15 @@ class ChartsPage3 extends React.Component {
         {this.state.totalAllMeals ? (
           <Pie data={this.state.dataPie} options={options} />
         ) : (
-          "No data entered"
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center"
+            }}
+          >
+            please enter health data
+          </div>
         )}
         <div className="spacer"></div>
       </MDBContainer>

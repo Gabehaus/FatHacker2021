@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import FBlogo from "../images/FBlogo.svg";
-import Twitterlogo from "../images/TwitterLogo.svg";
+
 import TwitterLogo from "../images/TwitterLogo.svg";
 
 import Image from "react-bootstrap/Image";
@@ -85,7 +85,11 @@ export default class Footer extends Component {
             by <span style={{ color: "#00eb98" }}>Gabriel Hauschildt</span>{" "}
           </p>
 
-          <a href="http://www.dresselstyn.com/site/" target="_blank">
+          <a
+            href="http://www.dresselstyn.com/site/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Software-dev Portfolio
           </a>
           <br />
@@ -104,13 +108,13 @@ export default class Footer extends Component {
             <h3 className="footerHeader">NAVIGATE</h3>
             <ul className="navLnx">
               <li>
-                <a>Demo</a>
+                <a href="/#demo">Demo</a>
               </li>
               <li>
-                <a>Q and A</a>
+                <a href="/#qNa">Q and A</a>
               </li>
               <li>
-                <a>Register</a>
+                <a href="/#register">Register</a>
               </li>
             </ul>
           </div>
@@ -118,13 +122,31 @@ export default class Footer extends Component {
             <h3 className="footerHeader">EXTERNAL LINKS</h3>
             <ul className="exLnx">
               <li>
-                <a>Dr. McDougall</a>
+                <a
+                  href="https://www.drmcdougall.com/health/education/mailings/featured-articles/articles/fat-or-carbs-which-is-worse/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Dr. McDougall
+                </a>
               </li>
               <li>
-                <a>Dr. Ornish</a>
+                <a
+                  href="https://www.ornish.com/undo-it/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Dr. Ornish
+                </a>
               </li>
               <li>
-                <a>Dr. Esselstyn</a>
+                <a
+                  href="http://www.dresselstyn.com/site/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Dr. Esselstyn
+                </a>
               </li>
             </ul>
           </div>

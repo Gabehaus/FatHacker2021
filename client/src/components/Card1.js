@@ -1,17 +1,5 @@
 import React, { Component } from "react";
-import {
-  Jumbotron,
-  Button,
-  Container,
-  Row,
-  Col,
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle
-} from "reactstrap";
+import { Button } from "reactstrap";
 import Image from "react-bootstrap/Image";
 
 export default class Card1 extends Component {

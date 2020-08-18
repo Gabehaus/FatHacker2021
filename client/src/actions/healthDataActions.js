@@ -2,7 +2,6 @@ import {
   GET_HEALTHDATA,
   EDIT_HEALTHDATA,
   HEALTHDATA_LOADING,
-  ADD_HEALTHDATA,
   GETHEALTHDATA_FAIL
 } from "./types";
 import axios from "axios";

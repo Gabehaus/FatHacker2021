@@ -154,16 +154,8 @@ class FatLogModal extends Component {
     return (
       <div>
         {this.props.isAuthenticated ? (
-          <Button
-            color="dark"
-            style={{
-              marginBottom: "2rem",
-              backgroundColor: "#00eb98",
-              marginLeft: "40px"
-            }}
-            onClick={this.toggle}
-          >
-            Add Fat Log
+          <Button color="dark" className="logButton" onClick={this.toggle}>
+            ADD FAT LOG
           </Button>
         ) : (
           <h4 className="mb-3 ml-4">Please log in to manage fat logs</h4>
@@ -186,6 +178,7 @@ class FatLogModal extends Component {
                   value={this.props.fatLog.calcFood}
                   id="food"
                   placeholder="Enter name of food"
+                  autocomplete="off"
                   onChange={this.changeCalcFood}
                 />
               </FormGroup>
@@ -257,9 +250,9 @@ class FatLogModal extends Component {
               <Button
                 color="success"
                 onClick={this.props.openNestedModal}
-                style={{ backgroundColor: "#00eb98" }}
+                style={{ backgroundColor: "#00d486", border: "none" }}
               >
-                Use Fat Calculator
+                USE FAT CALCULATOR
               </Button>
               <Modal
                 isOpen={nestedModalOpen}
@@ -272,10 +265,10 @@ class FatLogModal extends Component {
                 </ModalBody>
                 <ModalFooter>
                   <Button color="primary" onClick={this.props.closeNestedModal}>
-                    Back
+                    BACK
                   </Button>{" "}
                   <Button color="secondary" onClick={this.toggleAll}>
-                    Exit All
+                    EXIT ALL
                   </Button>
                 </ModalFooter>
               </Modal>

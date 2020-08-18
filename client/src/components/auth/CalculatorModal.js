@@ -80,11 +80,9 @@ class fatSearch extends Component {
     });
   };
 
-  componentDidMount() {}
-
   async getData() {
     let url = `https://api.edamam.com/api/food-database/parser?nutrition-type=logging&ingr=${this.state.encodedSearchTerm}&app_id=e9e86788&app_key=2c231e68f3531783f0fed14057834b04`;
-
+    this.props.startLoading();
     let response = await fetch(url);
     let dataJSON = await response.json();
 
@@ -105,6 +103,8 @@ class fatSearch extends Component {
       uriOfSelectedMeasure: dataJSON.hints[0].measures[0].uri,
       imageAddress: this.state.apiResponse.hints[0].food.image
     });
+
+    this.props.finishLoading();
   }
 
   calcFat = e => {
@@ -155,14 +155,15 @@ class fatSearch extends Component {
           <label>Enter Food Search Term: </label>
           <input
             type="string"
+            autocomplete="off"
             className="form-control"
             onChange={this.onChangeSearch}
           />
           <Button
-            style={{ marginTop: "10px", backgroundColor: "#00eb98" }}
+            style={{ marginTop: "10px", backgroundColor: "#00d486" }}
             onClick={this.getData}
           >
-            Enter Search Terms
+            ENTER SEARCH TERMS
           </Button>
         </div>
         <form onSubmit={this.onSubmit}>
@@ -208,6 +209,7 @@ class fatSearch extends Component {
             <input
               type="number"
               className="form-control"
+              autocomplete="off"
               placeholder="number of units"
               onChange={e =>
                 this.setState({ numberOfUnits: e.target.valueAsNumber })
@@ -219,9 +221,9 @@ class fatSearch extends Component {
               onClick={this.calcFat}
               value="Calculate Grams of Fat"
               size="md"
-              style={{ backgroundColor: "#00eb98" }}
+              style={{ backgroundColor: "#00d486" }}
             >
-              Calculate fat content
+              CALCULATE FAT CONTENT
             </Button>
           </div>
 
@@ -233,7 +235,7 @@ class fatSearch extends Component {
           <br />
           <div className="form-group">
             <Button
-              style={{ backgroundColor: "#00eb98" }}
+              style={{ backgroundColor: "#00d486" }}
               onClick={() => {
                 this.transfer(
                   this.state.selected,
@@ -245,7 +247,7 @@ class fatSearch extends Component {
               }}
               size="md"
             >
-              Transfer data to new log
+              TRANSFER DATA TO NEW LOG
             </Button>
           </div>
         </form>

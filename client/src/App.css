@@ -5,6 +5,7 @@
   :root {
     --brightGreen: #00d486;
     --titleFont: "Arial Black", Arial;
+    background: #050505 !important;
   }
 
   html,
@@ -143,14 +144,15 @@
 
   .titlebtns {
     margin: 30px;
-    background-color: #00eb98 !important;
+    background-color: #00d486 !important;
     background-color: var(--brightGreen) !important;
     border: none;
     color: white;
     border-radius: 3px;
-    height: 2vw;
+    height: 2.2vw;
     width: 8vw;
-    font-size: 0.8vw;
+    font-size: 0.7vw;
+    z-index: 400;
   }
 
   .btnJumboBox {
@@ -175,7 +177,7 @@
     border: none;
     border-radius: 0.3vh;
     left: 5vw;
-    background-color: #00eb98 !important;
+    background-color: #00d486 !important;
     background-color: var(--brightGreen) !important;
   }
 
@@ -188,13 +190,13 @@
     height: 3.6vh;
     border: none;
     margin-top: 20px;
-    background-color: #00eb98 !important;
+    background-color: #00d486 !important;
     background-color: var(--brightGreen) !important;
   }
 
   .crdbtn {
     color: black !important;
-    background-color: #00eb98 !important;
+    background-color: #00d486 !important;
     background-color: var(--brightGreen) !important;
     border-radius: 50% !important;
   }
@@ -402,7 +404,7 @@
   .cardBox {
     position: absolute;
 
-    border: 10px solid #00eb98 !important;
+    border: 10px solid #00d486 !important;
     border: 10px solid var(--brightGreen) !important;
     background-color: black;
     height: 45vw;
@@ -413,6 +415,8 @@
     position: absolute !important;
     bottom: 28% !important;
     width: 40vw !important;
+
+    z-index: 300;
   }
 
   .cardsRow {
@@ -631,13 +635,13 @@
   }
 
   .grid-container > div > h3 {
-    color: #00eb98;
+    color: #00d486;
     font-family: "Poppins";
     font-size: 1.5vw;
   }
 
   .grid-container > div > div > h3 {
-    color: #00eb98;
+    color: #00d486;
     font-family: "Poppins";
     font-size: 1.5vw;
   }
@@ -1154,14 +1158,14 @@
 
   .dataButton {
     position: absolute !important;
-    background: black !important;
+    background: #050505 !important;
     border: solid 1px;
-    border-color: #00eb98 !important;
-    color: #00eb98 !important;
+    border-color: #00d486 !important;
+    color: #00d486 !important;
     /*border-radius: 50px !important;*/
-    width: 10vw;
+    width: 20vw !important;
     height: 5vh;
-    margin-left: 45vw;
+    margin-left: 40vw;
     margin-top: -10vh;
     z-index: 200 !important;
   }
@@ -1179,6 +1183,98 @@
 
   .spacer {
     height: 12vh;
+  }
+
+  .logList {
+    position: relative;
+    left: 50vw;
+    transform: translateX(-50%);
+  }
+
+  .logButton {
+    margin-bottom: 2rem;
+    background-color: #050505 !important;
+    margin-left: 50%;
+    border: solid 1px !important;
+    border-color: #00d486 !important;
+    color: #00d486 !important;
+    margin-left: 50vw;
+    transform: translateX(-50%);
+    width: 15vw;
+    height: 5vh;
+    margin-top: 3vh;
+  }
+
+  .addLogNotice {
+    font-size: 2vw;
+    width: 90vw;
+    color: #00d486;
+
+    text-align: center;
+    margin-left: 50vw;
+    transform: translateX(-50%);
+  }
+
+  .remove-btn {
+    background: #050505 !important;
+    color: #00d486 !important;
+    border: solid 1px;
+    border-color: #00d486 !important;
+    margin-bottom: 1vh;
+  }
+
+  .input {
+    background-color: #303030 !important;
+    color: #00d486 !important;
+    border: solid 1px;
+    border-color: #00d486 !important;
+  }
+
+  .GIFparent {
+    position: relative;
+
+    max-width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: auto;
+  }
+
+  .GIF {
+    color: white;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    min-width: 50vw;
+    background: #050505;
+    margin-bottom: 5vh;
+    display: block;
+
+    -webkit-box-shadow: 10px 10px 5px -5px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 5px -5px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 5px -5px rgba(0, 0, 0, 0.75);
+  }
+
+  .demoP {
+    display: block;
+    color: white;
+    font-size: 1vw !important;
+    padding: 0.9vw;
+  }
+
+  .gifImage {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .demoTitle {
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px black;
+    font-family: arial black;
+    font-size: 6vw !important;
+    margin-top: -2vh;
+    margin-bottom: 5vh;
   }
 }
 @media (max-width: 1100px) {
@@ -1223,7 +1319,7 @@
 
   .titlebtns {
     margin: 10px;
-    background-color: #00eb98 !important;
+    background-color: #00d486 !important;
     background-color: var(--brightGreen) !important;
     border: none;
     color: white;
@@ -1320,7 +1416,7 @@
     border-radius: 0.3vh;
     margin-top: 0vh;
 
-    background-color: #00eb98 !important;
+    background-color: #00d486 !important;
     background-color: var(--brightGreen) !important;
   }
 
@@ -1335,7 +1431,7 @@
     border: solid 1px;
     border-color: white !important;
     margin-top: 20px;
-    background-color: #00eb98 !important;
+    background-color: #00d486 !important;
     background-color: var(--brightGreen) !important;
   }
 
@@ -1459,7 +1555,7 @@
     padding-top: 1.2vw !important;
     height: 4vh;
     width: 20vw;
-    background-color: #00eb98 !important;
+    background-color: #00d486 !important;
     background-color: var(--brightGreen) !important;
     margin-left: 50% !important;
     transform: translateX(-50%);
@@ -1467,7 +1563,7 @@
 
   .cardTitleBox {
     position: relative !important;
-    background: #00eb98 !important;
+    background: #00d486 !important;
     min-height: 14.5vh !important;
     min-width: 100% !important;
     color: black !important;
@@ -1520,7 +1616,7 @@
 
   .graphTitle {
     margin-top: 4vh;
-    color: #00eb98 !important;
+    color: white !important;
     display: inline-block;
 
     width: 100%;
@@ -1914,9 +2010,51 @@
   }
 
   .dataButton {
-    width: 30vw;
+    width: 30vw !important;
     height: 6vh !important;
     margin-left: 35vw;
+
+    font-size: 2.5vw !important;
+  }
+
+  .addLogNotice {
+    font-size: 4vw;
+  }
+
+  .logButton {
+    width: 30vw;
+    height: 5vh;
+    font-size: 2.5vw !important;
+  }
+
+  .demoTitle {
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px black;
+    font-family: arial black;
+    font-size: 6vw !important;
+    margin-top: 0vh;
+    margin-bottom: 5vh;
+  }
+
+  .GIFparent {
+    min-width: 100vw;
+  }
+
+  .GIF {
+    min-width: 90vw;
+  }
+
+  .demoP {
+    color: white;
+    padding: 2vw;
+    font-size: 3vw !important;
+  }
+
+  .demoTitle {
+  
+    font-size: 8vw !important;
+    
   }
 }
 @media (max-width: 576px) {
@@ -1930,7 +2068,7 @@
 
   .titlebtns {
     margin: 30px;
-    background-color: #00eb98 !important;
+    background-color: #00d486 !important;
     border: solid 1px;
     border-color: white;
     opacity: 0.9;
@@ -2000,7 +2138,7 @@
     border: none;
     border-radius: 50px;
 
-    background-color: #00eb98 !important;
+    background-color: #00d486 !important;
     background-color: var(--brightGreen) !important;
   }
 
@@ -2018,7 +2156,7 @@
     border: solid 1px;
     border-radius: 5vw;
     opacity: 0.8;
-    background-color: #00eb98 !important;
+    background-color: #00d486 !important;
     background-color: var(--brightGreen) !important;
   }
 
@@ -2037,7 +2175,7 @@
     border-color: white !important;
     border-radius: 0.3vh;
 
-    background-color: #00eb98 !important;
+    background-color: #00d486 !important;
     background-color: var(--brightGreen) !important;
   }
 
@@ -2046,7 +2184,7 @@
     display: block;
     border-top: solid 1px;
     border-bottom: solid 1px;
-    border-color: #00eb98;
+    border-color: #00d486;
     color: white;
 
     max-width: 100vw;
@@ -2102,7 +2240,7 @@
       url("./images/spaghetti.jpg");
     position: relative;
     margin-top: 0vh !important;
-    background-position-x: -5vh !important;
+    background-position-x: -15vw !important;
     padding: 0px !important;
     width: 150vw !important;
 
@@ -2211,7 +2349,7 @@
     padding-left: 5vw !important;
     border-top: solid 1px;
     border-bottom: solid 1px;
-    border-color: #00eb98;
+    border-color: #00d486;
     color: white;
     background: -moz-linear-gradient(
       top,
@@ -2238,7 +2376,7 @@
     height: 30px !important;
     margin-top: -25px !important;
 
-    background: #00eb98 !important;
+    background: #00d486 !important;
   }
 
   .navclss {
@@ -2265,7 +2403,7 @@
 
   .fullCardBox1 {
     position: relative !important;
-    background: #00eb98;
+    background: #00d486;
     width: 90vw;
     min-height: 35vh !important;
     display: inline-block !important;
@@ -2284,7 +2422,7 @@
     background: black !important;
     border: solid 1px;
 
-    border-color: #00eb98;
+    border-color: #00d486;
   }
 
   .name {
@@ -2313,7 +2451,7 @@
     min-width: 50%;
     border: solid 1px;
 
-    border-color: #00eb98;
+    border-color: #00d486;
     font-size: 1vw;
   }
 
@@ -2330,7 +2468,7 @@
     background: black !important;
     border: solid 1px;
 
-    border-color: #00eb98;
+    border-color: #00d486;
   }
 
   .cardColumn {
@@ -2357,7 +2495,7 @@
   .jmbo3 {
     border-top: solid 1px;
     border-bottom: solid 1px;
-    border-color: #00eb98;
+    border-color: #00d486;
     background: -moz-linear-gradient(
       top,
       rgba(0, 0, 0, 1) 0%,
@@ -2404,7 +2542,7 @@
     justify-content: center;
     align-items: center;
     font-size: 12vw;
-    color: #66ffb2;
+    color: #00d486;
     top: 0vh;
     left: 5vw;
     background: none;
@@ -2710,9 +2848,33 @@
   }
 
   .dataButton {
-    width: 50vw;
+    width: 50vw !important;
 
     margin-left: 25vw;
+
+    font-size: 3.6vw !important;
+  }
+
+  .addLogNotice {
+    font-size: 5vw !important;
+    width: 100vw;
+  }
+
+  .logButton {
+    width: 40vw;
+    height: 5vh;
+    font-size: 4vw !important;
+  }
+
+  .gifImage {
+    max-width: 80vw;
+    margin-top: 0vh;
+  }
+
+  .demoTitle {
+  
+    font-size: 11vw !important;
+    
   }
 }
 
@@ -2725,7 +2887,7 @@
   }
 
   .fullCardBox1 {
-    background: #00eb98;
+    background: #00d486;
   }
 
   .profileImageBox {
@@ -2796,11 +2958,6 @@ Extra (xl) large devices (large desktops, 1200px and up)
 .fade-exit-active {
   opacity: 0.01;
   transition: opacity 1000ms ease-in;
-}
-
-.input {
-  background-color: rgb(222, 211, 232) !important;
-  color: black !important;
 }
 
 .noMargin {

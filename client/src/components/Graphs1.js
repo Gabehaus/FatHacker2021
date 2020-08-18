@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Doughnut } from "react-chartjs-2";
-import { MDBContainer } from "mdbreact";
+
 import { connect } from "react-redux";
 import { getFatLogs } from "../actions/fatLogActions";
 import moment from "moment";
@@ -99,31 +99,45 @@ class Graphs1Data extends Component {
             }}
           />
         </div>
-        <div className="percentBox">{`${perc}%`}</div>
+        {this.props.healthData.healthData.weight ? (
+          <div className="percentBox">{`${perc}%`}</div>
+        ) : (
+          " "
+        )}
+
         <div className="iconsStatsParent">
           <div className="iconStatsBox">
             <div className="iconText">
-              <img src={apple} className="icon"></img>
+              <img src={apple} className="icon" alt=""></img>
               <div className="text">FAT EATEN</div>
             </div>
-
-            <div className="iconStat">{`${this.state.todaysCurrentTotal}g`}</div>
+            {this.props.healthData.healthData.weight ? (
+              <div className="iconStat">{`${this.state.todaysCurrentTotal}g`}</div>
+            ) : (
+              " "
+            )}
           </div>
           <div className="iconStatsBox">
             <div className="iconText">
-              <img src={remain} className="icon"></img>
+              <img src={remain} className="icon" alt=""></img>
               <div className="text">REMAINING</div>
             </div>
-
-            <div className="iconStat">{`${fatLeft}g`}</div>
+            {this.props.healthData.healthData.weight ? (
+              <div className="iconStat">{`${fatLeft}g`}</div>
+            ) : (
+              " "
+            )}
           </div>
           <div className="iconStatsBox">
             <div className="iconText">
-              <img src={daily} className="icon"></img>
+              <img src={daily} className="icon" alt=""></img>
               <div className="text">DAILY ALLOWANCE</div>
             </div>
-
-            <div className="iconStat">{`${this.props.fat}g`}</div>
+            {this.props.healthData.healthData.weight ? (
+              <div className="iconStat">{`${this.props.fat}g`}</div>
+            ) : (
+              " "
+            )}
           </div>
         </div>
       </div>
@@ -133,7 +147,8 @@ class Graphs1Data extends Component {
 
 const mapStateToProps = state => ({
   fatLog: state.fatLog,
-  user: state.auth.user
+  user: state.auth.user,
+  healthData: state.healthData
 });
 
 export default connect(mapStateToProps, { getFatLogs })(Graphs1Data);
