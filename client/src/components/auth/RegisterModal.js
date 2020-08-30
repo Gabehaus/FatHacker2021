@@ -126,6 +126,9 @@ class RegisterModal extends Component {
                   className="mb-3"
                   onChange={this.onChange}
                 />
+                <p className="passwordInstructions">
+                  password must contain at least eight characters
+                </p>
                 <Label for="confirm_password">Confirm password</Label>
                 <Input
                   type="confirm_password"

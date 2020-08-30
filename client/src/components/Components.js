@@ -109,7 +109,7 @@ class Components extends Component {
             style={{}}
           >
             <Container>
-              <NavbarBrand href={user ? "/about" : "/"}>Fat Hacker</NavbarBrand>
+              <NavbarBrand href="/">Fat Hacker</NavbarBrand>
               <NavbarToggler onClick={this.toggle} />
               <Collapse isOpen={this.state.isOpen} navbar>
                 <Nav className="ml-auto" navbar>
@@ -129,8 +129,6 @@ class Components extends Component {
             }}
           >
             {/* If the user if logged in, the MyAbout page gives the username as a prop if needed (currently not used)*/}
-
-            {user ? <Route exact path="/about" render={MyAbout} /> : null}
 
             <Route exact path="/" component={About} />
 

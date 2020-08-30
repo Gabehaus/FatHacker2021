@@ -49,13 +49,26 @@ class fatSearch extends Component {
     this.setState({
       selected: e.target.value,
       indexOfSelected: indexOfSelectedVar,
-      selectedObject: this.state.apiResponse.hints[indexOfSelectedVar],
-      selectedObjectMeasures: this.state.apiResponse.hints[indexOfSelectedVar]
-        .measures,
-      selectedFoodId: this.state.apiResponse.hints[indexOfSelectedVar].food
-        .foodId,
-      imageAddress: this.state.apiResponse.hints[indexOfSelectedVar].food.image
+      selectedObject: this.state.apiResponse.hints[indexOfSelectedVar]
     });
+
+    //making sure no properties are missing / undefined as this can happen within the data of this API
+    if (this.state.apiResponse.hints[indexOfSelectedVar]) {
+      this.setState({
+        selectedObjectMeasures: this.state.apiResponse.hints[indexOfSelectedVar]
+          .measures,
+        selectedFoodId: this.state.apiResponse.hints[indexOfSelectedVar].food
+          .foodId,
+        imageAddress: this.state.apiResponse.hints[indexOfSelectedVar].food
+          .image
+      });
+    } else {
+      this.setState({
+        selectedObjectMeasures: "",
+        selectedFoodId: "",
+        imageAddress: ""
+      });
+    }
   };
 
   onChangeMeasures = e => {
@@ -65,11 +78,17 @@ class fatSearch extends Component {
 
     this.setState({
       selectedMeasure: e.target.value,
-      indexOfSelectedMeasure: indexOfSelectedMeasure,
-      uriOfSelectedMeasure: this.state.apiResponse.hints[
-        this.state.indexOfSelected
-      ].measures[indexOfSelectedMeasure].uri
+      indexOfSelectedMeasure: indexOfSelectedMeasure
     });
+
+    if (this.state.apiResponse.hints[this.state.indexOfSelected]) {
+      this.setState({
+        uriOfSelectedMeasure: this.state.apiResponse.hints[
+          this.state.indexOfSelected
+        ].measures[indexOfSelectedMeasure].uri
+      });
+    } else {
+    }
   };
 
   onError = () => {
@@ -196,12 +215,20 @@ class fatSearch extends Component {
             <select
               required
               className="form-control"
-              value={this.state.selectedMeasure}
+              value={
+                this.state.selectedMeasure
+                  ? this.state.selectedMeasure
+                  : "no data available"
+              }
               onChange={this.onChangeMeasures}
             >
-              {this.state.selectedObjectMeasures.map((msr, index) => {
-                return <option key={uuid4()}>{msr.label}</option>;
-              })}
+              {this.state.selectedObjectMeasures ? (
+                this.state.selectedObjectMeasures.map((msr, index) => {
+                  return <option key={uuid4()}>{msr.label}</option>;
+                })
+              ) : (
+                <option key={uuid4()}>{"no data available"}</option>
+              )}
             </select>
           </div>
           <div className="form-group">

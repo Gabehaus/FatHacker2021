@@ -77,10 +77,6 @@ class LoginModal extends Component {
     };
     // attempt to login
     this.props.login(user);
-    /* console.log(`user status ${this.props.auth.user}`);
-    if (this.props.auth.user) {
-      store.dispatch(push("/logs"));
-    } */
   };
 
   render() {

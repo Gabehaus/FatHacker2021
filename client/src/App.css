@@ -95,7 +95,7 @@
   }
 
   .jmbo {
-    height: 15vh;
+    height: 22vh !important;
     border-radius: 0px !important ;
     color: white;
 
@@ -1276,6 +1276,13 @@
     margin-top: -2vh;
     margin-bottom: 5vh;
   }
+
+  .passwordInstructions {
+    color: white;
+    font-size: 10px;
+    margin-left: 10px;
+    margin-top: -10px;
+  }
 }
 @media (max-width: 1100px) {
   .animated {
@@ -2052,9 +2059,7 @@
   }
 
   .demoTitle {
-  
     font-size: 8vw !important;
-    
   }
 }
 @media (max-width: 576px) {
@@ -2872,9 +2877,7 @@
   }
 
   .demoTitle {
-  
     font-size: 11vw !important;
-    
   }
 }
 

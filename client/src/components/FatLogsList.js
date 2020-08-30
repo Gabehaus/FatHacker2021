@@ -34,6 +34,13 @@ class FatLogsList extends Component {
 
     return (
       <div>
+        {/*
+        <Button
+          onClick={() => {
+            let token = localStorage.getItem("token");
+            console.log(token);
+          }}
+        ></Button> */}
         {fatLogs ? (
           fatLogs.length >= 1 ? (
             <Container className="logList">
