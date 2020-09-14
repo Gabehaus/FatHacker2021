@@ -91,12 +91,10 @@ class LoginModal extends Component {
   };
 
   async responseGoogleLogin(res) {
-    console.log("resGoogle", res);
     await this.props.oauthGoogle(res.accessToken);
   }
 
   async responseFacebookLogin(res) {
-    await console.log("resFacebook", res);
     await this.props.oauthFacebook(res.accessToken);
   }
 

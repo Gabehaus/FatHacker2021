@@ -97,24 +97,6 @@ class HealthDataModal extends Component {
     });
   };
 
-  /*
-  onChangeDate = date => {
-    var string = Date(date);
-    var diff = string.slice(29, 31); //difference between local time and GMT in hours
-
-    var adjusted = moment(date) //sets local time back before storing in Database as UTC - UTC will appear as local time in database now
-      .subtract(diff, "hours")
-      .toString();
-
-    var answer = new Date(adjusted);
-
-    this.setState({
-      date: answer
-    });
-
-    console.log(answer);
-  };  */
-
   onSubmit(e) {
     const { healthData } = this.props;
     e.preventDefault();
@@ -128,7 +110,7 @@ class HealthDataModal extends Component {
         goal: this.state.goal,
         activityLevel: this.state.activityLevel
       };
-      console.log("healthdata this.props.username", this.props.username);
+
       // Add item via addItem action
       this.props.addHealthData(newHealthData);
       this.props.loadUser();

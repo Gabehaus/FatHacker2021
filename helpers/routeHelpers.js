@@ -6,7 +6,6 @@ module.exports = {
       const result = schema.validate(req.body);
       if (result.error) {
         return res.status(400).json(result.error);
-        console.log(result.error);
       }
 
       if (!req.value) {

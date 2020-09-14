@@ -1,5 +1,5 @@
 import axios from "axios";
-import store from "../store";
+
 import { returnErrors } from "./errorActions";
 import {
   USER_LOADED,
@@ -38,7 +38,7 @@ export const tokenConfig = getState => {
   //Get token from localstorage
   const token = localStorage.getItem("token"); // in old version used:
   //const token = store.getState().auth.token;
-  console.log("token gotten by tokenConfig:", token);
+
   //Headers
   const config = {
     headers: {

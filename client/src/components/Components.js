@@ -23,7 +23,7 @@ import GraphsRadioButtons from "./GraphsRadioButtons";
 import Demo from "./Demo.js";
 import LoginModal from "./auth/LoginModal";
 import Logout from "./auth/Logout";
-import FatLogsList from "./FatLogsList";
+
 import FatLogModal from "./FatLogModal";
 import About from "./About";
 import "../App.css";
@@ -61,7 +61,7 @@ class Components extends Component {
       const name = user[Object.keys(user)[0]].name;
       this.props.getFatLogs(name);
       this.props.getHealthData(name);
-      console.log("name in components:", name);
+
       this.setState({
         name: name
       });
@@ -69,7 +69,7 @@ class Components extends Component {
   }
 
   render() {
-    const { isAuthenticated, user } = this.props.auth;
+    const { isAuthenticated } = this.props.auth;
     const { isLoading } = this.props.loading;
     const name = this.state.name;
 
@@ -100,10 +100,6 @@ class Components extends Component {
     );
 
     //all components below are provided with user's name as a prop
-
-    const MyFatLogsList = props => {
-      return <FatLogsList username={name} />;
-    };
 
     const MyGraphs2 = props => {
       return <Graphs2 username={name} />;

@@ -112,23 +112,6 @@ class FatLogModal extends Component {
     this.props.changeCalcFat(e.target.value);
     this.setState({ fat: this.props.fatLog.calcFat });
   };
-  /*
-  onChangeDate = date => {
-    var string = Date(date);
-    var diff = string.slice(29, 31); //difference between local time and GMT in hours
-
-    var adjusted = moment(date) //sets local time back before storing in Database as UTC - UTC will appear as local time in database now
-      .subtract(diff, "hours")
-      .toString();
-
-    var answer = new Date(adjusted);
-
-    this.setState({
-      date: answer
-    });
-
-    console.log(answer);
-  };  */
 
   onChangeDate = date => {
     this.setState({

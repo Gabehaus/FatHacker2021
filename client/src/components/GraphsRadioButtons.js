@@ -139,49 +139,6 @@ class GraphsRadioButtons extends Component {
         <div className="statsTitle">{"Fat Stats"}</div>
 
         <div className="tableBox">
-          {/*
-          <div className="hlthDataCol">
-            <div className="label">Sex</div>
-            <div className="data">{this.state.sex}</div>
-          </div>
-
-          <div className="hlthDataCol">
-            <div className="label">DOB</div>
-            <div className="data">{this.state.dob}</div>
-          </div>
-          <div className="hlthDataCol">
-            <div className="label">Weight</div>
-            <div className="data">{healthData.healthData.weight}</div>
-          </div>
-          <div className="hlthDataCol">
-            <div className="label">Height</div>
-            <div className="data">{this.state.height}</div>
-          </div>
-          <div className="hlthDataCol">
-            <div className="label">Activity Level</div>
-            <div className="data">{this.state.activityLevel}</div>
-          </div>
-          <div className="hlthDataCol">
-            <div className="label">Goal</div>
-            <div className="data">{this.state.goal}</div>
-          </div>
-          <div className="hlthDataCol">
-            <div className="label">Height In CMs</div>
-            <div className="data">{this.state.heightCM}</div>
-          </div>
-          <div className="hlthDataCol">
-            <div className="label">Age</div>
-            <div className="data">{this.state.age}</div>
-          </div>
-          <div className="hlthDataCol">
-            <div className="label">KGs</div>
-            <div className="data">{this.state.kgs}</div>
-          </div>
-          <div className="hlthDataCol">
-            <div className="label">Activity Factor</div>
-            <div className="data">{this.state.activityFactor}</div>
-          </div>  */}
-
           <div className="radioLabelsBox">
             <div className="labelInput" style={{ display: "inline-block" }}>
               <div className="radioLabel">Today</div>

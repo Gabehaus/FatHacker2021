@@ -17,7 +17,6 @@ class FatLogsList extends Component {
   };
 
   componentDidMount() {
-    console.log("usssseerrr name", this.props.username);
     this.props.getFatLogs(this.props.username);
   }
 
@@ -35,13 +34,6 @@ class FatLogsList extends Component {
 
     return (
       <div>
-        {/*
-        <Button
-          onClick={() => {
-            let token = localStorage.getItem("token");
-            console.log(token);
-          }}
-        ></Button> */}
         {fatLogs ? (
           fatLogs.length >= 1 ? (
             <Container className="logList">

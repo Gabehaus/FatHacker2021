@@ -42,7 +42,6 @@ router.get("/user", auth, (req, res) => {
   User.findById(req.user.id) //req.user is the token... the id property was attached to the token above
     .select("-password") //says to not include the password when returning user data
     .then(user => {
-      console.log("user returned in get user route", res.json(user));
       res.json(user);
     });
 });

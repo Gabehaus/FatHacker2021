@@ -34,7 +34,6 @@ module.exports = {
   // this is a way to test that a valid json web token has been granted - a jsonwebtoken is required to access {secret: "resource"}
 
   secret: async (req, res, next) => {
-    console.log("I managed to get here!");
     res.json({ secret: "resource" });
   }
 };
