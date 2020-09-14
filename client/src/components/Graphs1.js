@@ -15,7 +15,7 @@ class Graphs1Data extends Component {
   }
 
   componentDidMount(props) {
-    this.props.getFatLogs(this.props.user.name);
+    this.props.getFatLogs(this.props.username);
 
     const today = moment().toString();
     const todayDate = moment(today).format("YYYY-MM-DD");

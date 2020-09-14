@@ -1,9 +1,20 @@
 const express = require("express");
-const router = express.Router();
+
 const bcrypt = require("bcryptjs");
 const config = require("config");
 const jwt = require("jsonwebtoken");
 const auth = require("../../middleware/auth");
+const AuthController = require("../../controllers/auth");
+const router = require("express-promise-router")();
+const { validateBody, schemas } = require("../../helpers/routeHelpers");
+const passport = require("passport"); // passport library
+const passportConf = require("../../passport"); // passport file
+const passportSignIn = passport.authenticate("local", { session: false }); //checks for existing email and correct password
+const passportJWT = passport.authenticate("jwt", { session: false }); //gets token from header, decodes it with secret and returns the user
+const passportGoogle = passport.authenticate("googleToken", { session: false });
+const passportFacebook = passport.authenticate("facebookToken", {
+  session: false
+});
 
 // User Model
 const User = require("../../models/User");
@@ -11,40 +22,18 @@ const User = require("../../models/User");
 // @route GET api/auth
 //@desc Authenticate user
 // @access Public
-router.post("/", (req, res) => {
-  const { email, password } = req.body;
+router.post(
+  "/",
+  validateBody(schemas.usersSchema),
+  passportSignIn,
+  AuthController.signIn
+);
 
-  if (!email || !password) {
-    return res.status(400).json({ msg: "Please enter all fields" });
-  }
+router.get("/secret", passportJWT, AuthController.secret); //because this contains the passwportJWT strategy, access to the protected resources returned from this route is granted
 
-  // Check for existing user
-  User.findOne({ email }).then(user => {
-    if (!user) return res.status(400).json({ msg: "User does not exist" });
+router.post("/oauth/google", passportGoogle, AuthController.googleOAuth);
 
-    // Validate password
-    bcrypt.compare(password, user.password).then(isMatch => {
-      if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
-
-      jwt.sign(
-        { id: user.id },
-        config.get("jwtSecret"),
-        { expiresIn: 3600 },
-        (err, token) => {
-          if (err) throw err;
-          res.json({
-            token,
-            user: {
-              id: user.id,
-              name: user.name,
-              email: user.email
-            }
-          });
-        }
-      );
-    });
-  });
-});
+router.post("/oauth/facebook", passportFacebook, AuthController.facebookOAuth);
 
 // @route GET api/auth/user
 //@desc Get user data using token
@@ -52,7 +41,10 @@ router.post("/", (req, res) => {
 router.get("/user", auth, (req, res) => {
   User.findById(req.user.id) //req.user is the token... the id property was attached to the token above
     .select("-password") //says to not include the password when returning user data
-    .then(user => res.json(user));
+    .then(user => {
+      console.log("user returned in get user route", res.json(user));
+      res.json(user);
+    });
 });
 
 module.exports = router;

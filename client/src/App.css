@@ -95,7 +95,7 @@
   }
 
   .jmbo {
-    height: 22vh !important;
+    height: 17vh !important;
     border-radius: 0px !important ;
     color: white;
 
@@ -136,7 +136,7 @@
 
   .p1 {
     margin-top: -20px;
-    font-size: 20px;
+    font-size: 2.1vh;
     margin-left: 40px;
   }
 
@@ -715,25 +715,25 @@
       to(rgba(0, 235, 153, 0))
     );
     background: -webkit-linear-gradient(
-      left,
+      to left,
       rgba(0, 235, 153, 0),
       #50e6b2,
       rrgba(0, 235, 153, 0)
     );
     background: -moz-linear-gradient(
-      left,
+      to left,
       rgba(0, 235, 153, 0),
       #50e6b2,
       rgba(0, 235, 153, 0)
     );
     background: -o-linear-gradient(
-      left,
+      to to left,
       rgba(0, 235, 153, 0),
       #50e6b2,
       rgba(0, 235, 153, 0)
     );
     background: linear-gradient(
-      left,
+      to left,
       rgba(0, 235, 153, 0),
       #50e6b2,
       rgba(0, 235, 153, 0)
@@ -1282,6 +1282,113 @@
     font-size: 10px;
     margin-left: 10px;
     margin-top: -10px;
+  }
+
+  /*---Login buttons --*/
+
+  .login {
+    position: relative;
+    border-radius: 0.2vw;
+    border-style: none;
+    color: white;
+    height: 5vh;
+    width: 10vw;
+  }
+
+  .loginReg {
+    position: relative;
+    border-radius: 0.2vw;
+    border-style: none;
+    color: white;
+    height: 5vh;
+    width: 10vw;
+  }
+
+  .loginButtonsBox {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .fbLogin {
+    background-color: #3b5998;
+  }
+
+  .fBox {
+    width: 20%;
+    height: 100%;
+    margin-right: 10px;
+    padding-left: 0;
+    border-right-style: solid;
+    border-right-color: #050505;
+    border-right-width: 1px;
+    display: inline-block;
+    vertical-align: top;
+    background: orange;
+  }
+
+  .facebookF {
+    max-height: 2vh;
+    margin-left: 0;
+    margin-top: 50%;
+    transform: translateY(-25%);
+    background: green;
+  }
+
+  .fbText {
+    display: inline-block;
+    width: 80%;
+    height: 100%;
+    font-size: 0.65vw;
+    line-height: 100%;
+    padding-top: 10%;
+    background: red;
+  }
+
+  .googleLogin {
+    background-color: #de5246;
+  }
+
+  .gBox {
+    width: 20%;
+    height: 100%;
+
+    border-right-style: solid;
+    border-right-color: #050505;
+    border-right-width: 1px;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .googleG {
+    max-height: 2vh;
+
+    margin-top: 50%;
+    transform: translateY(-25%);
+  }
+
+  .gText {
+    display: inline-block;
+    width: 80%;
+    height: 100%;
+    font-size: 0.65vw;
+    line-height: 100%;
+    padding-top: 10%;
+  }
+
+  .my-facebook-button-class {
+    width: 80%;
+    max-height: 5vh;
+    background: #3b5998;
+    color: white;
+  }
+}
+
+@media (max-width: 1100px) and (min-height: 1200px) {
+  .loginButtonsBox {
+    display: block;
+
+    width: 120%;
+    margin-left: -10%;
   }
 }
 @media (max-width: 1100px) {
@@ -2060,6 +2167,72 @@
 
   .demoTitle {
     font-size: 8vw !important;
+  }
+
+  .login {
+    width: 20vw;
+    max-height: 4vh;
+  }
+
+  .googleG {
+    max-height: 2vh;
+    margin-left: -0.5vw;
+    margin-top: 50%;
+    transform: translateY(-23%);
+  }
+
+  .login {
+    width: 60%;
+    max-height: 7vh;
+    display: block;
+    margin-top: 2vh;
+    margin-left: 20%;
+  }
+
+  .loginReg {
+    width: 60%;
+    max-height: 7vh;
+    display: block;
+    margin-top: 2vh;
+    margin-left: 20%;
+  }
+
+  .loginButtonsBox {
+    display: block;
+    /*
+    width: 120%;
+    margin-left: -10%;  */
+  }
+
+  .fbText {
+    display: inline-block;
+    width: 80%;
+    height: 50%;
+    font-size: 2vw;
+    line-height: 25%;
+  }
+
+  .gText {
+    display: inline-block;
+    margin-top: -1px;
+    width: 80%;
+    height: 50%;
+    font-size: 2.4vw;
+    line-height: 25%;
+  }
+
+  .facebookF {
+    max-height: 2vh;
+
+    margin-top: 50%;
+    transform: translateY(-37%);
+  }
+
+  .googleG {
+    max-height: 2vh;
+
+    margin-top: 47%;
+    transform: translateY(-37%);
   }
 }
 @media (max-width: 576px) {
@@ -2879,6 +3052,58 @@
   .demoTitle {
     font-size: 11vw !important;
   }
+
+  .login {
+    width: 60%;
+    max-height: 7vh;
+    display: block;
+    margin-top: 2vh;
+    margin-left: 20%;
+  }
+
+  .loginReg {
+    width: 70%;
+    min-height: 6vh;
+    display: block;
+    margin-top: 2vh;
+    margin-left: 15%;
+  }
+
+  .loginButtonsBox {
+    display: block;
+  }
+
+  .fbText {
+    display: inline-block;
+    width: 80%;
+    height: 50%;
+    font-size: 3.5vw;
+    line-height: 0%;
+    margin-top: -5px;
+  }
+
+  .gText {
+    display: inline-block;
+    width: 80%;
+    height: 50%;
+    font-size: 3.5vw;
+    line-height: 28%;
+    margin-top: -3px;
+  }
+
+  .facebookF {
+    max-height: 2vh;
+
+    margin-top: 45%;
+    transform: translateY(-37%);
+  }
+
+  .googleG {
+    max-height: 2vh;
+
+    margin-top: 42%;
+    transform: translateY(-37%);
+  }
 }
 
 @media (max-width: 380px) {
@@ -2902,6 +3127,45 @@
 
     padding-left: 5vw !important;
   }
+
+  .fbText {
+    display: inline-block;
+    width: 80%;
+    height: 50%;
+    font-size: 3.5vw;
+    line-height: 0%;
+
+    margin-top: -5px;
+  }
+
+  .gText {
+    display: inline-block;
+    width: 80%;
+    height: 50%;
+    font-size: 3.5vw;
+    line-height: 25%;
+    margin-top: -3px;
+  }
+
+  .facebookF {
+    min-height: 40px;
+    margin-left: -60px;
+
+    margin-top: 40%;
+    transform: translateY(-37%);
+  }
+
+  .fBox {
+    position: relative;
+    max-width: 5px;
+  }
+
+  .googleG {
+    max-height: 2vh;
+
+    margin-top: 40%;
+    transform: translateY(-37%);
+  }
 }
 
 @media (max-width: 380px) and (min-height: 800px) {
@@ -2911,11 +3175,34 @@
 
   .percentBox {
   }
+
+  .fbText {
+    margin-top: 1px;
+  }
+
+  .gText {
+    margin-top: -1px;
+  }
+
+  .googleG {
+    max-height: 2vh;
+
+    margin-top: 48%;
+    transform: translateY(-37%);
+  }
 }
 
 @media (max-width: 320px) {
   .jmbo {
     height: 24vh;
+  }
+
+  .fbText {
+    margin-top: -1px;
+  }
+
+  .gText {
+    margin-top: -3px;
   }
 }
 

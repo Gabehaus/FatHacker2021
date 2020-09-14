@@ -13,6 +13,7 @@ function auth(req, res, next) {
     const decoded = jwt.verify(token, config.get("jwtSecret"));
     //Add user from payload
     req.user = decoded;
+    console.log("req.user", req.user);
     next();
   } catch (e) {
     res.redirect("/");

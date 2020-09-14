@@ -17,6 +17,7 @@ class FatLogsList extends Component {
   };
 
   componentDidMount() {
+    console.log("usssseerrr name", this.props.username);
     this.props.getFatLogs(this.props.username);
   }
 

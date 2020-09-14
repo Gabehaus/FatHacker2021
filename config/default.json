@@ -1,4 +1,14 @@
 {
-  "mongoURI": "mongodb+srv://Ghausc1:45654513@cluster0-xeldz.mongodb.net/test?retryWrites=true&w=majority",
-  "jwtSecret": "sl_myJwtSecret"
+  "mongoURI": "mongodb+srv://Ghausc1:45654513@cluster0.ylqoo.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "sl_myJwtSecret",
+  "oauth": {
+    "google": {
+      "clientID": "820113117620-o2qt448u2if1mim4l4p7bg1rnno0gp5s.apps.googleusercontent.com",
+      "clientSecret": "3RaOmVyVsLce9Uvgu-HKsbZE"
+    },
+    "facebook": {
+      "clientID": "1025853627857007",
+      "clientSecret": "fcc14a5164b53929cd222b5c2d2924dd"
+    }
+  }
 }

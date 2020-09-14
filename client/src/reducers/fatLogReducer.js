@@ -2,6 +2,7 @@ import {
   GET_FATLOGS,
   ADD_FATLOG,
   DELETE_FATLOG,
+  DELETE_ALL_FATLOGS,
   FATLOGS_LOADING,
   CALCULATOR_RESULTS,
   CHANGE_CALCFOOD,
@@ -40,6 +41,19 @@ export default function(state = initialState, action) {
         attempted: "yes",
         checkID: action.payload,
         fatLogs: state.fatLogs.filter(fatLog => fatLog._id !== action.payload)
+      };
+    case DELETE_ALL_FATLOGS:
+      return {
+        fatLogs: [],
+        loading: false,
+        checkID: null,
+        attempted: null,
+        calcFood: "hamburger",
+        calcUnit: "whole",
+        calcQuantity: "1",
+        calcFat: "0",
+        newLogAdded: false,
+        nestedModalOpen: false
       };
     case ADD_FATLOG:
       return {

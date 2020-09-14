@@ -25,6 +25,8 @@ import PropTypes from "prop-types";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { openNestedModal, closeNestedModal } from "../actions/fatLogActions";
+import { loadUser } from "../actions/authActions";
+import FatLogsList from "./FatLogsList";
 
 class FatLogModal extends Component {
   state = {
@@ -44,6 +46,10 @@ class FatLogModal extends Component {
   static propTypes = {
     isAuthenticated: PropTypes.bool
   };
+
+  componentDidMount() {
+    this.props.loadUser();
+  }
 
   componentDidUpdate(prevProps, prevState) {
     const { error, fatLog } = this.props;
@@ -134,7 +140,7 @@ class FatLogModal extends Component {
     e.preventDefault();
 
     const newFatLog = {
-      username: this.props.user.name,
+      username: this.props.username,
       food: this.props.fatLog.calcFood,
       unit: this.props.fatLog.calcUnit,
       quantity: this.props.fatLog.calcQuantity,
@@ -155,16 +161,18 @@ class FatLogModal extends Component {
       <div>
         {this.props.isAuthenticated ? (
           <Button color="dark" className="logButton" onClick={this.toggle}>
-            ADD FAT LOG
+            {
+              //this.props.user?
+              "ADD FAT LOG" //this.props.user[Object.keys(this.props.user)[0]].name
+              // : "bebo"}
+            }
           </Button>
         ) : (
           <h4 className="mb-3 ml-4">Please log in to manage fat logs</h4>
         )}
 
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>
-            Add To Fat Consumption Logs
-          </ModalHeader>
+          <ModalHeader toggle={this.toggle}>{this.props.username}</ModalHeader>
           <ModalBody>
             {this.state.msg ? (
               <Alert color="danger">{this.state.msg}</Alert>
@@ -287,6 +295,7 @@ class FatLogModal extends Component {
             </Form>
           </ModalBody>
         </Modal>
+        <FatLogsList username={this.props.username} />
       </div>
     );
   }
@@ -307,5 +316,6 @@ export default connect(mapStateToProps, {
   changeCalcFat,
   resetFatLogAdded,
   closeNestedModal,
-  openNestedModal
+  openNestedModal,
+  loadUser
 })(FatLogModal);

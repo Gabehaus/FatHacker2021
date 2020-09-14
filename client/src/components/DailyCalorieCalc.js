@@ -24,7 +24,7 @@ class DailyCalorieCalc extends Component {
   };
 
   componentDidMount() {
-    this.props.getHealthData(this.props.user.name);
+    this.props.getHealthData(this.props.username);
   }
 
   componentDidUpdate(prevProps) {
@@ -42,7 +42,7 @@ class DailyCalorieCalc extends Component {
         prevProps.healthData.healthData.activityLevel
     ) {
       //if they have changed, get all data from the database via redux
-      this.props.getHealthData(this.props.user.name);
+      this.props.getHealthData(this.props.username);
     }
 
     //once the redux store is fully updated define variables to be used in BMR calc
@@ -130,7 +130,7 @@ class DailyCalorieCalc extends Component {
 
     return (
       <div>
-        <div>Welcome {this.props.user.name}</div>
+        <div>Welcome {this.props.username}</div>
 
         <div className="tableBox">
           <div className="hlthDataCol">
@@ -176,7 +176,7 @@ class DailyCalorieCalc extends Component {
           </div>
 
           <Graphs1Data
-            username={this.props.user.name}
+            username={this.props.username}
             kgs={this.state.kgs}
             age={this.state.age}
             activityFactor={this.state.activityFactor}

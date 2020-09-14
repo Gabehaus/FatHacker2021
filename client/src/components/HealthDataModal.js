@@ -32,12 +32,12 @@ class HealthDataModal extends Component {
       name: "",
       date: new Date(),
       msg: "",
-      sex: "no sex entered",
-      age: "no age entered",
-      weight: "no weight entered",
-      height: "no height entered",
-      goal: "no goal entered",
-      activityLevel: "no activity level entered"
+      sex: "Male",
+      age: "35",
+      weight: "145",
+      height: "6'5''/ 195.5cm",
+      goal: "Maintain weight",
+      activityLevel: "Very heavy exercise"
     };
   }
 
@@ -46,14 +46,14 @@ class HealthDataModal extends Component {
   };
 
   componentDidMount() {
-    this.props.getHealthData(this.props.user.name);
+    this.props.getHealthData(this.props.username);
   }
 
   componentDidUpdate(prevProps) {
     const { error, healthData } = this.props;
 
     if (healthData.healthData.age !== prevProps.healthData.healthData.age) {
-      this.props.getHealthData(this.props.user.name);
+      this.props.getHealthData(this.props.username);
     }
 
     if (
@@ -120,7 +120,7 @@ class HealthDataModal extends Component {
     e.preventDefault();
     if (!healthData.healthData.age) {
       const newHealthData = {
-        username: this.props.user.name,
+        username: this.props.username,
         sex: this.state.sex,
         age: this.state.age,
         height: this.state.height,
@@ -128,18 +128,19 @@ class HealthDataModal extends Component {
         goal: this.state.goal,
         activityLevel: this.state.activityLevel
       };
-
+      console.log("healthdata this.props.username", this.props.username);
       // Add item via addItem action
       this.props.addHealthData(newHealthData);
       this.props.loadUser();
-      this.props.getHealthData(this.props.user.name);
+      this.props.getHealthData(this.props.username);
 
       // Close modal
+      this.toggle();
     } else {
       e.preventDefault();
 
       const newHealthData = {
-        username: this.props.user.name,
+        username: this.props.username,
         sex: this.state.sex,
         age: this.state.age,
         height: this.state.height,
@@ -149,10 +150,11 @@ class HealthDataModal extends Component {
       };
 
       // Add item via addItem action
-      this.props.editHealthData(newHealthData, this.props.user.name);
+      this.props.editHealthData(newHealthData, this.props.username);
       this.props.loadUser();
-      this.props.getHealthData(this.props.user.name);
+      this.props.getHealthData(this.props.username);
       // Close modal
+      this.toggle();
     }
   }
 
@@ -171,7 +173,7 @@ class HealthDataModal extends Component {
         )}
 
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>Health Data</ModalHeader>
+          <ModalHeader toggle={this.toggle}>{this.props.username}</ModalHeader>
           <ModalBody>
             {this.state.msg ? (
               <Alert color="danger">{this.state.msg}</Alert>

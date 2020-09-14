@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { NavLink } from "reactstrap";
 import { connect } from "react-redux";
 import { logout } from "../../actions/authActions";
+import { deleteAllFatlogs } from "../../actions/fatLogActions";
 import PropTypes from "prop-types";
 import { NavLink as RRNavLink } from "react-router-dom";
 
@@ -17,7 +18,10 @@ class Logout extends Component {
           exact
           to="/"
           activeClassName="active"
-          onClick={this.props.logout}
+          onClick={() => {
+            this.props.deleteAllFatlogs();
+            this.props.logout();
+          }}
         >
           Logout
         </NavLink>
@@ -26,4 +30,4 @@ class Logout extends Component {
   }
 }
 
-export default connect(null, { logout })(Logout);
+export default connect(null, { logout, deleteAllFatlogs })(Logout);

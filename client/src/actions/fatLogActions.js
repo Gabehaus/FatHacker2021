@@ -10,7 +10,8 @@ import {
   CHANGE_CALCFAT,
   RESET_LOGADDED,
   NESTEDMODAL_OPEN,
-  NESTEDMODAL_CLOSE
+  NESTEDMODAL_CLOSE,
+  DELETE_ALL_FATLOGS
 } from "./types";
 import axios from "axios";
 import { tokenConfig } from "./authActions";
@@ -119,5 +120,11 @@ export const openNestedModal = () => {
 export const closeNestedModal = () => {
   return {
     type: NESTEDMODAL_CLOSE
+  };
+};
+
+export const deleteAllFatlogs = () => {
+  return {
+    type: DELETE_ALL_FATLOGS
   };
 };

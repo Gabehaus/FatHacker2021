@@ -11,23 +11,39 @@ import {
   NavLink,
   Alert
 } from "reactstrap";
+import Image from "react-bootstrap/Image";
+import facebookF from "../../images/facebookF.svg";
+import googleG from "../../images/googleG.svg";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { register } from "../../actions/authActions";
+import {
+  register,
+  oauthGoogle,
+  oauthFacebook
+} from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
 import { openModal } from "../../actions/regActions";
 import { push } from "connected-react-router";
 import store from "../../store";
+import GoogleLogin from "react-google-login";
+import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 
 class RegisterModal extends Component {
-  state = {
-    modal: false,
-    name: "",
-    email: "",
-    password: "",
-    confirm_password: "",
-    msg: null
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      modal: false,
+      name: "",
+      email: "",
+      password: "",
+      confirm_password: "",
+      msg: null
+    };
+
+    this.responseGoogleLogin = this.responseGoogleLogin.bind(this);
+    this.responseFacebookLogin = this.responseFacebookLogin.bind(this);
+  }
 
   static propTypes = {
     isAuthenticated: PropTypes.bool,
@@ -42,7 +58,7 @@ class RegisterModal extends Component {
     if (error !== prevProps.error) {
       //Check for register error
       if (error.id === "REGISTER_FAIL") {
-        this.setState({ msg: error.msg.msg });
+        this.setState({ msg: error.msg });
       } else {
         this.setState({ msg: null });
       }
@@ -82,6 +98,14 @@ class RegisterModal extends Component {
     this.props.register(newUser);
   };
 
+  async responseGoogleLogin(res) {
+    await this.props.oauthGoogle(res.accessToken);
+  }
+
+  async responseFacebookLogin(res) {
+    await this.props.oauthFacebook(res.accessToken);
+  }
+
   render() {
     const { isOpenReg } = this.props.open;
     return (
@@ -101,7 +125,7 @@ class RegisterModal extends Component {
                 <Input
                   type="text"
                   name="name"
-                  autocomplete="off"
+                  autoComplete="off"
                   id="name"
                   placeholder="Name"
                   className="mb-3"
@@ -111,7 +135,7 @@ class RegisterModal extends Component {
                 <Input
                   type="email"
                   name="email"
-                  autocomplete="off"
+                  autoComplete="off"
                   id="email"
                   placeholder="Email"
                   className="mb-3"
@@ -133,7 +157,7 @@ class RegisterModal extends Component {
                 <Input
                   type="confirm_password"
                   name="confirm_password"
-                  autocomplete="off"
+                  autoComplete="off"
                   id="confirm_password"
                   placeholder="Confirm password"
                   className="mb-3"
@@ -145,6 +169,49 @@ class RegisterModal extends Component {
                 </Button>
               </FormGroup>
             </Form>
+            <div className="loginButtonsBox">
+              <GoogleLogin
+                clientId="820113117620-o2qt448u2if1mim4l4p7bg1rnno0gp5s.apps.googleusercontent.com"
+                buttonText="Google"
+                cookiePolicy={"single_host_origin"}
+                onSuccess={this.responseGoogleLogin}
+                onFailure={this.responseGoogleLogin}
+                className="my-facebook-button-class"
+                render={renderProps => (
+                  <button
+                    onClick={renderProps.onClick}
+                    disabled={renderProps.disabled}
+                    className="loginReg googleLogin"
+                  >
+                    {" "}
+                    <div className="gBox">
+                      <Image src={googleG} className="googleG" />
+                    </div>
+                    <div className="gText">Register With Google</div>
+                  </button>
+                )}
+              />
+              <FacebookLogin
+                appId="1025853627857007"
+                textButton="Login with Facebook"
+                autoLoad={true}
+                disableMobileRedirect={true}
+                fields="name, email"
+                callback={this.responseFacebookLogin}
+                cssClass="my-facebook-button-class"
+                render={renderProps => (
+                  <button
+                    className="loginReg fbLogin"
+                    onClick={renderProps.onClick}
+                  >
+                    <div className="gBox">
+                      <Image src={facebookF} className="googleG" />
+                    </div>
+                    <div className="gText">Register With Facebook</div>
+                  </button>
+                )}
+              ></FacebookLogin>
+            </div>
           </ModalBody>
         </Modal>
       </div>
@@ -158,6 +225,10 @@ const mapStateToProps = state => ({
   open: state.register
 });
 
-export default connect(mapStateToProps, { register, clearErrors, openModal })(
-  RegisterModal
-);
+export default connect(mapStateToProps, {
+  register,
+  clearErrors,
+  openModal,
+  oauthGoogle,
+  oauthFacebook
+})(RegisterModal);

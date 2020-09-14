@@ -20,9 +20,9 @@ import store from "../store";
 
 class About extends Component {
   componentDidMount() {
-    this.props.getFatLogs(this.props.username);
+    //this.props.getFatLogs(this.props.username);
 
-    Aos.init({ duration: 2000, disable: "mobile" });
+    Aos.init({ duration: 2000, disable: "mobile" }); // initialize animate on scroll
   }
 
   render() {
@@ -94,7 +94,7 @@ class About extends Component {
             style={{ width: "100vw", marginBottom: "0" }}
           >
             <Row style={{ width: "100vw" }} className="noMargin">
-              <Col xs={12} sm={12} md={9} lg={9} xl={9}>
+              <Col xs={12} sm={12} md={12} lg={12} xl={12}>
                 <p
                   className="p1"
                   data-aos="fade-right"

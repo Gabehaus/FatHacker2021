@@ -12,6 +12,7 @@ import store from "./store";
 class App extends Component {
   componentDidMount() {
     store.dispatch(loadUser());
+    console.log("user loaded from APP.js");
   }
 
   render() {

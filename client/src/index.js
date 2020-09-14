@@ -11,9 +11,11 @@ import { history } from "./history";
 ReactDOM.render(
   <Provider store={store} context={ReactReduxContext}>
     <ConnectedRouter history={history}>
-      <React.StrictMode>
+      <React.Fragment>
+        {" "}
+        {/* formerly <React.StrictMode>, changed to deal with random error in console  */}
         <App />
-      </React.StrictMode>
+      </React.Fragment>
     </ConnectedRouter>
   </Provider>,
   document.getElementById("root")

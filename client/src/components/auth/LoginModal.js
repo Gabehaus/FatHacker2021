@@ -11,21 +11,32 @@ import {
   NavLink,
   Alert
 } from "reactstrap";
+import Image from "react-bootstrap/Image";
+import facebookF from "../../images/facebookF.svg";
+import googleG from "../../images/googleG.svg";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { login } from "../../actions/authActions";
+import { login, oauthGoogle, oauthFacebook } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
 import { getFatLogs } from "../../actions/fatLogActions";
 import { push } from "connected-react-router";
 import store from "../../store";
+import GoogleLogin from "react-google-login";
+import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 
 class LoginModal extends Component {
-  state = {
-    modal: false,
-    email: "",
-    password: "",
-    msg: null
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: false,
+      email: "",
+      password: "",
+      msg: null
+    };
+
+    this.responseGoogleLogin = this.responseGoogleLogin.bind(this);
+    this.responseFacebookLogin = this.responseFacebookLogin.bind(this);
+  }
 
   static propTypes = {
     isAuthenticated: PropTypes.bool,
@@ -79,6 +90,16 @@ class LoginModal extends Component {
     this.props.login(user);
   };
 
+  async responseGoogleLogin(res) {
+    console.log("resGoogle", res);
+    await this.props.oauthGoogle(res.accessToken);
+  }
+
+  async responseFacebookLogin(res) {
+    await console.log("resFacebook", res);
+    await this.props.oauthFacebook(res.accessToken);
+  }
+
   render() {
     return (
       <div>
@@ -116,6 +137,49 @@ class LoginModal extends Component {
                 </Button>
               </FormGroup>
             </Form>
+            <div className="loginButtonsBox">
+              <GoogleLogin
+                clientId="820113117620-o2qt448u2if1mim4l4p7bg1rnno0gp5s.apps.googleusercontent.com"
+                buttonText="Google"
+                cookiePolicy={"single_host_origin"}
+                onSuccess={this.responseGoogleLogin}
+                onFailure={this.responseGoogleLogin}
+                className="my-facebook-button-class"
+                render={renderProps => (
+                  <button
+                    onClick={renderProps.onClick}
+                    disabled={renderProps.disabled}
+                    className="login googleLogin"
+                  >
+                    {" "}
+                    <div className="gBox">
+                      <Image src={googleG} className="googleG" />
+                    </div>
+                    <div className="gText">Login With Google</div>
+                  </button>
+                )}
+              />
+              <FacebookLogin
+                appId="1025853627857007"
+                textButton="Login with Facebook"
+                autoLoad={true}
+                disableMobileRedirect={true}
+                fields="name, email"
+                callback={this.responseFacebookLogin}
+                cssClass="my-facebook-button-class"
+                render={renderProps => (
+                  <button
+                    className="login fbLogin"
+                    onClick={renderProps.onClick}
+                  >
+                    <div className="gBox">
+                      <Image src={facebookF} className="googleG" />
+                    </div>
+                    <div className="gText">Login With Facebook</div>
+                  </button>
+                )}
+              ></FacebookLogin>
+            </div>
           </ModalBody>
         </Modal>
       </div>
@@ -129,6 +193,10 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { login, clearErrors, getFatLogs })(
-  LoginModal
-);
+export default connect(mapStateToProps, {
+  login,
+  clearErrors,
+  getFatLogs,
+  oauthGoogle,
+  oauthFacebook
+})(LoginModal);

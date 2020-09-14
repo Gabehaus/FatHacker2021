@@ -11,7 +11,7 @@ import Graphs3 from "./Graphs3";
 import Graphs4 from "./Graphs4";
 import HealthDataModal from "./HealthDataModal";
 
-class GraphsTwo extends Component {
+class GraphsRadioButtons extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,7 +29,7 @@ class GraphsTwo extends Component {
   };
 
   componentDidMount() {
-    this.props.getHealthData(this.props.user.name);
+    this.props.getHealthData(this.props.username);
   }
 
   componentDidUpdate(prevProps) {
@@ -47,7 +47,7 @@ class GraphsTwo extends Component {
         prevProps.healthData.healthData.activityLevel
     ) {
       //if they have changed, get all data from the database via redux
-      this.props.getHealthData(this.props.user.name);
+      this.props.getHealthData(this.props.username);
     }
 
     //once the redux store is fully updated define variables to be used in BMR calc
@@ -133,9 +133,10 @@ class GraphsTwo extends Component {
   };
 
   render() {
+    const name = this.props.username;
     return (
       <div>
-        <div className="statsTitle">Fat Consumption</div>
+        <div className="statsTitle">{"Fat Stats"}</div>
 
         <div className="tableBox">
           {/*
@@ -225,7 +226,7 @@ class GraphsTwo extends Component {
           </div>
           {this.state.graphToShow === "Today" ? (
             <Graphs1Data
-              username={this.props.user.name}
+              username={name}
               kgs={this.state.kgs}
               age={this.state.age}
               activityFactor={this.state.activityFactor}
@@ -235,17 +236,17 @@ class GraphsTwo extends Component {
             />
           ) : null}
           {this.state.graphToShow === "7 Day" ? (
-            <Graphs2 username={this.props.user.name} />
+            <Graphs2 username={name} />
           ) : null}
           {this.state.graphToShow === "7 Week" ? (
-            <Graphs3 username={this.props.user.name} />
+            <Graphs3 username={name} />
           ) : null}
           {this.state.graphToShow === "Meals" ? (
-            <Graphs4 username={this.props.user.name} />
+            <Graphs4 username={name} />
           ) : null}
         </div>
 
-        <HealthDataModal />
+        <HealthDataModal username={name} />
       </div>
     );
   }
@@ -259,4 +260,4 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
   getHealthData
-})(GraphsTwo);
+})(GraphsRadioButtons);

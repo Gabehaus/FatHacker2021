@@ -15,11 +15,11 @@ import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import RegisterModal from "./auth/RegisterModal";
-import HealthDataModal from "./HealthDataModal";
+
 import Graphs2 from "./Graphs2";
 import Graphs3 from "./Graphs3";
 import Graphs4 from "./Graphs4";
-import GraphsTwo from "./GraphsTwo";
+import GraphsRadioButtons from "./GraphsRadioButtons";
 import Demo from "./Demo.js";
 import LoginModal from "./auth/LoginModal";
 import Logout from "./auth/Logout";
@@ -32,12 +32,14 @@ import { ConnectedRouter } from "connected-react-router";
 import store from "../store";
 import { history } from "../history";
 import { startLoading, finishLoading } from "../actions/loadingActions";
+import { getFatLogs } from "../actions/fatLogActions";
 import { getHealthData } from "../actions/healthDataActions";
-import DailyCalorieCalc from "./DailyCalorieCalc";
+import { loadUser } from "../actions/authActions";
 
 class Components extends Component {
   state = {
-    isOpen: false
+    isOpen: false,
+    name: ""
   };
 
   static propTypes = {
@@ -48,9 +50,28 @@ class Components extends Component {
     this.setState({ isOpen: !this.state.isOpen });
   };
 
+  componentDidMount() {
+    this.props.loadUser();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.auth.user && prevProps.auth.user !== this.props.auth.user) {
+      const user = this.props.auth.user;
+
+      const name = user[Object.keys(user)[0]].name;
+      this.props.getFatLogs(name);
+      this.props.getHealthData(name);
+      console.log("name in components:", name);
+      this.setState({
+        name: name
+      });
+    }
+  }
+
   render() {
     const { isAuthenticated, user } = this.props.auth;
     const { isLoading } = this.props.loading;
+    const name = this.state.name;
 
     const authLinks = (
       <Fragment>
@@ -78,24 +99,34 @@ class Components extends Component {
       </Fragment>
     );
 
+    //all components below are provided with user's name as a prop
+
     const MyFatLogsList = props => {
-      return <FatLogsList username={user.name} />;
+      return <FatLogsList username={name} />;
     };
 
     const MyGraphs2 = props => {
-      return <Graphs2 username={user.name} />;
+      return <Graphs2 username={name} />;
     };
 
     const MyGraphs3 = props => {
-      return <Graphs3 username={user.name} />;
+      return <Graphs3 username={name} />;
     };
 
     const MyGraphs4 = props => {
-      return <Graphs4 username={user.name} />;
+      return <Graphs4 username={name} />;
     };
 
     const MyAbout = props => {
-      return <About username={user.name} />;
+      return <About username={name} />;
+    };
+
+    const MyFatLogModal = props => {
+      return <FatLogModal username={name} />;
+    };
+
+    const MyGraphsRadioButtons = props => {
+      return <GraphsRadioButtons username={name} />;
     };
 
     return (
@@ -118,7 +149,6 @@ class Components extends Component {
               </Collapse>
             </Container>
           </Navbar>
-
           <Container
             className="container-fluid"
             style={{
@@ -128,14 +158,15 @@ class Components extends Component {
               marginTop: "-30px"
             }}
           >
-            {/* If the user if logged in, the MyAbout page gives the username as a prop if needed (currently not used)*/}
+            <Route exact path="/" render={MyAbout} />
 
-            <Route exact path="/" component={About} />
-
-            <Route exact path="/logs" component={FatLogModal} />
-            {user ? <Route exact path="/logs" render={MyFatLogsList} /> : null}
+            <Route exact path="/logs" render={MyFatLogModal} />
+            {
+              //user ? <Route exact path="/logs" render={MyFatLogsList} /> : null
+            }
           </Container>
-          <Route exact path="/graphs2" component={GraphsTwo} />
+          <Route exact path="/graphs2" render={MyGraphsRadioButtons} />{" "}
+          {/* switch between different graphs */}
           <Container style={{ height: "3rem" }}></Container>
           <Route exact path="/demo" component={Demo} />
           <Container style={{ height: "3rem" }}></Container>
@@ -145,7 +176,6 @@ class Components extends Component {
           <Container style={{ height: "3rem" }}></Container>
           <Route exact path="/graphs" render={MyGraphs4} />
           <div style={{ height: "300px" }}></div>
-
           {/* Loading spinner */}
           {isLoading ? (
             <div className="spinnerBox">
@@ -171,5 +201,7 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   startLoading,
   finishLoading,
-  getHealthData
+  getHealthData,
+  loadUser,
+  getFatLogs
 })(Components);

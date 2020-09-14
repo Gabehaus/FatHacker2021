@@ -3,11 +3,13 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
 const config = require("config");
+const morgan = require("morgan");
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
+app.use(morgan("dev"));
 
 //DB Config
 
