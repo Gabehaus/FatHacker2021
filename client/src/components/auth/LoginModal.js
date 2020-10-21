@@ -160,7 +160,7 @@ class LoginModal extends Component {
               <FacebookLogin
                 appId="1025853627857007"
                 textButton="Login with Facebook"
-                autoLoad={true}
+                autoLoad={false}
                 disableMobileRedirect={true}
                 fields="name, email"
                 callback={this.responseFacebookLogin}

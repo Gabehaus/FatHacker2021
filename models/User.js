@@ -41,6 +41,13 @@ UserSchema.pre("save", async function(next) {
     //Re-assign hashed version over original, plain text password
     this.local.password = passwordHash;
 
+    //repeat process for local.confirm_password
+    const salt2 = await bcrypt.genSalt(10);
+    const confirm_passwordHash = await bcrypt.hash(
+      this.local.confirm_password,
+      salt
+    );
+    this.local.confirm_password = confirm_passwordHash;
     /*
     const confirm_passwordHash = await bcrypt.hash(
       this.local.confirm_password,
