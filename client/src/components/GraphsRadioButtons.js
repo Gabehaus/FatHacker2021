@@ -36,18 +36,15 @@ class GraphsRadioButtons extends Component {
     const { healthData } = this.props;
 
     //check to see if any properties of the health data object have changed
-
-    if (
-      healthData.healthData.age !== prevProps.healthData.healthData.age ||
-      healthData.healthData.weight !== prevProps.healthData.healthData.weight ||
-      healthData.healthData.height !== prevProps.healthData.healthData.height ||
-      healthData.healthData.sex !== prevProps.healthData.healthData.sex ||
-      healthData.healthData.goal !== prevProps.healthData.healthData.goal ||
-      healthData.healthData.activityLevel !==
-        prevProps.healthData.healthData.activityLevel
-    ) {
-      //if they have changed, get all data from the database via redux
-      this.props.getHealthData(this.props.username);
+    let array = ["age", "weight", "height", "sex", "goal", "activityLevel"];
+    for (let i = 0; i <= array.length - 1; i++) {
+      if (
+        healthData.healthData[array[i]] !==
+        prevProps.healthData.healthData[array[i]]
+      ) {
+        //if a property has changed, get all data from the database via redux
+        this.props.getHealthData(this.props.username);
+      }
     }
 
     //once the redux store is fully updated define variables to be used in BMR calc
@@ -58,6 +55,7 @@ class GraphsRadioButtons extends Component {
         .to("kg")
         .toFixed(2);
 
+      // age is calculated from DOB using moment library
       const age = moment().diff(healthData.healthData.age, "years");
 
       const activityLevel = healthData.healthData.activityLevel;
@@ -95,6 +93,7 @@ class GraphsRadioButtons extends Component {
         activityFactor: activityFactor
       });
 
+      //breaking apart height string reporting feet and inches and converting to centimeters
       //regex seems to be asynchronous so must specify to carry out .match after height is defined
       if (healthData.healthData.height) {
         const heightInCM = healthData.healthData.height.match(

@@ -19,159 +19,41 @@ class ChartsPage2 extends React.Component {
     this.props.getFatLogs(this.props.username);
     //formatted dates and days of the week for last 7 days
 
-    const yesterday = moment()
-      .subtract(1, "days")
-      .startOf("day")
-      .toString();
+    const datesFormatted = []; //array will contain formatted dates which will be used in searches of logs using .filter()
+    const weekDays = []; //array will contain names of days of the week used in graphs
+    for (let i = 1; i <= 7; i++) {
+      let date = moment()
+        .subtract(i, "days")
+        .startOf("day")
+        .toString(); //depending on i, gives the date on one of the last seven days
 
-    const yesterdayDate = moment(yesterday).format("YYYY-MM-DD");
-    const yesterdayDay = moment(yesterday).format("dddd");
-
-    const minusTwoDateUTC = moment()
-      .subtract(2, "days")
-      .startOf("day")
-      .toString();
-
-    const minusTwoDate = moment(minusTwoDateUTC).format("YYYY-MM-DD");
-    const minusTwoDay = moment(minusTwoDateUTC).format("dddd");
-
-    const minusThreeDateUTC = moment()
-      .subtract(3, "days")
-      .startOf("day")
-      .toString();
-
-    const minusThreeDate = moment(minusThreeDateUTC).format("YYYY-MM-DD");
-    const minusThreeDay = moment(minusThreeDateUTC).format("dddd");
-
-    const minusFourDateUTC = moment()
-      .subtract(4, "days")
-      .startOf("day")
-      .toString();
-
-    const minusFourDate = moment(minusFourDateUTC).format("YYYY-MM-DD");
-    const minusFourDay = moment(minusFourDateUTC).format("dddd");
-
-    const minusFiveDateUTC = moment()
-      .subtract(5, "days")
-      .startOf("day")
-      .toString();
-
-    const minusFiveDate = moment(minusFiveDateUTC).format("YYYY-MM-DD");
-    const minusFiveDay = moment(minusFiveDateUTC).format("dddd");
-
-    const minusSixDateUTC = moment()
-      .subtract(6, "days")
-      .startOf("day")
-      .toString();
-
-    const minusSixDate = moment(minusSixDateUTC).format("YYYY-MM-DD");
-    const minusSixDay = moment(minusSixDateUTC).format("dddd");
-
-    const minusSevenDateUTC = moment()
-      .subtract(7, "days")
-      .startOf("day")
-      .toString();
-
-    const minusSevenDate = moment(minusSevenDateUTC).format("YYYY-MM-DD");
-    const minusSevenDay = moment(minusSevenDateUTC).format("dddd");
+      let dateFormatted = moment(date).format("YYYY-MM-DD"); //formats the date for use in .filter() search of logs
+      datesFormatted.push(dateFormatted); //collects formatted dates in the datesFormatted array
+      let weekday = moment(date).format("dddd"); //calculates what day of the week each date falls on
+      weekDays.push(weekday); // pushes days of the week to the weekDays array
+    }
 
     //getting the fat consumption logs for each day of the last week and then adding up the totals for each day
-    const minSevenLogs = this.props.fatLog.fatLogs.filter(({ date }) => {
-      const adjst = moment(date)
-        .format("YYYY-MM-DD")
-        .toString();
 
-      return adjst === minusSevenDate;
-    });
+    let totalFatOnDays = []; //starts yesterday and spans back to seven days ago
+    for (let i = 0; i <= 6; i++) {
+      let logs = this.props.fatLog.fatLogs.filter(({ date }) => {
+        const adjst = moment(date)
+          .format("YYYY-MM-DD")
+          .toString();
 
-    const minSevenTot = minSevenLogs.reduce((sum, { fat }) => {
-      return sum + Number(fat);
-    }, 0);
+        return adjst === datesFormatted[i];
+      });
 
-    const minSixLogs = this.props.fatLog.fatLogs.filter(({ date }) => {
-      const adjst = moment(date)
-        .format("YYYY-MM-DD")
-        .toString();
+      let totalOnDay = logs.reduce((sum, { fat }) => {
+        return sum + Number(fat);
+      }, 0);
 
-      return adjst === minusSixDate;
-    });
-
-    const minSixTot = minSixLogs.reduce((sum, { fat }) => {
-      return sum + Number(fat);
-    }, 0);
-
-    const minFiveLogs = this.props.fatLog.fatLogs.filter(({ date }) => {
-      const adjst = moment(date)
-        .format("YYYY-MM-DD")
-        .toString();
-
-      return adjst === minusFiveDate;
-    });
-
-    const minFiveTot = minFiveLogs.reduce((sum, { fat }) => {
-      return sum + Number(fat);
-    }, 0);
-
-    const minFourLogs = this.props.fatLog.fatLogs.filter(({ date }) => {
-      const adjst = moment(date)
-        .format("YYYY-MM-DD")
-        .toString();
-
-      return adjst === minusFourDate;
-    });
-
-    const minFourTot = minFourLogs.reduce((sum, { fat }) => {
-      return sum + Number(fat);
-    }, 0);
-
-    const minThreeLogs = this.props.fatLog.fatLogs.filter(({ date }) => {
-      const adjst = moment(date)
-        .format("YYYY-MM-DD")
-        .toString();
-
-      return adjst === minusThreeDate;
-    });
-
-    const minThreeTot = minThreeLogs.reduce((sum, { fat }) => {
-      return sum + Number(fat);
-    }, 0);
-
-    const minTwoLogs = this.props.fatLog.fatLogs.filter(({ date }) => {
-      const adjst = moment(date)
-        .format("YYYY-MM-DD")
-        .toString();
-
-      return adjst === minusTwoDate;
-    });
-
-    const minTwoTot = minTwoLogs.reduce((sum, { fat }) => {
-      return sum + Number(fat);
-    }, 0);
-
-    const minOneLogs = this.props.fatLog.fatLogs.filter(({ date }) => {
-      const adjst = moment(date)
-        .format("YYYY-MM-DD")
-        .toString();
-
-      return adjst === yesterdayDate;
-    });
-
-    const minOneTot = minOneLogs.reduce((sum, { fat }) => {
-      return sum + Number(fat);
-    }, 0);
-
-    const totsArray = [
-      minOneTot,
-      minTwoTot,
-      minThreeTot,
-      minFourTot,
-      minFiveTot,
-      minSixTot,
-      minSevenTot
-    ];
+      totalFatOnDays.push(totalOnDay);
+    }
 
     //this weeds out any days in which no data was entered so that a running daily average is not including said days
-    const divisor = totsArray.reduce(
+    const divisor = totalFatOnDays.reduce(
       (div, elem) => (elem === 0 ? div - 1 : div),
       7
     );
@@ -179,14 +61,7 @@ class ChartsPage2 extends React.Component {
     const weekAvg =
       divisor > 0
         ? (
-            (minOneTot +
-              minTwoTot +
-              minThreeTot +
-              minFourTot +
-              minFiveTot +
-              minSixTot +
-              minSevenTot) /
-            divisor
+            totalFatOnDays.reduce((sum, elem) => (sum += elem), 0) / divisor
           ).toFixed(2)
         : 0;
 
@@ -195,13 +70,13 @@ class ChartsPage2 extends React.Component {
       weekAvg: weekAvg,
       dataHorizontal: {
         labels: [
-          yesterdayDay.slice(0, 3),
-          minusTwoDay.slice(0, 3),
-          minusThreeDay.slice(0, 3),
-          minusFourDay.slice(0, 3),
-          minusFiveDay.slice(0, 3),
-          minusSixDay.slice(0, 3),
-          minusSevenDay.slice(0, 3),
+          weekDays[0].slice(0, 3),
+          weekDays[1].slice(0, 3),
+          weekDays[2].slice(0, 3),
+          weekDays[3].slice(0, 3),
+          weekDays[4].slice(0, 3),
+          weekDays[5].slice(0, 3),
+          weekDays[6].slice(0, 3),
           "Avg"
         ],
 
@@ -210,13 +85,13 @@ class ChartsPage2 extends React.Component {
             label: "Grams Fat Per Day",
 
             data: [
-              minOneTot,
-              minTwoTot,
-              minThreeTot,
-              minFourTot,
-              minFiveTot,
-              minSixTot,
-              minSevenTot,
+              totalFatOnDays[0],
+              totalFatOnDays[1],
+              totalFatOnDays[2],
+              totalFatOnDays[3],
+              totalFatOnDays[4],
+              totalFatOnDays[5],
+              totalFatOnDays[6],
               weekAvg
             ],
 

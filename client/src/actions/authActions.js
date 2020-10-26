@@ -78,6 +78,7 @@ export const register = ({
     })
 
     .catch(err => {
+      console.log("reg error", err.response);
       if (err.response.data.details) {
         dispatch(
           returnErrors(

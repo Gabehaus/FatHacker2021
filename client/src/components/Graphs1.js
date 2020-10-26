@@ -16,10 +16,12 @@ class Graphs1Data extends Component {
 
   componentDidMount(props) {
     this.props.getFatLogs(this.props.username);
-
+    //using moment to find today's date
     const today = moment().toString();
+    //formatting today's date to use in a .filter()
     const todayDate = moment(today).format("YYYY-MM-DD");
 
+    // searching through fatlogs in the database and returning those that contain today's date
     const todaysLogs = this.props.fatLog.fatLogs.filter(({ date }) => {
       const adjst = moment(date)
         .format("YYYY-MM-DD")
@@ -27,7 +29,7 @@ class Graphs1Data extends Component {
 
       return adjst === todayDate;
     });
-
+    // summing the fat values of all fatlogs from today
     const todaysCurrentTotal = todaysLogs.reduce((sum, { fat }) => {
       return sum + Number(fat);
     }, 0);
@@ -38,13 +40,18 @@ class Graphs1Data extends Component {
   }
 
   render() {
-    var fatLeft = (this.props.fat - this.state.todaysCurrentTotal).toFixed(2);
-    var fatLeftMinZero = fatLeft >= 0 ? fatLeft : 0;
-    var perc = ((this.state.todaysCurrentTotal / this.props.fat) * 100).toFixed(
-      0
-    );
+    //subtracting fat consumed today from total fat one is allowed to consume today
+    const fatLeft = (this.props.fat - this.state.todaysCurrentTotal).toFixed(2);
+    // if a person has consumed more than their daily allowance, fatleft is reported as zero
+    const fatLeftMinZero = fatLeft >= 0 ? fatLeft : 0;
+    //calculating the percentage of ones daily allowance they have already consumed today
+    const perc = (
+      (this.state.todaysCurrentTotal / this.props.fat) *
+      100
+    ).toFixed(0);
 
-    var data = {
+    //data for react-chartjs doughnut chart
+    const data = {
       labels: [
         `Fat Consumed: ${this.state.todaysCurrentTotal}g`,
         `Remaining Fat Allowance: ${fatLeftMinZero}g`
@@ -62,16 +69,6 @@ class Graphs1Data extends Component {
     return (
       <div style={{ zIndex: "1 !important" }} className="graphPercentParent">
         <div style={{ margin: "0" }} className="dnut">
-          {/* 
-          <h3
-            className="graphTitle"
-            style={{
-              color: "#050505",
-              fontFamily: "Lato",
-              marginBottom: "-15vw"
-            }}
-          ></h3>*/}
-
           <Doughnut
             data={data}
             options={{

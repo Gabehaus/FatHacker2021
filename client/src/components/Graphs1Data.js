@@ -19,6 +19,7 @@ export default class Graphs1Data extends Component {
   }
 
   render() {
+    // calculating BMR using the Mifflin-St Jeor Equation depending on a persons goal of maintaining or losing weight
     if (this.props.goal === "Maintain weight") {
       if (this.props.sex === "Male") {
         var BMR = (
@@ -57,21 +58,16 @@ export default class Graphs1Data extends Component {
       }
     }
 
-    var BMRnumber = Number(BMR);
+    const BMRnumber = Number(BMR);
 
-    var caloriesAllowed = BMRnumber * 0.1;
+    //calculating 10% of total daily calories (BMR)
+    const caloriesAllowed = BMRnumber * 0.1;
 
-    var fatAllowed = (caloriesAllowed / 9).toFixed(2);
+    //converting 10% of BMR (caloriesAllowed) to grams of fat
+    const fatAllowed = (caloriesAllowed / 9).toFixed(2);
 
     return (
       <div>
-        {/*
-        <div>BMR</div>
-        <div>{BMR}</div>
-        <div>Daily Calories</div>
-        <div>{caloriesAllowed}</div>
-        <div>Daily Fat</div>
-        <div>{fatAllowed}</div> */}
         <Graphs1 fat={fatAllowed} username={this.props.username} />
       </div>
     );

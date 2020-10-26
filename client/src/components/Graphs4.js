@@ -14,179 +14,59 @@ class ChartsPage3 extends React.Component {
 
   state = {};
 
-  totalMealFat = mealArg => {
-    const yesterday = moment() // utc
-      .subtract(1, "days")
-      .startOf("day")
-      .toString();
+  //function returns the average fat consumed at a meal (entered as an argument) over the last week
+  calcMealFatAvg = mealArg => {
+    let formattedDates = [];
+    let fatOnDays = [];
 
-    const yesterdayDate = moment(yesterday).format("YYYY-MM-DD");
-
-    const minusTwoDateUTC = moment()
-      .subtract(2, "days")
-      .startOf("day")
-      .toString();
-
-    const minusTwoDate = moment(minusTwoDateUTC).format("YYYY-MM-DD");
-
-    const minusThreeDateUTC = moment()
-      .subtract(3, "days")
-      .startOf("day")
-      .toString();
-
-    const minusThreeDate = moment(minusThreeDateUTC).format("YYYY-MM-DD");
-
-    const minusFourDateUTC = moment()
-      .subtract(4, "days")
-      .startOf("day")
-      .toString();
-
-    const minusFourDate = moment(minusFourDateUTC).format("YYYY-MM-DD");
-
-    const minusFiveDateUTC = moment()
-      .subtract(5, "days")
-      .startOf("day")
-      .toString();
-
-    const minusFiveDate = moment(minusFiveDateUTC).format("YYYY-MM-DD");
-
-    const minusSixDateUTC = moment()
-      .subtract(6, "days")
-      .startOf("day")
-      .toString();
-
-    const minusSixDate = moment(minusSixDateUTC).format("YYYY-MM-DD");
-
-    const minusSevenDateUTC = moment()
-      .subtract(7, "days")
-      .startOf("day")
-      .toString();
-
-    const minusSevenDate = moment(minusSevenDateUTC).format("YYYY-MM-DD");
-
-    //getting the fat consumption logs for each day of the last week and then adding up the totals for each meal of each day
-    const minSevenLogs = this.props.fatLog.fatLogs.filter(({ date }) => {
-      const adjst = moment(date)
-        .format("YYYY-MM-DD")
+    //pushes formatted dates for the last seven days to an array
+    for (let i = 1; i <= 7; i++) {
+      let day = moment() // utc
+        .subtract(i, "days")
+        .startOf("day")
         .toString();
 
-      return adjst === minusSevenDate;
-    });
+      let formattedDate = moment(day).format("YYYY-MM-DD");
+      formattedDates.push(formattedDate);
+    }
 
-    const minSevenMealLogs = minSevenLogs.filter(
-      ({ meal }) => meal === mealArg
-    );
+    //uses .filter() to return fat logs on each of the last 7 days
+    for (let i = 0; i <= 6; i++) {
+      let logs = this.props.fatLog.fatLogs.filter(({ date }) => {
+        let adjst = moment(date)
+          .format("YYYY-MM-DD")
+          .toString();
 
-    const minSevenTot = minSevenMealLogs.reduce((sum, { fat }) => {
-      return sum + Number(fat);
-    }, 0);
+        return adjst === formattedDates[i];
+      });
+      //filters fat logs on each of last seven days and returns those made at particular meal
+      const logsAtMeal = logs.filter(({ meal }) => meal === mealArg);
 
-    const minSixLogs = this.props.fatLog.fatLogs.filter(({ date }) => {
-      const adjst = moment(date)
-        .format("YYYY-MM-DD")
-        .toString();
+      //totals the fat consumed at desired meal on each day
+      let fatOnDay = logsAtMeal.reduce((sum, { fat }) => {
+        return sum + Number(fat);
+      }, 0);
 
-      return adjst === minusSixDate;
-    });
+      //pushes the fat consumed at a specific meal on a specific day to an array
+      fatOnDays.push(fatOnDay);
+    }
+    //totals all fat consumed at desired meal over the last week
+    let mealTot = fatOnDays.reduce((sum, elem) => (sum += elem), 0);
 
-    const minSixMealLogs = minSixLogs.filter(({ meal }) => meal === mealArg);
+    //finds the average fat consumed at each meal per day over the last week
+    let mealAvg = (mealTot / 7).toFixed(2);
 
-    const minSixTot = minSixMealLogs.reduce((sum, { fat }) => {
-      return sum + Number(fat);
-    }, 0);
-
-    const minFiveLogs = this.props.fatLog.fatLogs.filter(({ date }) => {
-      const adjst = moment(date)
-        .format("YYYY-MM-DD")
-        .toString();
-
-      return adjst === minusFiveDate;
-    });
-
-    const minFiveMealLogs = minFiveLogs.filter(({ meal }) => meal === mealArg);
-
-    const minFiveTot = minFiveMealLogs.reduce((sum, { fat }) => {
-      return sum + Number(fat);
-    }, 0);
-
-    const minFourLogs = this.props.fatLog.fatLogs.filter(({ date }) => {
-      const adjst = moment(date)
-        .format("YYYY-MM-DD")
-        .toString();
-
-      return adjst === minusFourDate;
-    });
-
-    const minFourMealLogs = minFourLogs.filter(({ meal }) => meal === mealArg);
-
-    const minFourTot = minFourMealLogs.reduce((sum, { fat }) => {
-      return sum + Number(fat);
-    }, 0);
-
-    const minThreeLogs = this.props.fatLog.fatLogs.filter(({ date }) => {
-      const adjst = moment(date)
-        .format("YYYY-MM-DD")
-        .toString();
-
-      return adjst === minusThreeDate;
-    });
-
-    const minThreeMealLogs = minThreeLogs.filter(
-      ({ meal }) => meal === mealArg
-    );
-
-    const minThreeTot = minThreeMealLogs.reduce((sum, { fat }) => {
-      return sum + Number(fat);
-    }, 0);
-
-    const minTwoLogs = this.props.fatLog.fatLogs.filter(({ date }) => {
-      const adjst = moment(date)
-        .format("YYYY-MM-DD")
-        .toString();
-
-      return adjst === minusTwoDate;
-    });
-
-    const minTwoMealLogs = minTwoLogs.filter(({ meal }) => meal === mealArg);
-
-    const minTwoTot = minTwoMealLogs.reduce((sum, { fat }) => {
-      return sum + Number(fat);
-    }, 0);
-
-    const minOneLogs = this.props.fatLog.fatLogs.filter(({ date }) => {
-      const adjst = moment(date)
-        .format("YYYY-MM-DD")
-        .toString();
-
-      return adjst === yesterdayDate;
-    });
-
-    const minOneMealLogs = minOneLogs.filter(({ meal }) => meal === mealArg);
-
-    const minOneTot = minOneMealLogs.reduce((sum, { fat }) => {
-      return sum + Number(fat);
-    }, 0);
-
-    const mealTot =
-      minOneTot +
-      minTwoTot +
-      minThreeTot +
-      minFourTot +
-      minFiveTot +
-      minSixTot +
-      minSevenTot;
-
-    return mealTot;
+    return mealAvg;
   };
 
   componentDidMount() {
     this.props.getFatLogs(this.props.username);
 
-    const totBreakfast = (this.totalMealFat("Breakfast") / 7).toFixed(2);
-    const totLunch = (this.totalMealFat("Lunch") / 7).toFixed(2);
-    const totDinner = (this.totalMealFat("Dinner") / 7).toFixed(2);
-    const totSnacks = (this.totalMealFat("Snack") / 7).toFixed(2);
-    const totRandom = (this.totalMealFat("Random Meal") / 7).toFixed(2);
+    const totBreakfast = this.calcMealFatAvg("Breakfast");
+    const totLunch = this.calcMealFatAvg("Lunch");
+    const totDinner = this.calcMealFatAvg("Dinner");
+    const totSnacks = this.calcMealFatAvg("Snack");
+    const totRandom = this.calcMealFatAvg("Random Meal");
 
     this.setState({
       totalAllMeals:
