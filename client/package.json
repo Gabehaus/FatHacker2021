@@ -13,6 +13,7 @@
     "chartjs-top-round-bar": "^1.0.1",
     "connected-react-router": "^6.8.0",
     "history": "^4.10.1",
+    "jwt-decode": "^3.0.0",
     "mdbreact": "^4.27.0",
     "moment": "^2.26.0",
     "moment-timezone": "^0.5.31",
