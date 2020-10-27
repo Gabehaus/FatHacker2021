@@ -60,6 +60,7 @@ class LoginModal extends Component {
     if (this.state.modal) {
       if (isAuthenticated) {
         this.toggle();
+        //setTimeout(() => {store.dispatch(push("/graphs2")); }, 3000);
         store.dispatch(push("/logs"));
       }
     }
@@ -167,7 +168,7 @@ class LoginModal extends Component {
                 cssClass="my-facebook-button-class"
                 render={renderProps => (
                   <button
-                    className="login fbLogin"
+                    className="login fbLogin facebookLogin"
                     onClick={renderProps.onClick}
                   >
                     <div className="gBox">
