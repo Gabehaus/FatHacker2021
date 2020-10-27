@@ -22,7 +22,7 @@ class About extends Component {
   componentDidMount() {
     //this.props.getFatLogs(this.props.username);
 
-    Aos.init({ duration: 2000, disable: "mobile" }); // initialize animate on scroll
+    Aos.init({ duration: 2000, disable: "phone" }); // initialize animate on scroll
   }
 
   render() {
@@ -34,7 +34,7 @@ class About extends Component {
               <Row style={{ width: "40vw", margin: "auto" }}>
                 <Col className="titleColumn">
                   {" "}
-                  <h1 className="display-2  title" data-aos="zoom-in">
+                  <h1 className="display-2  title title1" data-aos="zoom-in">
                     Fat Hacker
                   </h1>
                   <div className="text-center titleh3" data-aos="zoom-in">
@@ -60,7 +60,7 @@ class About extends Component {
                       this.props.openModal();
                     }}
                   >
-                    GET STARTED
+                    REGISTER
                   </button>
                 </Col>
               </Row>
@@ -93,19 +93,17 @@ class About extends Component {
             className="col-sm-12 noMargin no padding jmbo"
             style={{ width: "100vw", marginBottom: "0" }}
           >
-            <Row style={{ width: "100vw" }} className="noMargin">
-              <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                <p
-                  className="p1"
-                  data-aos="fade-right"
-                  data-aos-anchor-placement=".title"
-                >
-                  A fat consumption tracking app with advanced data analysis and
-                  access to a food and grocery database with over 750,000 basic
-                  foods .{" "}
-                </p>
-              </Col>
-            </Row>
+            <div className="descriptionBox">
+              <p
+                className="p1"
+                data-aos="fade-right"
+                data-aos-anchor-placement=".title"
+              >
+                A fat consumption tracking app with advanced data analysis and
+                access to a food and grocery database with over 750,000 basic
+                foods .{" "}
+              </p>
+            </div>
           </Jumbotron>
         </Container>
 
