@@ -24,8 +24,13 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.9);
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-line-pack: center;
     align-content: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     z-index: 10000;
   }
@@ -39,6 +44,7 @@
     text-shadow: 2px 2px black;
     font-family: "Arial Black", Arial;
     font-family: var(--titleFont);
+    font-family: "Arial Black", Arial;
     font-size: 10vh;
     color: white;
   }
@@ -47,6 +53,7 @@
     text-shadow: 2px 2px black;
     font-family: "Arial Black", Arial;
     font-family: var(--titleFont);
+
     font-size: 9vh !important;
 
     z-index: 5;
@@ -75,8 +82,13 @@
     font-family: var(--titleFont);
     font-size: 80px !important;
     padding-top: 5%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center !important;
+    -ms-flex-pack: center !important;
     justify-content: center !important;
+    -ms-flex-line-pack: center;
     align-content: center;
   }
 
@@ -95,32 +107,36 @@
   }
 
   .jmbo {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     height: 17vh !important;
     border-radius: 0px !important ;
-    color: white;
+    color: white; /* FF3.6-15 */ /* Chrome10-25,Safari5.1-6 */
 
     background: -moz-linear-gradient(
       top,
-      rgba(150, 150, 150, 1) 0%,
-      rgba(128, 128, 128, 0.54) 46%,
-      rgba(99, 99, 99, 0.18) 82%,
-      rgba(71, 71, 71, 0) 100%
+      rgba(150, 150, 150, 0.5) 0%,
+      rgba(128, 128, 128, 0.34) 46%,
+      rgba(99, 99, 99, 0.18) 100%
     ); /* FF3.6-15 */
 
     background: -webkit-linear-gradient(
       top,
-      rgba(150, 150, 150, 1) 0%,
-      rgba(128, 128, 128, 0.54) 46%,
-      rgba(99, 99, 99, 0.18) 82%,
-      rgba(71, 71, 71, 0) 100%
+      rgba(150, 150, 150, 0.5) 0%,
+      rgba(128, 128, 128, 0.34) 46%,
+      rgba(99, 99, 99, 0.18) 100%
     ); /* Chrome10-25,Safari5.1-6 */
 
     background: linear-gradient(
       to bottom,
-      rgba(87, 87, 87, 1) 0%,
-      rgba(69, 69, 69, 0.54) 46%,
-      rgba(54, 54, 54, 0.18) 82%,
-      rgba(36, 36, 36, 0) 100%
+      rgba(150, 150, 150, 0.5) 0%,
+      rgba(128, 128, 128, 0.34) 46%,
+      rgba(99, 99, 99, 0.18) 100%
     ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#007db9e8',GradientType=0 ); /* IE6-9 */
@@ -135,7 +151,6 @@
   }
 
   .p1 {
-    margin-top: -20px;
     font-size: 2.1vh;
     margin-left: 40px;
   }
@@ -143,6 +158,7 @@
   /* buttons */
 
   .titlebtns {
+    font-family: Tahoma, sans-serif;
     margin: 30px;
     background-color: #00d486 !important;
     background-color: var(--brightGreen) !important;
@@ -162,7 +178,11 @@
     width: 30vw;
     height: 15vh;
     background: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
   }
 
@@ -183,6 +203,7 @@
 
   .btnJumbo2,
   .btnJumbo3 {
+    font-family: Tahoma, sans-serif;
     height: 5vh;
     color: white;
     border-radius: 3px;
@@ -207,8 +228,14 @@
   .phoneColumn {
     background: none !important;
     position: absolute !important;
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
     display: flex !important;
+    -webkit-box-align: center !important;
+    -ms-flex-align: center !important;
     align-items: center !important;
+    -webkit-box-pack: center !important;
+    -ms-flex-pack: center !important;
     justify-content: center !important;
     min-height: 50vw !important;
     max-width: 13vw !important;
@@ -236,7 +263,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: "Arial Black";
+    font-family: "Arial Black", Arial;
     text-shadow: 2px 2px black;
     font-size: 12vh;
     color: white;
@@ -244,7 +271,10 @@
 
   .intuitiveSubTitles {
     min-height: 20vh !important;
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
     display: flex !important;
+    -ms-flex-pack: distribute !important;
     justify-content: space-around !important;
     margin-left: 20vw !important;
     max-width: 60vw !important;
@@ -370,8 +400,14 @@
   }
 
   .cardColumn {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
   }
 
@@ -443,9 +479,13 @@
 
   .name {
     position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     top: 10vh;
     background: none;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     font-size: 4vh !important;
     font-family: "Source Sans Pro", sans-serif !important;
@@ -542,8 +582,14 @@
 
   .btnJumboBox2 {
     position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     width: 28vw;
     background: none;
@@ -582,7 +628,11 @@
 
   .radioInput {
     margin: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
   }
 
@@ -787,12 +837,22 @@
     position: absolute;
     /*transform: rotate(-270deg) translateY(101%);*/
     top: -30vh;
+    -webkit-transform-origin: bottom left;
+    -ms-transform-origin: bottom left;
     transform-origin: bottom left;
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
     transform: rotate(90deg);
     width: 70vh;
     max-height: 90vw;
 
+    display: -webkit-box;
+
+    display: -ms-flexbox;
+
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     z-index: 1;
   }
@@ -803,8 +863,14 @@
 
   .percentBox {
     position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     font-size: 5vw !important;
     color: #66ffb2;
@@ -940,7 +1006,11 @@
 
   .statsTitle {
     margin-top: 10vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     color: WHITE;
     font-size: 4vw;
@@ -974,9 +1044,13 @@
 
   .iconText {
     position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     min-height: 10vh;
     width: 50vw;
+
+    -ms-flex-line-pack: center;
 
     align-content: center;
   }
@@ -1038,6 +1112,7 @@
 
   .icon {
     max-width: 4vw;
+    max-height: 22vw;
     display: inline-block;
   }
 
@@ -1122,7 +1197,13 @@
     max-width: 60vw;
     margin: auto;
 
+    display: -webkit-box;
+
+    display: -ms-flexbox;
+
     display: flex;
+    -webkit-box-pack: space-evenly;
+    -ms-flex-pack: space-evenly;
     justify-content: space-evenly;
     color: #66ffb2;
   }
@@ -1135,7 +1216,13 @@
     margin-top: 0vh;
     color: white;
 
+    display: -webkit-box;
+
+    display: -ms-flexbox;
+
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     font-size: 1.4vw;
     font-family: "Poppins";
@@ -1146,7 +1233,13 @@
     max-width: 40vw;
     margin: auto;
 
+    display: -webkit-box;
+
+    display: -ms-flexbox;
+
     display: flex;
+    -webkit-box-pack: space-evenly;
+    -ms-flex-pack: space-evenly;
     justify-content: space-evenly;
     color: #66ffb2;
     z-index: 500 !important;
@@ -1177,7 +1270,11 @@
   .graphTitle {
     margin-top: 4vh;
     font-size: 2.5vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
   }
 
@@ -1305,7 +1402,11 @@
   }
 
   .loginButtonsBox {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: space-evenly;
+    -ms-flex-pack: space-evenly;
     justify-content: space-evenly;
   }
 
@@ -1381,6 +1482,15 @@
     background: #3b5998;
     color: white;
   }
+
+  .descriptionBox {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
 }
 
 @media (max-width: 1100px) and (min-height: 1200px) {
@@ -1416,6 +1526,7 @@
   .title {
     text-shadow: 2px 2px black;
     font-family: arial black;
+    font-family: var(--titleFont);
     font-size: 10vw !important;
     padding-top: 7% !important;
   }
@@ -1446,8 +1557,14 @@
   .phoneColumn {
     background: none !important;
     position: absolute !important;
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
     display: flex !important;
+    -webkit-box-align: center !important;
+    -ms-flex-align: center !important;
     align-items: center !important;
+    -webkit-box-pack: center !important;
+    -ms-flex-pack: center !important;
     justify-content: center !important;
     min-height: 50vw !important;
     max-width: 18vw !important;
@@ -1486,7 +1603,11 @@
 
   .jmbo2 {
     position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
   }
 
@@ -1513,7 +1634,11 @@
     width: 30vw;
     height: 100%;
     background: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
   }
 
@@ -1607,13 +1732,24 @@
     left: 0 !important;
     top: 5vh !important;
 
+    display: -webkit-box !important;
+
+    display: -ms-flexbox !important;
+
     display: flex !important;
+    -webkit-box-pack: center !important;
+    -ms-flex-pack: center !important;
     justify-content: center !important;
   }
 
   .expertsTitleColumn {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
     display: flex !important;
+    -ms-flex-line-pack: center !important;
     align-content: center !important;
+    -webkit-box-pack: center !important;
+    -ms-flex-pack: center !important;
     justify-content: center !important;
   }
 
@@ -1623,6 +1759,7 @@
     text-shadow: 2px 2px black;
     font-family: "Arial Black", Arial;
     font-family: var(--titleFont);
+    font-family: "Arial Black";
     font-size: 6vh;
     color: white;
     padding: 1vh;
@@ -1635,7 +1772,11 @@
     left: 0;
 
     top: 20vh !important;
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
     display: flex !important;
+    -webkit-box-pack: center !important;
+    -ms-flex-pack: center !important;
     justify-content: center !important;
   }
 
@@ -1702,9 +1843,13 @@
 
   .name {
     position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     top: 12vh;
     background: none;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     font-size: 4vh !important;
     font-family: "Source Sans Pro", sans-serif !important;
@@ -1753,7 +1898,11 @@
   .statsTitle {
     font-size: 8vw;
     color: #66ffb2;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
 
     margin-top: 0vh;
@@ -1767,20 +1916,34 @@
     position: absolute;
     /*transform: rotate(-270deg) translateY(101%);*/
     top: -30vh;
+    -webkit-transform-origin: bottom left;
+    -ms-transform-origin: bottom left;
     transform-origin: bottom left;
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
     transform: rotate(90deg);
     width: 60vh;
     max-height: 60vw;
     background: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     z-index: 1;
   }
 
   .percentBox {
     position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     font-size: 12vw !important;
     color: #66ffb2;
@@ -1863,8 +2026,14 @@
 
   .percentBox {
     position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     font-size: 12vw;
     color: #66ffb2;
@@ -1934,7 +2103,11 @@
   }
 
   .statsTitle {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     color: #66ffb2;
     font-size: 12vw;
@@ -1962,9 +2135,13 @@
 
   .iconText {
     position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     min-height: 10vh;
     width: 50vw;
+
+    -ms-flex-line-pack: center;
 
     align-content: center;
   }
@@ -2109,7 +2286,13 @@
   .radioLabelsBox {
     min-width: 100vw;
 
+    display: -webkit-box;
+
+    display: -ms-flexbox;
+
     display: flex;
+    -webkit-box-pack: space-evenly;
+    -ms-flex-pack: space-evenly;
     justify-content: space-evenly;
     color: #66ffb2;
   }
@@ -2234,6 +2417,10 @@
     margin-top: 47%;
     transform: translateY(-37%);
   }
+
+  .facebookLogin {
+    display: none;
+  }
 }
 @media (max-width: 576px) {
   .phone {
@@ -2246,6 +2433,8 @@
 
   .titlebtns {
     margin: 30px;
+    margin-bottom: -1vh;
+    margin-top: 4vh;
     background-color: #00d486 !important;
     border: solid 1px;
     border-color: white;
@@ -2262,8 +2451,12 @@
   .title {
     text-shadow: 2px 2px black;
     font-family: arial black;
+    font-family: var(--titleFont);
+    font-family: "Arial Black", "Arial-BoldMT", Arial;
     font-size: 15vw !important;
     color: white;
+    position: relative;
+    top: 2vh;
   }
 
   .titleColumn {
@@ -2324,7 +2517,7 @@
     margin-top: -1vh;
 
     font-size: 2.8vw;
-    font-family: "Helvetica Neue";
+    font-family: Tahoma, sans-serif;
     padding: 0;
     width: 24vw;
     height: 5vh;
@@ -2339,13 +2532,13 @@
   .btnJumbo3 {
     position: relative;
     left: 2vw;
-    margin-top: 0;
+    margin-top: -1vh;
 
-    font-size: 3vw;
-    font-family: "Helvetica Neue";
+    font-size: 2.8vw;
+    font-family: Tahoma, sans-serif;
     padding: 0;
     width: 24vw;
-    height: 4vh;
+    height: 5vh;
     color: white;
     border: solid 1px;
     border-color: white !important;
@@ -2455,7 +2648,8 @@
     display: inline-block;
     justify-content: center;
     position: relative !important;
-
+    font-family: var(--titleFont);
+    font-family: "Arial Black", "Arial-BoldMT", Arial;
     min-height: 3vh !important;
     font-size: 10vw;
   }
@@ -2492,7 +2686,8 @@
   .titleh3 {
     color: white;
     font-size: 8vw;
-    margin-top: 0px;
+    margin-bottom: -2vh;
+    margin-top: 2vh;
 
     min-width: 50vw !important;
   }
@@ -2506,7 +2701,6 @@
   }
 
   .p1 {
-    margin-top: -20px;
     font-size: 15px;
     margin-left: 0px;
     max-width: 90vw;
@@ -2520,7 +2714,9 @@
   }
 
   .jmbo {
-    display: block;
+    position: relative;
+    display: flex;
+    justify-content: center;
 
     padding-left: 5vw !important;
     border-top: solid 1px;
@@ -2610,11 +2806,12 @@
   .cardButton {
     position: absolute !important;
     font-size: 3vw !important;
-    height: 3.5vh;
-    width: 30vw;
+    margin-left: 20vw !important;
+    height: 5vh;
+    line-height: 3.7vh !important;
+    width: 27vw;
     bottom: 2vh !important;
-    padding-bottom: 1vh !important;
-    padding-top: 0.8vh !important;
+    font-family: Tahoma, sans-serif;
     border: solid 1px;
     border-color: white !important;
     border-radius: 50px !important;
@@ -2639,6 +2836,8 @@
   .cardTitleBox {
     position: relative;
     min-height: 20vh !important;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     min-width: 50% !important;
     background: black !important;
@@ -2664,7 +2863,11 @@
     position: relative !important;
 
     top: 25vh !important;
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
     display: flex !important;
+    -webkit-box-pack: right !important;
+    -ms-flex-pack: right !important;
     justify-content: right !important;
   }
 
@@ -2702,20 +2905,34 @@
     position: absolute;
     /*transform: rotate(-270deg) translateY(101%);*/
     top: -30vh;
+    -webkit-transform-origin: bottom left;
+    -ms-transform-origin: bottom left;
     transform-origin: bottom left;
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
     transform: rotate(90deg);
     width: 60vh;
     max-height: 60vw;
     background: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     z-index: 1;
   }
 
   .percentBox {
     position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     font-size: 12vw;
     color: #00d486;
@@ -2794,7 +3011,11 @@
   }
 
   .statsTitle {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     color: #66ffb2;
     font-size: 12vw;
@@ -2822,9 +3043,16 @@
 
   .iconText {
     position: relative;
+
+    display: -webkit-box;
+
+    display: -ms-flexbox;
+
     display: flex;
     min-height: 10vh;
     width: 50vw;
+
+    -ms-flex-line-pack: center;
 
     align-content: center;
   }
@@ -3102,6 +3330,47 @@
     margin-top: 42%;
     transform: translateY(-37%);
   }
+
+  .p2
+    .title
+    .title1
+    .titleh3
+    .titlebtns
+    .lettuceColumn
+    .phoneColumn
+    .p1
+    .intuitiveColumn
+    .titleh3b
+    .phoneCalc
+    .pasta
+    .optionTitle
+    .option
+    .btnJumbo2
+    .titleFont
+    .cardsRow
+    .btnJumbo3 {
+    -o-transition-property: none !important;
+    -moz-transition-property: none !important;
+    -ms-transition-property: none !important;
+    -webkit-transition-property: none !important;
+    transition-property: none !important;
+    /*CSS transforms*/
+    -o-transform: none !important;
+    -moz-transform: none !important;
+    -ms-transform: none !important;
+    -webkit-transform: none !important;
+    transform: none !important;
+    /*CSS animations*/
+    -webkit-animation: none !important;
+    -moz-animation: none !important;
+    -o-animation: none !important;
+    -ms-animation: none !important;
+    animation: none !important;
+  }
+
+  .facebookLogin {
+    display: none;
+  }
 }
 
 @media (max-width: 380px) {
@@ -3171,9 +3440,6 @@
     top: -27.5vh;
   }
 
-  .percentBox {
-  }
-
   .fbText {
     margin-top: 1px;
   }
@@ -3188,6 +3454,10 @@
     margin-top: 48%;
     transform: translateY(-37%);
   }
+
+  .facebookLogin {
+    display: none;
+  }
 }
 
 @media (max-width: 320px) {
@@ -3201,6 +3471,10 @@
 
   .gText {
     margin-top: -3px;
+  }
+
+  .facebookLogin {
+    display: none;
   }
 }
 
