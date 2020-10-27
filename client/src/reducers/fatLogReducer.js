@@ -15,7 +15,6 @@ import {
 } from "../actions/types";
 
 const initialState = {
-  fatLogs: [],
   loading: false,
   checkID: null,
   attempted: null,
