@@ -97,7 +97,7 @@ class GraphsRadioButtons extends Component {
       //regex seems to be asynchronous so must specify to carry out .match after height is defined
       if (healthData.healthData.height) {
         const heightInCM = healthData.healthData.height.match(
-          /(?<=(\s))[0-9]*\.*[0-9]*/
+          /[0-9]{3}\.*[0-9]*/
         );
 
         this.setState({
@@ -106,6 +106,7 @@ class GraphsRadioButtons extends Component {
       }
       //^end of operations called using height property from redux store
 
+      //entering age, sex, height, weight, and activity level into the Mifflin-St Jeor Equation to calculate total daily calories
       if (this.state.sex === "Male") {
         this.setState({
           BMR:

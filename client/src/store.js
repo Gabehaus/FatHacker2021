@@ -6,11 +6,8 @@ import tokenCheck from "./ReduxCustMiddleware/tokenCheck";
 
 import { history } from "./history";
 
-const middleware = [tokenCheck, thunk, routerMiddleware(history)];
-const enhancer = compose(
-  applyMiddleware(...middleware),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const middleware = [thunk, routerMiddleware(history)];
+const enhancer = compose(applyMiddleware(...middleware));
 
 const store = createStore(connectRouter(history)(rootReducer), enhancer);
 

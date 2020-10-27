@@ -278,7 +278,9 @@ class FatLogModal extends Component {
             </Form>
           </ModalBody>
         </Modal>
-        <FatLogsList username={this.props.username} />
+        {this.props.fatLog.fatLogs ? (
+          <FatLogsList username={this.props.username} />
+        ) : null}
       </div>
     );
   }
