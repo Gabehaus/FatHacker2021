@@ -19,7 +19,7 @@ export default class Graphs1Data extends Component {
   }
 
   render() {
-    // calculating BMR using the Mifflin-St Jeor Equation depending on a persons goal of maintaining or losing weight
+    // calculating BMR using the Harris-Benedict Equation which depends on a person's goal of maintaining or losing weight
     if (this.props.goal === "Maintain weight") {
       if (this.props.sex === "Male") {
         var BMR = (

@@ -49,7 +49,7 @@ passport.use(
         if (existingUser) {
           return done(null, existingUser);
         }
-
+        //takes any characters occuring before the "@" sign in the email and assigns this as name
         const name = profile.emails[0].value.match(/([^@]+)/);
 
         //If new account

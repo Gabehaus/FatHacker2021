@@ -61,7 +61,7 @@ export default class Demo extends Component {
             {" "}
             5 - Now navigate to the "Stats" section and click "ENTER HEALTH
             DATA". Fill in the DOB, Sex, Height, Weight, Goal, and Activity
-            Level fields. Our application will use the Mifflin - St Jeor
+            Level fields. Our application will use the Harris - Benedict
             Equation to calculate your Basal Metabolic Rate, the number of
             calories required to keep your body functioning given your activity
             level, size, and age. From this number (your daily calorie intake)
