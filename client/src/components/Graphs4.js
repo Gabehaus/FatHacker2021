@@ -21,7 +21,7 @@ class ChartsPage3 extends React.Component {
 
     //pushes formatted dates for the last seven days to an array
     for (let i = 1; i <= 7; i++) {
-      let day = moment() // utc
+      let day = moment()
         .subtract(i, "days")
         .startOf("day")
         .toString();
@@ -33,6 +33,7 @@ class ChartsPage3 extends React.Component {
     //uses .filter() to return fat logs on each of the last 7 days
     for (let i = 0; i <= 6; i++) {
       let logs = this.props.fatLog.fatLogs.filter(({ date }) => {
+        //convert the date of each fat log to local time and format it
         let adjst = moment(date)
           .format("YYYY-MM-DD")
           .toString();
