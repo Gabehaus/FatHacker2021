@@ -89,7 +89,7 @@ class About extends Component {
           fluid={true}
           className='noMargin'
         >
-          <Jumbotron
+          <div
             className='col-sm-12 noMargin no padding jmbo'
             style={{
               width: "100vw",
@@ -107,11 +107,14 @@ class About extends Component {
                 foods .{" "}
               </p>
             </div>
-          </Jumbotron>
+          </div>
         </Container>
 
         {/* Artichokes */}
-        <Container fluid={true} style={{ width: "100vw", background: "black" }}>
+        <Container
+          fluid={true}
+          style={{ width: "100vw", background: "rgba(0, 0, 0, 0.9);" }}
+        >
           <Row className='artichokes text-center'>
             <Col>
               {" "}
