@@ -12,17 +12,34 @@ import esselstynCircle1 from "../images/esselstynCircle1.png"
 import Card1 from "./Card1"
 import Footer from "./Footer"
 import { Jumbotron, Container, Row, Col } from "reactstrap"
-import Image from "react-bootstrap/Image"
+import ImageB from "react-bootstrap/Image"
 import Aos from "aos"
 import "aos/dist/aos.css"
 import { push } from "connected-react-router"
 import store from "../store"
 
 class About extends Component {
+  state = {
+    backgrounds: [
+      lettuceFeather4,
+      phone1,
+      phoneCalc1,
+      pasta1,
+      mcdougallCircle1,
+      OrnishCircle1,
+      esselstynCircle1
+    ],
+    bgsPreloaded: []
+  }
+
   componentDidMount() {
     //this.props.getFatLogs(this.props.username);
 
     Aos.init({ duration: 2000, disable: "phone" }) // initialize animate on scroll
+
+    this.state.backgrounds.map(elem => {
+      this.state.bgsPreloaded.push((new Image().src = elem))
+    })
   }
 
   render() {
@@ -69,7 +86,10 @@ class About extends Component {
                 <Row>
                   <Col className='lettuceColumn' data-aos='zoom-in'>
                     {" "}
-                    <Image src={lettuceFeather4} className='lettuce' />
+                    <ImageB
+                      src={this.state.bgsPreloaded[0]}
+                      className='lettuce'
+                    />
                   </Col>
                 </Row>
               </Container>
@@ -77,7 +97,10 @@ class About extends Component {
                 <Row>
                   <Col className='phoneColumn' data-aos='zoom-in'>
                     {" "}
-                    <Image src={phone1} className='phone' />
+                    <ImageB
+                      src={this.state.bgsPreloaded[1]}
+                      className='phone'
+                    />
                   </Col>
                 </Row>
               </Container>
@@ -150,8 +173,8 @@ class About extends Component {
                 <Row>
                   <Col className='phoneCalcColumn'>
                     {" "}
-                    <Image
-                      src={phoneCalc1}
+                    <ImageB
+                      src={this.state.bgsPreloaded[2]}
                       className='phoneCalc'
                       data-aos='fade-right'
                     />
@@ -162,8 +185,8 @@ class About extends Component {
                 <Row>
                   <Col className='pastaColumn'>
                     {" "}
-                    <Image
-                      src={pasta1}
+                    <ImageB
+                      src={this.state.bgsPreloaded[3]}
                       className='pasta'
                       data-aos='fade-left'
                     />
@@ -229,7 +252,7 @@ class About extends Component {
           <Row className='cardsRow' data-aos='fade-up'>
             <Col className='cardColumn'>
               <Card1
-                image={mcdougallCircle1}
+                image={this.state.bgsPreloaded[4]}
                 name='Dr. McDougall'
                 summary='A physician and nutrition expert who teaches better health
                   through vegetarian cuisine, John A. McDougall, MD has been
@@ -238,7 +261,7 @@ class About extends Component {
                 buttonSource='https://www.drmcdougall.com/health/education/mailings/featured-articles/articles/fat-or-carbs-which-is-worse/'
               ></Card1>
               <Card1
-                image={OrnishCircle1}
+                image={this.state.bgsPreloaded[5]}
                 name='Dr. Ornish'
                 summary="Ornish's low–fat, high–carbohydrate diet has been proven to
                 unstick some of the plaque build–up in arteries that causes a
@@ -247,7 +270,7 @@ class About extends Component {
                 buttonSource='https://www.ornish.com/undo-it/'
               ></Card1>
               <Card1
-                image={esselstynCircle1}
+                image={this.state.bgsPreloaded[6]}
                 name='Dr. Esselstyn'
                 summary='In a 4-year study of 198 participants seriously ill with
                 cardiovascular disease, of the 89% adherent to his low-fat /
