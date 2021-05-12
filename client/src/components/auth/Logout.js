@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react"
 import { NavLink } from "reactstrap"
 import { connect } from "react-redux"
 import { logout } from "../../actions/authActions"
+import { deleteGuestFatlogs } from "../../actions/fatLogActions"
 import { deleteAllFatlogs } from "../../actions/fatLogActions"
 import PropTypes from "prop-types"
 import { NavLink as RRNavLink } from "react-router-dom"
@@ -21,6 +22,7 @@ class Logout extends Component {
   handleLogout = () => {
     store.dispatch(push("/"))
     setTimeout(() => {
+      this.props.deleteGuestFatlogs("Guest")
       this.props.deleteAllFatlogs()
       this.props.logout()
     }, 10)
@@ -43,4 +45,6 @@ class Logout extends Component {
   }
 }
 
-export default connect(null, { logout, deleteAllFatlogs })(Logout)
+export default connect(null, { logout, deleteGuestFatlogs, deleteAllFatlogs })(
+  Logout
+)

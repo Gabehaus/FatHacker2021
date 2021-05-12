@@ -12,13 +12,13 @@ import {
   NESTEDMODAL_OPEN,
   NESTEDMODAL_CLOSE,
   DELETE_ALL_FATLOGS
-} from "./types";
-import axios from "axios";
-import { tokenConfig } from "./authActions";
-import { returnErrors } from "./errorActions";
+} from "./types"
+import axios from "axios"
+import { tokenConfig } from "./authActions"
+import { returnErrors } from "./errorActions"
 
 export const getFatLogs = username => dispatch => {
-  dispatch(setFatLogsLoading());
+  dispatch(setFatLogsLoading())
   axios
     .get(`/api/fatLogs/${username}`)
     .then(res =>
@@ -29,8 +29,23 @@ export const getFatLogs = username => dispatch => {
     )
     .catch(err =>
       dispatch(returnErrors(err.response.data, err.response.status))
-    );
-};
+    )
+}
+
+export const deleteGuestFatlogs = username => dispatch => {
+  axios
+    .delete(`/api/fatLogs/delete/${username}`)
+    .then(res =>
+      dispatch({
+        type: DELETE_ALL_FATLOGS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    )
+}
+
 export const addFatLog = (fatLog, getState) => dispatch => {
   axios
     .post("/api/fatLogs", fatLog, tokenConfig(getState))
@@ -44,8 +59,8 @@ export const addFatLog = (fatLog, getState) => dispatch => {
       dispatch(
         returnErrors(err.response.data, err.response.status, "ADD_FATLOG_FAIL")
       )
-    );
-};
+    )
+}
 
 export const deleteFatLog = (id, user) => (dispatch, getState) => {
   axios
@@ -56,14 +71,14 @@ export const deleteFatLog = (id, user) => (dispatch, getState) => {
         payload: id
       })
     )
-    .catch(err => dispatch(returnErrors(err.response, err.response)));
-};
+    .catch(err => dispatch(returnErrors(err.response, err.response)))
+}
 
 export const setFatLogsLoading = () => {
   return {
     type: FATLOGS_LOADING
-  };
-};
+  }
+}
 
 export const transferCalculatorResults = (
   calcFood,
@@ -74,57 +89,57 @@ export const transferCalculatorResults = (
   return {
     type: CALCULATOR_RESULTS,
     payload: { calcFood, calcUnit, calcQuantity, calcFat }
-  };
-};
+  }
+}
 
 export const changeCalcFood = food => {
   return {
     type: CHANGE_CALCFOOD,
     payload: food
-  };
-};
+  }
+}
 
 export const changeCalcUnit = unit => {
   return {
     type: CHANGE_CALCUNIT,
     payload: unit
-  };
-};
+  }
+}
 
 export const changeCalcQuantity = quantity => {
   return {
     type: CHANGE_CALCQUANTITY,
     payload: quantity
-  };
-};
+  }
+}
 
 export const changeCalcFat = fat => {
   return {
     type: CHANGE_CALCFAT,
     payload: fat
-  };
-};
+  }
+}
 
 export const resetFatLogAdded = () => {
   return {
     type: RESET_LOGADDED
-  };
-};
+  }
+}
 
 export const openNestedModal = () => {
   return {
     type: NESTEDMODAL_OPEN
-  };
-};
+  }
+}
 
 export const closeNestedModal = () => {
   return {
     type: NESTEDMODAL_CLOSE
-  };
-};
+  }
+}
 
 export const deleteAllFatlogs = () => {
   return {
     type: DELETE_ALL_FATLOGS
-  };
-};
+  }
+}
