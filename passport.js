@@ -17,7 +17,7 @@ passport.use(
     async (payload, done) => {
       try {
         // Find the user specified in token
-        const user = await User.findById(payload.sub) //the user's id is stored as a value of the sub property of the user object
+        const user = await User.findById(payload.sub) //the user's id is stored as a value of the sub property of the user token
 
         // If user doesn't exists, handle it
         if (!user) {
