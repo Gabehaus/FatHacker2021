@@ -1,11 +1,11 @@
-const passport = require("passport");
-const JwtStrategy = require("passport-jwt").Strategy;
-const LocalStrategy = require("passport-local").Strategy;
-const GoogleStrategy = require("passport-token-google").Strategy; //const GooglePlusTokenStrategy = require("passport-google-plus-token");
-const FacebookTokenStrategy = require("passport-facebook-token");
-const { ExtractJwt } = require("passport-jwt");
-const config = require("config");
-const User = require("./models/User");
+const passport = require("passport")
+const JwtStrategy = require("passport-jwt").Strategy
+const LocalStrategy = require("passport-local").Strategy
+const GoogleStrategy = require("passport-token-google").Strategy //const GooglePlusTokenStrategy = require("passport-google-plus-token");
+const FacebookTokenStrategy = require("passport-facebook-token")
+const { ExtractJwt } = require("passport-jwt")
+const config = require("config")
+const User = require("./models/User")
 
 // JSON WEB TOKENS STRATEGY
 passport.use(
@@ -17,22 +17,22 @@ passport.use(
     async (payload, done) => {
       try {
         // Find the user specified in token
-        const user = await User.findById(payload.sub);
+        const user = await User.findById(payload.sub) //the user's id is stored as a value of the sub property of the user object
 
         // If user doesn't exists, handle it
         if (!user) {
-          return done(null, false);
+          return done(null, false)
         }
 
         // Otherwise, return the user
         //req.user = user;
-        done(null, user); // this user payload is accessible via req.user
+        done(null, user) // this user payload is accessible via req.user
       } catch (error) {
-        done(error, false);
+        done(error, false)
       }
     }
   )
-);
+)
 
 //GOOGLE OAUTH STRATEGY
 passport.use(
@@ -45,12 +45,12 @@ passport.use(
     async (accessToken, refreshToken, profile, done) => {
       try {
         //Check whether this current user exists in our DB
-        const existingUser = await User.findOne({ "google.id": profile.id });
+        const existingUser = await User.findOne({ "google.id": profile.id })
         if (existingUser) {
-          return done(null, existingUser);
+          return done(null, existingUser)
         }
         //takes any characters occuring before the "@" sign in the email and assigns this as name
-        const name = profile.emails[0].value.match(/([^@]+)/);
+        const name = profile.emails[0].value.match(/([^@]+)/)
 
         //If new account
         const newUser = new User({
@@ -60,16 +60,16 @@ passport.use(
             id: profile.id,
             email: profile.emails[0].value
           }
-        });
+        })
 
-        await newUser.save();
-        done(null, newUser);
+        await newUser.save()
+        done(null, newUser)
       } catch (error) {
-        done(error, false, error.message);
+        done(error, false, error.message)
       }
     }
   )
-);
+)
 
 //FACEBOOK OAUTH STRATEGY
 passport.use(
@@ -81,9 +81,9 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-        const existingUser = await User.findOne({ "facebook.id": profile.id });
+        const existingUser = await User.findOne({ "facebook.id": profile.id })
         if (existingUser) {
-          return done(null, existingUser);
+          return done(null, existingUser)
         }
         const newUser = new User({
           method: "facebook",
@@ -92,16 +92,16 @@ passport.use(
             id: profile.id,
             email: profile.emails[0].value
           }
-        });
+        })
 
-        await newUser.save();
-        done(null, newUser);
+        await newUser.save()
+        done(null, newUser)
       } catch (error) {
-        done(error, false, error.message);
+        done(error, false, error.message)
       }
     }
   )
-);
+)
 
 // LOCAL STRATEGY
 
@@ -113,26 +113,26 @@ passport.use(
     async (email, password, done) => {
       try {
         // Find the user given the email
-        const user = await User.findOne({ "local.email": email });
+        const user = await User.findOne({ "local.email": email })
 
         // If not, handle it
         if (!user) {
-          return done(null, false);
+          return done(null, false)
         }
 
         // Check if the password is correct
-        const isMatch = await user.isValidPassword(password);
+        const isMatch = await user.isValidPassword(password)
 
         // if not, handle it
         if (!isMatch) {
-          return done(null, false);
+          return done(null, false)
         }
 
         //otherwise, return user
-        done(null, user);
+        done(null, user)
       } catch (error) {
-        done(error, false);
+        done(error, false)
       }
     }
   )
-);
+)
