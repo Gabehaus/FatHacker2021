@@ -59,7 +59,7 @@ class Components extends Component {
     if (this.props.auth.user && prevProps.auth.user !== this.props.auth.user) {
       const user = this.props.auth.user
 
-      const name = user[Object.keys(user)[0]].name
+      const name = user[Object.keys(user)[0]].name //gets the first property from the user object without knowing if it is "local", "google", or "facebook"
       this.props.getFatLogs(name)
       this.props.getHealthData(name)
 
